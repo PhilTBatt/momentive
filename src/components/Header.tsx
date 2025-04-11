@@ -10,7 +10,8 @@ const StyledHeader = styled.header`
   font-size: 17vw;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2)
+  text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 1vw;
 `
 
 export default function Header() {
