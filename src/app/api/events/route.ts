@@ -1,21 +1,25 @@
+import { db } from "@/utils/connection"
 import { NextRequest } from "next/server"
 
-export async function GET(request: NextRequest) {
-    // Fetch data
-    return new Response(JSON.stringify(''), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-    })
-  }
+export async function GET() {
+    const events = await db`SELECT * FROM events`
+    return new Response(JSON.stringify({ events }), { status: 200, headers: { 'Content-Type': 'application/json' }})
+}
    
-  export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest) {
     const body = await request.json()
-    const { title, description, date, location, createdBy } = body
-  
-    // const newEvent = await db.events.create({ data: { title, description, date, location, createdBy } })
+    const { title, description, date, location } = body
 
-    return new Response(JSON.stringify(''), {
-        status: 201,
-        headers: { 'Content-Type': 'application/json' }
-    })
+    for (const field of [title, description, date, location]) {
+        if (!field) 
+            return new Response(JSON.stringify({ error: 'Field is missing' }), { status: 400 })
+
+        if (typeof field !== 'string') 
+            return new Response(JSON.stringify({ error: 'Invalid input' }), { status: 400, headers: { 'Content-Type': 'application/json' }})
+    }
+
+    const newEvent = await db`INSERT INTO events (title, description, date, location) VALUES
+        (${title}, ${description}, ${date}, ${location}) RETURNING *`
+
+    return new Response(JSON.stringify({ event: newEvent[0] }), { status: 201, headers: { 'Content-Type': 'application/json' } })
 }
