@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import styled from "styled-components";
 
 const StyledCard = styled.li`
@@ -15,7 +16,7 @@ export function EventCard({event}: {event: any}) {
                 {event.title}
             </h3>
             <CardInformation>
-                <img src={event.event_img_url}/>
+                <Image src={event.event_img_url} alt='Image of event topic'/>
                 Author: {event.author}
                 <br/>
                 Topic: {event.topic.charAt(0).toUpperCase() + event.topic.slice(1)}
