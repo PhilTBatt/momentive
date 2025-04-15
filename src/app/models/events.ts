@@ -15,13 +15,13 @@ export async function fetchEvents(sortBy = 'created_at', order = 'DESC', topic: 
 	
 	let query = `SELECT * FROM events`
 	if (topic) query += ` WHERE topic = ${topic}`
-	query += `ORDER BY ${sortBy} ${order} LIMIT ${limit} OFFSET ${(page - 1) * limit}'`
+	query += ` ORDER BY ${sortBy} ${order} LIMIT ${limit} OFFSET ${(page - 1) * limit}`
 	
 	const events = await db`${query}`
 	return events
 }
 
-export async function postEvent(title: string, description: string, date: string, location: string) {
+export async function insertEvent(title: string, description: string, date: string, location: string) {
 	for (const field of [title, description, date, location]) {
         if (!field) 
             throw { status: 400, msg: 'Field is missing' }
@@ -33,4 +33,36 @@ export async function postEvent(title: string, description: string, date: string
         (${title}, ${description}, ${date}, ${location}) RETURNING *`
 	
 	return newEvent[0]
+}
+
+export async function fetchEventById(id: string) {
+    const event = await db`SELECT * FROM events WHERE id = ${id}`
+    if (event.length === 0) 
+        throw { status: 404, msg: "Event not found" }
+    
+    return event[0]
+}
+
+export async function removeEventById(id: string) {
+    const result = await db`DELETE FROM events WHERE id = ${id} RETURNING *`
+
+    if (result.length === 0) 
+        throw { status: 404, msg: "Event not found" }
+
+    return true
+}
+
+export async function updateEventById(id: string, title: string, description: string, date: string, location: string) {
+    for (const field of [title, description, date, location]) {
+        if (!field) 
+            throw { status: 400, msg: "Field is missing" }
+        if (typeof field !== 'string') 
+            throw { status: 400, msg: "Invalid input" }
+    }
+
+    const result = await db`UPDATE events SET title = ${title}, description = ${description}, date = ${date}, location = ${location} WHERE id = ${id} RETURNING *`
+    if (result.length === 0) 
+        throw { status: 404, msg: "Event not found" }
+
+    return result[0]
 }
