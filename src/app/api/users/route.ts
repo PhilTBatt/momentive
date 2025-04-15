@@ -1,7 +1,19 @@
 import { db } from "@/utils/connection"
 import { NextRequest } from "next/server"
 
-export async function GET() {
+export async function GET(order = 'ASC', limit = 10, page = 1) {
+    const validOrders = ['ASC', 'DESC']
+
+	if (!validOrders.includes(order))
+		return new Response(JSON.stringify({status: 400, msg: 'Invalid order query'}), { status: 400, headers: { 'Content-Type': 'application/json' }})
+	if (isNaN(limit))
+		return new Response(JSON.stringify({status: 400, msg: 'Invalid limit query'}), { status: 400, headers: { 'Content-Type': 'application/json' }})
+	if (isNaN(page))
+		return new Response(JSON.stringify({status: 400, msg: 'Invalid page query'}), { status: 400, headers: { 'Content-Type': 'application/json' }})
+	
+	let query = `SELECT * FROM events`
+
+	query += `ORDER BY name ${order} LIMIT ${limit} OFFSET ${(page - 1) * limit}'`
     const users = await db`SELECT * FROM users`
     return new Response(JSON.stringify({ users }), { status: 200, headers: { 'Content-Type': 'application/json' }})
 }
