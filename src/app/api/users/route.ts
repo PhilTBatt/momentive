@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
 
     for (const field of [name, email]) {
         if (!field) 
-            return new Response(JSON.stringify({ error: 'Field is missing' }), { status: 400 })
+            return new Response(JSON.stringify({ error: 'Field is missing' }), { status: 400, headers: { 'Content-Type': 'application/json' }})
 
         if (typeof field !== 'string') 
             return new Response(JSON.stringify({ error: 'Invalid input' }), { status: 400, headers: { 'Content-Type': 'application/json' }})
