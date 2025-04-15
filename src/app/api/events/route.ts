@@ -1,43 +1,33 @@
+import { fetchEvents, postEvent } from "@/app/models/events"
 import { db } from "@/utils/connection"
 import { NextRequest } from "next/server"
 
-export async function GET(sortBy = 'created_at', order = 'DESC', topic: string, limit = 10, page = 1) {
-	const validColumns = ['title', 'date', 'created_by', 'location', 'topic', 'attendees']
-    const validOrders = ['ASC', 'DESC']
+export async function GET(request: NextRequest) {
+	const { searchParams } = new URL(request.url)
 
-	if (!validColumns.includes(sortBy))
-		return new Response(JSON.stringify({status: 400, msg: 'Invalid sort_by query'}), { status: 400, headers: { 'Content-Type': 'application/json' }})
-	if (!validOrders.includes(order))
-		return new Response(JSON.stringify({status: 400, msg: 'Invalid order query'}), { status: 400, headers: { 'Content-Type': 'application/json' }})
-	if (isNaN(limit))
-		return new Response(JSON.stringify({status: 400, msg: 'Invalid limit query'}), { status: 400, headers: { 'Content-Type': 'application/json' }})
-	if (isNaN(page))
-		return new Response(JSON.stringify({status: 400, msg: 'Invalid page query'}), { status: 400, headers: { 'Content-Type': 'application/json' }})
-	
-	let query = `SELECT * FROM events`
+	const sortBy = searchParams.get("sortBy") || "created_at"
+	const order = searchParams.get("order") || "DESC"
+	const topic = searchParams.get("topic")
+	const limit = Number(searchParams.get("limit") || 10)
+	const page = Number(searchParams.get("page") || 1)
 
-	if (topic) query += ` WHERE topic = ${topic}`
-
-	query += `ORDER BY ${sortBy} ${order} LIMIT ${limit} OFFSET ${(page - 1) * limit}'`
-
-    const events = await db`${query}`
-    return new Response(JSON.stringify({ events }), { status: 200, headers: { 'Content-Type': 'application/json' }})
+	try {
+		const events = await fetchEvents(sortBy, order, topic, limit, page)
+		return new Response(JSON.stringify({ events }), { status: 200, headers: { "Content-Type": "application/json" } })
+	}
+	catch (err: any) {
+		return new Response(JSON.stringify({ status: err.status, msg: err.msg }), { status: err.status, headers: { "Content-Type": "application/json" } })
+	}
 }
    
 export async function POST(request: NextRequest) {
-    const body = await request.json()
-    const { title, description, date, location } = body
+    const { title, description, date, location } = await request.json()
 
-    for (const field of [title, description, date, location]) {
-        if (!field) 
-            return new Response(JSON.stringify({ error: 'Field is missing' }), { status: 400, headers: { 'Content-Type': 'application/json' }})
-
-        if (typeof field !== 'string') 
-            return new Response(JSON.stringify({ error: 'Invalid input' }), { status: 400, headers: { 'Content-Type': 'application/json' }})
-    }
-
-    const newEvent = await db`INSERT INTO events (title, description, date, location) VALUES
-        (${title}, ${description}, ${date}, ${location}) RETURNING *`
-
-    return new Response(JSON.stringify({ event: newEvent[0] }), { status: 201, headers: { 'Content-Type': 'application/json' } })
+	try {
+		const event = await postEvent(title, description, date, location)
+		return new Response(JSON.stringify({ event }), { status: 201, headers: { 'Content-Type': 'application/json' } })
+	} 
+	catch (err: any) {
+		return new Response(JSON.stringify({ status: err.status, msg: err.msg }), { status: err.status, headers: { "Content-Type": "application/json" } })
+	}
 }
