@@ -12,14 +12,14 @@ const StyledText = styled.h2`
 `
 
 export default function Home() {
-  return (
-    <>
-      <Header/>
-        <StyledText>
-          Welcome!
-        </StyledText>
-        <EventList/>
-      <NavBar/>
-    </>
-  )
+  	return (
+    	<>
+      		<Header/>
+        	<StyledText>
+          		Welcome!
+        	</StyledText>
+        	<EventList/>
+      		<NavBar/>
+    	</>
+  	)
 }
