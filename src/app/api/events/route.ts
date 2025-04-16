@@ -1,4 +1,4 @@
-import { fetchEvents, insertEvent } from "@/app/models/events"
+import { fetchEvents, insertEvent } from "@/app/api/models/events"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {

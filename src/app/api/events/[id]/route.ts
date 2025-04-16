@@ -1,4 +1,4 @@
-import { fetchEventById, removeEventById, updateEventById } from "@/app/models/events";
+import { fetchEventById, removeEventById, updateEventById } from "@/app/api/models/events";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET({ params }: { params: { id: string } }) {

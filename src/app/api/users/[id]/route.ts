@@ -1,4 +1,4 @@
-import { fetchUserById, removeUserById, updateUserById } from '@/app/models/user';
+import { fetchUserById, removeUserById, updateUserById } from '@/app/api/models/user';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET({ params }: { params: { id: string } }) {

@@ -1,4 +1,4 @@
-import { fetchUsers, insertUser } from "@/app/models/user"
+import { fetchUsers, insertUser } from "@/app/api/models/user"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) { 
