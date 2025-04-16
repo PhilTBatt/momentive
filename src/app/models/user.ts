@@ -1,6 +1,6 @@
 import { db } from "@/utils/connection"
 
-export async function fetchUsers(order: string, limit: number, page: number) {
+export async function fetchUsers(order = 'ASC', limit = 10, page = 1) {
 	const validOrders = ['ASC', 'DESC']
 	
 	if (!validOrders.includes(order))
@@ -10,10 +10,11 @@ export async function fetchUsers(order: string, limit: number, page: number) {
 	if (isNaN(page))
 		throw { status: 400, msg: 'Invalid page query' }
 		
-	let query = `SELECT * FROM users`
-	query += ` ORDER BY name ${order} LIMIT ${limit} OFFSET ${(page - 1) * limit}`
+	let query = `SELECT * FROM users ORDER BY name ${order} LIMIT $1 OFFSET $2`
+	const params = [limit, (page - 1) * limit]
 
-	const users = await db`${query}`
+	const users = await db.query(query, params)
+
 	return users
 }
 
@@ -23,19 +24,26 @@ export async function insertUser(name: string, email: string) {
         if (typeof field !== 'string') throw { status: 400, msg: 'Invalid input' }
     }
 
-    const newUser = await db`INSERT INTO users (name, email) VALUES (${name}, ${email}) RETURNING *`
+    const query = `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *`
+    const params = [name, email]
+	
+	const newUser = await db.query(query, params)
 	
 	return newUser[0]
 }
 
 export async function fetchUserById(id: string) {
-	const user = await db`SELECT * FROM users WHERE id = ${id}`
+	const query = `SELECT * FROM users WHERE id = $1`
+	const user = await db.query(query, [id])
+
 	if (user.length === 0) throw { status: 404, msg: "User not found" }
 	return user[0]
 }
 
 export async function removeUserById(id: string) {
-	const result = await db`DELETE FROM users WHERE id = ${id} RETURNING *`
+	const query = `DELETE FROM users WHERE id = $1 RETURNING *`
+	const result = await db.query(query, [id])
+
 	if (result.length === 0) throw { status: 404, msg: "User not found" }
 	return true
 }
@@ -46,7 +54,10 @@ export async function updateUserById(id: string, name: string, email: string) {
 		if (typeof field !== 'string') throw { status: 400, msg: "Invalid input" }
 	}
 
-	const user = await db`UPDATE users SET name = ${name}, email = ${email} WHERE id = ${id} RETURNING *`
+	const query = `UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *`
+	const params = [name, email, id]
+
+	const user = await db.query(query, params)
 
 	if (user.length === 0) throw { status: 404, msg: "User not found" }
 	return user[0]

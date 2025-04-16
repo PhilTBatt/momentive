@@ -4,13 +4,14 @@ import { NextRequest } from "next/server"
 export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams
 
-	const sortBy = searchParams.get("sortBy") || "created_at"
+	const sortBy = searchParams.get("sortBy") || "date"
 	const order = searchParams.get("order") || "DESC"
 	const topic = searchParams.get("topic")
 	const limit = Number(searchParams.get("limit") || 10)
 	const page = Number(searchParams.get("page") || 1)
 
 	try {
+		console.log("Entering try block")
 		const events = await fetchEvents(sortBy, order, topic, limit, page)
 		return new Response(JSON.stringify({ events }), { status: 200, headers: { "Content-Type": "application/json" } })
 	} catch (err: any) {
