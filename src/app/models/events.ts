@@ -1,4 +1,4 @@
-import { db } from "@/utils/connection"
+import { db } from "@/lib/connection"
 
 export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string | null, limit = 10, page = 1) {
 	const validColumns = ['title', 'date', 'created_by', 'location', 'topic', 'attendees']

@@ -1,5 +1,5 @@
 import { fetchEvents, insertEvent } from "@/app/models/events"
-import { NextRequest } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams
@@ -13,9 +13,9 @@ export async function GET(request: NextRequest) {
 	try {
 		console.log("Entering try block")
 		const events = await fetchEvents(sortBy, order, topic, limit, page)
-		return new Response(JSON.stringify({ events }), { status: 200, headers: { "Content-Type": "application/json" } })
+		return NextResponse.json({ events }, { status: 200 })
 	} catch (err: any) {
-		return new Response(JSON.stringify({ status: err.status, msg: err.msg }), { status: err.status, headers: { "Content-Type": "application/json" } })
+		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
 	}
 }
    
@@ -24,8 +24,8 @@ export async function POST(request: NextRequest) {
 
 	try {
 		const event = await insertEvent(title, description, date, location)
-		return new Response(JSON.stringify({ event }), { status: 201, headers: { 'Content-Type': 'application/json' } })
+		return NextResponse.json({ event }, { status: 201 })
 	} catch (err: any) {
-		return new Response(JSON.stringify({ status: err.status, msg: err.msg }), { status: err.status, headers: { "Content-Type": "application/json" } })
+		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
 	}
 }

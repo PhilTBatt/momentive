@@ -1,4 +1,4 @@
-import { db } from "@/utils/connection"
+import { db } from "@/lib/connection"
 
 export async function fetchUsers(order = 'ASC', limit = 10, page = 1) {
 	const validOrders = ['ASC', 'DESC']
