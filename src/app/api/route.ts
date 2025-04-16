@@ -1,4 +1,3 @@
-// route.ts at /api
 export async function GET() {
 	return Response.json({
 		"GET /api": {
@@ -97,6 +96,28 @@ export async function GET() {
 						email: "alice@example.com"
 					}
 				]
+			}
+		},
+
+		"POST /api/events/:id/attendees": {
+			description: "Adds an attendee to an event",
+			queries: [],
+			requestBody: {
+				name: "Attendee Name",
+				email: "attendee@example.com"
+			},
+			exampleResponse: {
+				event: {
+					id: "1",
+					title: "JavaScript Meetup",
+					description: "Let's code!",
+					date: "2025-04-30",
+					location: "Leeds",
+					attendees: [
+						{ name: "John Doe", email: "john@example.com" },
+						{ name: "Jane Smith", email: "jane@example.com" }
+					]
+				}
 			}
 		},
 
