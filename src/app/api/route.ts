@@ -18,7 +18,7 @@ export async function GET() {
 						location: "Leeds",
 						topic: "Programming",
 						created_by: "Phil",
-						attendees: 42
+						attendees: 10
 					}
 				]
 			}
@@ -39,7 +39,7 @@ export async function GET() {
 					title: "New Event",
 					description: "Some details here",
 					date: "2025-04-30",
-					location: "London"
+					location: "Leeds"
 				}
 			}
 		},
@@ -53,7 +53,7 @@ export async function GET() {
 					title: "JavaScript Meetup",
 					description: "Let's code!",
 					date: "2025-04-30",
-					location: "London"
+					location: "Leeds"
 				}
 			}
 		},
@@ -82,8 +82,7 @@ export async function GET() {
 			description: "Deletes an event by ID",
 			queries: [],
 			exampleResponse: {
-				status: 204,
-				msg: "Event deleted successfully"
+				status: 204
 			}
 		},
 
