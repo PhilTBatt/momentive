@@ -11,8 +11,8 @@ export async function GET(request: NextRequest) {
 	const page = Number(searchParams.get("page") || 1)
 
 	try {
-		console.log("Entering try block")
 		const events = await fetchEvents(sortBy, order, topic, limit, page)
+
 		return NextResponse.json({ events }, { status: 200 })
 	} catch (err: any) {
 		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
 
 	try {
 		const event = await insertEvent(title, description, date, location)
+
 		return NextResponse.json({ event }, { status: 201 })
 	} catch (err: any) {
 		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })

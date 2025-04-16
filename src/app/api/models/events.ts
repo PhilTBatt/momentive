@@ -33,6 +33,7 @@ export async function insertEvent(title: string, description: string, date: stri
 	for (const field of [title, description, date, location]) {
         if (!field) 
             throw { status: 400, msg: 'Field is missing' }
+		
         if (typeof field !== 'string') 
             throw { status: 400, msg: 'Invalid input' }
     }
@@ -84,21 +85,19 @@ export async function updateEventById(id: string, title: string, description: st
 }
 
 export async function addAttendeeToEvent(eventId: string, name: string, email: string) {
-    if (!name || !email) {
+    if (!name || !email)
         throw { status: 400, msg: 'Name and email are required for attendees.' }
-    }
-    if (typeof name !== 'string' || typeof email !== 'string') {
+
+    if (typeof name !== 'string' || typeof email !== 'string')
         throw { status: 400, msg: 'Invalid input types for name or email.' }
-    }
 
     const query = `UPDATE events SET attendees = array_append(attendees, ROW($1, $2)::attendee) WHERE id = $3 RETURNING *`
 
     const params = [name, email, eventId]
     const result = await db.query(query, params)
 
-    if (result.length === 0) {
-        throw { status: 404, msg: "Event not found" }
-    }
+    if (result.length === 0)
+		throw { status: 404, msg: "Event not found" }
 
     return result[0]
 }
