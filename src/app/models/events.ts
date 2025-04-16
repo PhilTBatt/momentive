@@ -24,7 +24,7 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 	query += ` ORDER BY ${sortBy} ${order} LIMIT $${params.length + 1} OFFSET $${params.length + 2}`
 	params.push(limit, (page - 1) * limit)
 
-    const events = await db.query(query, params) // Run the query with values
+    const events = await db.query(query, params)
 
 	return events
 }
