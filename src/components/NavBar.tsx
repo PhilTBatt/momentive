@@ -4,6 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Dispatch, SetStateAction } from "react";
 
 const StyledNavBar = styled.footer`
     position: fixed;
@@ -26,24 +27,34 @@ const IconWrapper = styled.div`
     }
 `
 
-export default function NavBar() {
-    return (
+export default function NavBar({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>> | null}) {
+    const isUserSignedIn = false
+
+	const handleUserClick = () => {
+        if (isUserSignedIn) window.location.href = '/user'
+
+		else if (setIsModelOpen) setIsModelOpen(true)
+    }
+
+	return (
         <StyledNavBar>
             <Link href='search'>
                 <IconWrapper>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </IconWrapper>
             </Link>
+
             <Link href='/'>
                 <IconWrapper>
                     <FontAwesomeIcon icon={faHouse} />
                 </IconWrapper>
             </Link>
-            <Link href='admin'>
+			
+            <span onClick={handleUserClick}>
                 <IconWrapper>
                     <FontAwesomeIcon icon={faUser} />
                 </IconWrapper>
-            </Link>
+            </span>
         </StyledNavBar>
     )
 }

@@ -3,6 +3,8 @@
 import { EventList } from "@/components/EventList";
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
+import { UserModal } from "@/components/UserModel";
+import { useState } from "react";
 import styled from "styled-components";
 
 const StyledText = styled.h2`
@@ -12,14 +14,17 @@ const StyledText = styled.h2`
 `
 
 export default function Home() {
+	const [isModelOpen, setIsModelOpen] = useState(false)
+
   	return (
     	<>
       		<Header/>
         	<StyledText>
           		Welcome!
         	</StyledText>
+			{isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
         	<EventList/>
-      		<NavBar/>
+      		<NavBar setIsModelOpen={setIsModelOpen}/>
     	</>
   	)
 }

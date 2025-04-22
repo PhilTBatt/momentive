@@ -5,7 +5,7 @@ export default function Home() {
   	return (
     	<>
       		<Header/>
-      		<NavBar/>
+      		<NavBar setIsModelOpen={null}/>
     	</>
   	)
 }

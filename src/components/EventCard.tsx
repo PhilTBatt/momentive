@@ -15,6 +15,7 @@ export function EventCard({event}: {event: any}) {
             <h3>
                 {event.title}
             </h3>
+			
             <CardInformation>
                 <Image src={event.event_img_url} alt='Image of event topic'/>
                 Author: {event.author}
