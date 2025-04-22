@@ -1,11 +1,8 @@
 'use client'
 
+import { User } from "@/types/user"
 import { createContext, Dispatch, JSX, SetStateAction, useEffect, useState } from "react"
 
-type User = {
-	name: string | null
-	email: string | null
-}
 
 type UserContextType = {
 	user: User

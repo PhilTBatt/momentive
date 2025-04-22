@@ -1,9 +1,10 @@
 'use client'
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import { EditUser } from "./EditUser";
 import { SignIn } from "./SignIn";
+import { UserContext } from "@/contexts/User";
 
 const ModalBackground = styled.div`
 	position: fixed;
@@ -34,12 +35,20 @@ const StyledCard = styled.div`
 export function UserModal({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
 	const [modalType, setModalType] = useState("editUser")
 
-	const closeModal = () => setIsModelOpen(false)
+	const {user, setUser} = useContext(UserContext)
+	const [name, setName] = useState(user.name ?? "")
+	const [email, setEmail] = useState(user.email ?? "")
+
+	const closeModal = () => {
+		setIsModelOpen(false)
+		setUser({name, email})
+	}
 
     return (
 		<ModalBackground onClick={closeModal}>
 			<StyledCard onClick={(e) => e.stopPropagation()}>
-				{modalType === "editUser" && <EditUser setModalType={() => setModalType("editUser")}/>}
+				{modalType === "editUser" && <EditUser setModalType={() => setModalType("editUser")}
+					name={name} setName={setName} email={email} setEmail={setEmail}/>}
 			</StyledCard>
 		</ModalBackground>
     )

@@ -1,7 +1,6 @@
 'use client'
 
-import { UserContext, UserContextProvider } from "@/contexts/User";
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 
 const StyledCard = styled.div`
@@ -40,9 +39,9 @@ const StyledButton = styled.button`
 	padding: 0.1vh 0.7vw;
 `
 
-export function EditUser({setModalType}: {setModalType: Dispatch<SetStateAction<boolean>>}) {
-	const {user, setUser} = useContext(UserContext)
-
+export function EditUser({setModalType, name, setName, email, setEmail}: {setModalType: Dispatch<SetStateAction<boolean>>, 
+	name: string, setName: Dispatch<SetStateAction<string>>, email: string, setEmail: Dispatch<SetStateAction<string>>
+}) {
     return (
         <StyledCard>
             <StyledHeading>
@@ -50,9 +49,11 @@ export function EditUser({setModalType}: {setModalType: Dispatch<SetStateAction<
 			</StyledHeading>
 
 			<StyledLabel htmlFor="name">Name</StyledLabel>
-            <StyledInput id="name"></StyledInput>
+            <StyledInput id="name" defaultValue={name ?? ""} onChange={(e) => setName(e.target.value)}>
+			</StyledInput>
 			<StyledLabel htmlFor="email">Email</StyledLabel>
-			<StyledInput id="email" type="email"></StyledInput>
+			<StyledInput id="email" type="email" defaultValue={email ?? ""} onChange={(e) => setEmail(e.target.value)}>
+			</StyledInput>
 
 			<StyledText>
                 Or <StyledButton >Sign In</StyledButton> to manage events
