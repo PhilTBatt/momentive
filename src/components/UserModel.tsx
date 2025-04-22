@@ -21,12 +21,10 @@ const ModalBackground = styled.div`
 
 const StyledCard = styled.div`
 	background: ${props => props.theme.colours.primary};
-	padding: 2vh 4.5vw;
+	padding: 1vh 1vw;
 	border-radius: 12px;
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-	min-width: 320px;
-	max-width: 500px;
-	width: 90%;
+	width: 92vw;
 	align-items: center;
 	justify-content: center;
 	text-align: center;

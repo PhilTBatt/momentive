@@ -2,23 +2,28 @@
 
 import { createContext, Dispatch, JSX, SetStateAction, useEffect, useState } from "react"
 
-type UserContextType = {
-	user: string | null
-	setUser: Dispatch<SetStateAction<string | null>>
+type User = {
+	name: string | null
+	email: string | null
 }
 
-const UserContext = createContext<UserContextType>({ user: null, setUser: () => {} })
+type UserContextType = {
+	user: User
+	setUser: Dispatch<SetStateAction<User>>
+}
 
-export function UserProvider({children}: {children: JSX.Element}) {
-    const [user, setUser] = useState<string | null>(null)
+export const UserContext = createContext<UserContextType>({ user: { name: null, email: null }, setUser: () => {} })
+
+export function UserContextProvider({children}: {children: JSX.Element}) {
+    const [user, setUser] = useState<User>({ name: null, email: null })
 
 	useEffect(() => {
 		const storedUser = localStorage.getItem("user")
-		if (storedUser) setUser(storedUser)
+		if (storedUser) setUser(JSON.parse(storedUser))
 	}, [])
 
 	useEffect(() => {
-		if (user) localStorage.setItem("user", user)
+		if (user.name !== null || user.email !== null) localStorage.setItem("user", JSON.stringify(user))
 		else localStorage.removeItem("user")
 	}, [user])
 

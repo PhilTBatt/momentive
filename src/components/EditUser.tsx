@@ -1,48 +1,47 @@
 'use client'
 
-import { Dispatch, SetStateAction } from "react";
+import { UserContext, UserContextProvider } from "@/contexts/User";
+import { Dispatch, SetStateAction, useContext } from "react";
 import styled from "styled-components";
 
 const StyledCard = styled.div`
 	display: grid;
 `
 
-const UserInfo = styled.div`
-`
-
 const StyledHeading = styled.h3`
-  text-align: center;
-  font-size: 5.5vw;
-  margin-top: 3vh;
-  margin-bottom: 5vh;
+  	text-align: center;
+  	font-size: 6vw;
+  	margin-top: 3vw;
+  	margin-bottom: 6vw;
 `
 
 const StyledLabel = styled.label`
-  font-size: 4.5vw;
-  margin: 0;
+  	font-size: 5vw;
+  	margin: 0;
 `
 
 const StyledInput = styled.input`
-  font-size: 4vw;
-  margin: 0;
-  width: 60vw;
-  justify-self: center;
-  margin-top: 2vh;
-  margin-bottom: 4vh;
+  	font-size: 5vw;
+	margin: 0;
+	width: 60vw;
+	justify-self: center;
+	margin-top: 2vw;
+	margin-bottom: 4vw;
 `
 
 const StyledText = styled.h3`
-  font-size: 5vw;
-  margin-bottom: 4vh;
-  margin-top: 4vh;
+	font-size: 6vw;
+	margin-bottom: 5vw;
+	margin-top: 9vw;
 `
 
 const StyledButton = styled.button`
-  font-size: 4.5vw;
-  padding: 0.1vh 0.7vw;
+	font-size: 4.5vw;
+	padding: 0.1vh 0.7vw;
 `
 
 export function EditUser({setModalType}: {setModalType: Dispatch<SetStateAction<boolean>>}) {
+	const {user, setUser} = useContext(UserContext)
 
     return (
         <StyledCard>

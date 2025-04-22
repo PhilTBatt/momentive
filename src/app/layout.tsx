@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProviderWrapper from "@/components/ThemeProviderWrapper";
-import { UserProvider } from "@/contexts/User";
+import { UserContextProvider } from "@/contexts/User";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeProviderWrapper>
-	  	<UserProvider>
+	  	<UserContextProvider>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 			{children}
 			</body>
-		</UserProvider>
+		</UserContextProvider>
       </ThemeProviderWrapper>
     </html>
   );
