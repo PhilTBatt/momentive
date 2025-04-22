@@ -39,24 +39,26 @@ const StyledButton = styled.button`
 	padding: 0.1vh 0.7vw;
 `
 
-export function EditUser({setModalType, name, setName, email, setEmail}: {setModalType: Dispatch<SetStateAction<string>>	, 
-	name: string, setName: Dispatch<SetStateAction<string>>, email: string, setEmail: Dispatch<SetStateAction<string>>
-}) {
+export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<string>>}) {
     return (
         <StyledCard>
             <StyledHeading>
-				Save your information for later
+				Sign In
 			</StyledHeading>
 
-			<StyledLabel htmlFor="name">Name</StyledLabel>
-            <StyledInput id="name" value={name ?? ""} onChange={(e) => setName(e.target.value)}>
+			<StyledLabel htmlFor="email">
+				Email
+			</StyledLabel>
+			<StyledInput id="email" type="email" value="" onChange={(e) => (e.target.value)}>
 			</StyledInput>
-			<StyledLabel htmlFor="email">Email</StyledLabel>
-			<StyledInput id="email" type="email" value={email ?? ""} onChange={(e) => setEmail(e.target.value)}>
+			<StyledLabel htmlFor="password">
+				Password
+			</StyledLabel>
+			<StyledInput id="email" type="email" value="" onChange={(e) => (e.target.value)}>
 			</StyledInput>
 
 			<StyledText>
-                Or <StyledButton onClick={() => setModalType('signIn')}>Sign In</StyledButton> to manage events
+                Or <StyledButton onClick={() => setModalType('signUp')}>Sign Up</StyledButton>
             </StyledText>
         </StyledCard>
     )

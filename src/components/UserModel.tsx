@@ -41,14 +41,15 @@ export function UserModal({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAc
 
 	const closeModal = () => {
 		setIsModelOpen(false)
-		setUser({name, email})
+		setUser({name: name.trim(), email: email.trim()})
 	}
 
     return (
 		<ModalBackground onClick={closeModal}>
 			<StyledCard onClick={(e) => e.stopPropagation()}>
-				{modalType === "editUser" && <EditUser setModalType={() => setModalType("editUser")}
+				{modalType === "editUser" && <EditUser setModalType={setModalType}
 					name={name} setName={setName} email={email} setEmail={setEmail}/>}
+				{modalType === "signIn" && <SignIn setModalType={setModalType}/>}
 			</StyledCard>
 		</ModalBackground>
     )
