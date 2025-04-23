@@ -1,4 +1,5 @@
 import { db } from "@/lib/connection"
+import bcrypt from 'bcrypt';
 
 export async function fetchUsers(order = 'ASC', limit = 10, page = 1) {
 	const validOrders = ['ASC', 'DESC']
@@ -18,7 +19,7 @@ export async function fetchUsers(order = 'ASC', limit = 10, page = 1) {
 	return users
 }
 
-export async function insertUser(name: string, email: string) {
+export async function insertUser(name: string, email: string, password: string) {
 	for (const field of [name, email]) {
         if (!field) 
 			throw { status: 400, msg: 'Field is missing' }
@@ -27,12 +28,17 @@ export async function insertUser(name: string, email: string) {
 			throw { status: 400, msg: 'Invalid input' }
     }
 
+	const hashedPassword = await bcrypt.hash(password, 10)
+
     const query = `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *`
-    const params = [name, email]
+    const params = [name, email, hashedPassword]
 	
 	const newUser = await db.query(query, params)
+
+	const { password: _password, ...userWithoutPassword } = newUser[0]
+
 	
-	return newUser[0]
+	return userWithoutPassword
 }
 
 export async function fetchUserById(id: string) {
