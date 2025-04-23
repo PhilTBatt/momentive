@@ -4,6 +4,7 @@ import { UserContext } from "@/contexts/User";
 import { postNewUser } from "@/lib/api/users";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
+import zxcvbn from 'zxcvbn'
 
 const StyledCard = styled.div`
 	display: grid;
@@ -57,23 +58,32 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 	const { setUser } = useContext(UserContext)
 
 	async function handleSignUp() {
-			setIsSignUpLoading(true)
-			try {
-				if (staffCode !== '1234') 
-					throw new Error('Invalid staff code')
+		setIsSignUpLoading(true)
+		try {
+			if (staffCode !== '1234') 
+				throw new Error('Invalid staff code')
+				
+			const result = zxcvbn(password)
 
-				const user = await postNewUser({name, email, password})
-				setUser(user)
-			}
-			catch (err: any) {
-				console.error(err)
-				alert(`${err.response?.data?.status}: ${err.response?.data?.msg ?? 'An error occurred'}\nPlease try again`)
-			}
-			finally {
-				setIsSignUpLoading(false)
-				setIsModelOpen(false)
-			}
+			if (result.score < 2) 
+				throw Error('Password is too weak')
+
+			const user = await postNewUser({name, email, password})
+			setUser(user)
+			setIsModelOpen(false)
 		}
+		catch (err: any) {
+			if (err.response?.data?.status && err.response?.data?.msg)
+				alert(`${err.response.data.status}:  ${err.response.data.msg}\nPlease try again`)
+			else if (err.message)
+				alert(`Error: ${err.message}`)
+			else
+				alert(`An error occurred\nPlease try again`)
+		}
+		finally {
+			setIsSignUpLoading(false)
+		}
+	}
 
     return (
         <StyledCard>

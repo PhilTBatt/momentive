@@ -1,6 +1,7 @@
 import { fetchUsers, insertUser } from "@/app/api/models/user"
 import { NextRequest, NextResponse } from "next/server"
 
+
 export async function GET(request: NextRequest) { 
 	const searchParams = request.nextUrl.searchParams
 	const order = searchParams.get("order") || "ASC"
@@ -20,6 +21,7 @@ export async function POST(request: NextRequest) {
 	const { name, email, password } = await request.json()
 
 	try {
+		
 		const user = await insertUser(name, email, password)
 		return NextResponse.json({ user }, { status: 201 })
 	} catch (err: any) {

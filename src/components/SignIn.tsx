@@ -1,7 +1,8 @@
 'use client'
 
+import { UserContext } from "@/contexts/User";
 import { getUserByEmail, signInUser } from "@/lib/api/users";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
 const StyledCard = styled.div`
@@ -51,14 +52,20 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [isSignInLoading, setIsSignInLoading] = useState(false)
+	const { setUser } = useContext(UserContext)
 
 	async function handleSignIn() {
 		setIsSignInLoading(true)
+
 		try {
-			await signInUser({email, password})
+			const user = await signInUser({email, password})
+			// setUser(user)
 		}
 		catch (err: any) {
-			alert(`Email not found\nPlease try again`)
+			if (err.response?.data?.status && err.response?.data?.msg)
+				alert(`${err.response.data.status}:  ${err.response.data.msg}\nPlease try again`)
+			else
+				alert(`An error occurred\nPlease try again`)
 		}
 		finally {
 			setIsSignInLoading(false)
