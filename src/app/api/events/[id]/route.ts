@@ -1,7 +1,7 @@
 import { addAttendeeToEvent, fetchEventById, removeEventById, updateEventById } from "@/app/api/models/events";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET({ params }: { params: { id: string } }) {
+export async function GET(_request: NextRequest, { params }: { params: { id: string } }) {
 	try {
         const event = await fetchEventById(params.id)
 
@@ -12,7 +12,7 @@ export async function GET({ params }: { params: { id: string } }) {
     }
 }
    
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
 	try {
         await removeEventById(params.id)
 

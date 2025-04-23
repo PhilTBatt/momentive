@@ -49,7 +49,7 @@ export async function fetchUserById(id: string) {
 	const query = `SELECT * FROM users WHERE id = $1`
 	const user = await db.query(query, [id])
 
-	if (user.length === 0) 
+	if (user.length === 0)
 		throw { status: 404, msg: "User not found" }
 
 	const { password: _password, ...userWithoutPassword } = user[0]

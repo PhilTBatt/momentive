@@ -4,7 +4,8 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
+import { UserContext } from "@/contexts/User";
 
 const StyledNavBar = styled.footer`
     position: fixed;
@@ -28,10 +29,10 @@ const IconWrapper = styled.div`
 `
 
 export default function NavBar({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>> | null}) {
-    const isUserSignedIn = false
+    const { user } = useContext(UserContext)
 
 	const handleUserClick = () => {
-        if (isUserSignedIn) window.location.href = '/user'
+        if (user) window.location.href = '/user'
 
 		else if (setIsModelOpen) setIsModelOpen(true)
     }

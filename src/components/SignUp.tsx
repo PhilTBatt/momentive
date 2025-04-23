@@ -5,6 +5,7 @@ import { postNewUser } from "@/lib/api/users";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import zxcvbn from 'zxcvbn'
+import { useRouter } from 'next/navigation'
 
 const StyledCard = styled.div`
 	display: grid;
@@ -56,6 +57,7 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 	const [password, setPassword] = useState("")
 	const [isSignUpLoading, setIsSignUpLoading] = useState(false)
 	const { setUser } = useContext(UserContext)
+	const router = useRouter()
 
 	async function handleSignUp() {
 		setIsSignUpLoading(true)
@@ -71,6 +73,7 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 			const user = await postNewUser({name, email, password})
 			setUser(user)
 			setIsModelOpen(false)
+			router.push('/user')
 		}
 		catch (err: any) {
 			if (err.response?.data?.status && err.response?.data?.msg)
