@@ -1,6 +1,6 @@
 'use client'
 
-import { getUserByEmail } from "@/lib/api/users";
+import { getUserByEmail, signInUser } from "@/lib/api/users";
 import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 
@@ -52,13 +52,13 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 	const [password, setPassword] = useState("")
 	const [isSignInLoading, setIsSignInLoading] = useState(false)
 
-	const handleSignIn = () => {
+	async function handleSignIn() {
 		setIsSignInLoading(true)
 		try {
-			const user = await getUserByEmail(email)
+			await signInUser({email, password})
 		}
 		catch (err: any) {
-			alert(`${err.msg}`)
+			alert(`${err.response.data.msg}`)
 		}
 		finally {
 			setIsSignInLoading(false)
@@ -79,7 +79,7 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 			<StyledLabel htmlFor="password">
 				Password
 			</StyledLabel>
-			<StyledInput id="email" type="password" value={password} onChange={(e) => setPassword(e.target.value)}>
+			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}>
 			</StyledInput>
 
 			<SignInButton onClick={handleSignIn}>{isSignInLoading ? 'Loading...' : 'Sign In'}</SignInButton>

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { EditUser } from "./EditUser";
 import { SignIn } from "./SignIn";
 import { UserContext } from "@/contexts/User";
+import { SignUp } from "./SignUp";
 
 const ModalBackground = styled.div`
 	position: fixed;
@@ -39,7 +40,7 @@ export function UserModal({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAc
 	const [name, setName] = useState(user.name ?? "")
 	const [email, setEmail] = useState(user.email ?? "")
 
-	const closeModal = () => {
+	function closeModal() {
 		setIsModelOpen(false)
 		setUser({name: name.trim(), email: email.trim()})
 	}
@@ -50,6 +51,7 @@ export function UserModal({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAc
 				{modalType === "editUser" && <EditUser setModalType={setModalType}
 					name={name} setName={setName} email={email} setEmail={setEmail}/>}
 				{modalType === "signIn" && <SignIn setModalType={setModalType}/>}
+				{modalType === "signUp" && <SignUp setModalType={setModalType}/>}
 			</StyledCard>
 		</ModalBackground>
     )

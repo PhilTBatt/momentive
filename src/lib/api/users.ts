@@ -41,6 +41,6 @@ export async function deleteUser(id: string): Promise<{ status: number; msg: str
 }
 
 export async function signInUser({ email, password }: { email: string; password: string }): Promise<boolean> {
-	const response = await axios.post('/api/users/sign-in', { email, password })
+	const response = await axios.post('/api/users/authenticate', { email, password })
 	return response.data
 }
