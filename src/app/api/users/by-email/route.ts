@@ -8,6 +8,7 @@ export async function POST(request: NextRequest) {
 		
 		return NextResponse.json({ user }, { status: 200 })
 	} catch (err: any) {
-		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
 	}
 }

@@ -15,7 +15,8 @@ export async function GET(request: NextRequest) {
 
 		return NextResponse.json({ events }, { status: 200 })
 	} catch (err: any) {
-		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
 	}
 }
    
@@ -27,6 +28,7 @@ export async function POST(request: NextRequest) {
 
 		return NextResponse.json({ event }, { status: 201 })
 	} catch (err: any) {
-		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
 	}
 }

@@ -7,7 +7,8 @@ export async function GET({ params }: { params: { id: string } }) {
 
         return NextResponse.json({ event }, { status: 200 })
     } catch (err: any) {
-        return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+        return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
     }
 }
    
@@ -17,7 +18,8 @@ export async function DELETE({ params }: { params: { id: string } }) {
 
         return new Response(null, { status: 204 })
     } catch (err: any) {
-        return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+        return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
     }
 }
 
@@ -28,7 +30,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
         return NextResponse.json(updatedEvent, { status: 200 })
     } catch (err: any) {
-        return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+        return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
     }
 }
 
@@ -39,6 +42,7 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
 		
 		return NextResponse.json(updatedEvent, { status: 200 })
 	} catch (err: any) {
-		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
 	}
 }

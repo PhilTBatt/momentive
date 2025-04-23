@@ -6,7 +6,8 @@ export async function GET({ params }: { params: { id: string } }) {
 		const user = await fetchUserById(params.id)
 		return NextResponse.json({ user }, { status: 200 })
 	} catch (err: any) {
-		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
 	}
 }
 
@@ -15,7 +16,8 @@ export async function DELETE({ params }: { params: { id: string } }) {
 		await removeUserById(params.id)
 		return new Response(null, { status: 204 })
 	} catch (err: any) {
-		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
 	}
 }
 
@@ -25,6 +27,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 		const user = await updateUserById(params.id, name, email)
 		return NextResponse.json({ user }, { status: 200 })
 	} catch (err: any) {
-		return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
+			{ status: err.status || 500 })
 	}
 }

@@ -58,7 +58,7 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 			await signInUser({email, password})
 		}
 		catch (err: any) {
-			alert(`${err.response.data.msg}`)
+			alert(`Email not found.\nPlease try again.`)
 		}
 		finally {
 			setIsSignInLoading(false)
