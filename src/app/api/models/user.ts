@@ -28,6 +28,11 @@ export async function insertUser(name: string, email: string, password: string) 
 			throw { status: 400, msg: 'Invalid input' }
     }
 
+	const existingUser = await db.query(`SELECT * FROM users WHERE email = $1`, [email])
+
+	if (existingUser.length > 0)
+		throw { status: 409, msg: 'Email already in use' }
+
 	const hashedPassword = await bcrypt.hash(password, 10)
 
     const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *`

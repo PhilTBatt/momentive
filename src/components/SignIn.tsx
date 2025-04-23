@@ -31,7 +31,7 @@ const StyledInput = styled.input`
 
 const SignInButton = styled.button`
 	font-size: 4.5vw;
-	margin: 1vw 30vw;
+	margin: 2vw 30vw 1vw 30vw;
 `
 
 const StyledText = styled.h3`
@@ -58,7 +58,7 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 			await signInUser({email, password})
 		}
 		catch (err: any) {
-			alert(`Email not found.\nPlease try again.`)
+			alert(`Email not found\nPlease try again`)
 		}
 		finally {
 			setIsSignInLoading(false)
@@ -74,13 +74,11 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 			<StyledLabel htmlFor="email">
 				Email
 			</StyledLabel>
-			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}>
-			</StyledInput>
+			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
 			<StyledLabel htmlFor="password">
 				Password
 			</StyledLabel>
-			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}>
-			</StyledInput>
+			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
 			<SignInButton onClick={handleSignIn}>{isSignInLoading ? 'Loading...' : 'Sign In'}</SignInButton>
 

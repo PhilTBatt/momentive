@@ -1,6 +1,7 @@
 'use client'
 
-import { Dispatch, SetStateAction } from "react";
+import { UserContext } from "@/contexts/User";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
 const StyledCard = styled.div`
@@ -34,16 +35,28 @@ const StyledText = styled.h3`
 	margin-top: 7vw;
 `
 
-const StyledButton = styled.button`
+const ConfirmButton = styled.button`
+	font-size: 4.5vw;
+	margin: 2vw 30vw 1vw 30vw;
+`
+
+const SignInButton = styled.button`
 	font-size: 4.5vw;
 	padding: 0.1vh 0.7vw;
 	margin-top: 0.75vw;
 	vertical-align: top;
 `
 
-export function EditUser({setModalType, name, setName, email, setEmail}: {setModalType: Dispatch<SetStateAction<string>>	, 
-	name: string, setName: Dispatch<SetStateAction<string>>, email: string, setEmail: Dispatch<SetStateAction<string>>
-}) {
+export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
+	const {user, setUser} = useContext(UserContext)
+	const [name, setName] = useState(user.name ?? "")
+	const [email, setEmail] = useState(user.email ?? "")
+	
+	function confirmButton() {
+		setIsModelOpen(false)
+		setUser({name: name.trim(), email: email.trim()})
+	}
+
     return (
         <StyledCard>
             <StyledHeading>
@@ -51,14 +64,13 @@ export function EditUser({setModalType, name, setName, email, setEmail}: {setMod
 			</StyledHeading>
 
 			<StyledLabel htmlFor="name">Name</StyledLabel>
-            <StyledInput id="name" value={name ?? ""} onChange={(e) => setName(e.target.value)}>
-			</StyledInput>
+            <StyledInput id="name" value={name ?? ""} onChange={(e) => setName(e.target.value)}/>
 			<StyledLabel htmlFor="email">Email</StyledLabel>
-			<StyledInput id="email" type="email" value={email ?? ""} onChange={(e) => setEmail(e.target.value)}>
-			</StyledInput>
+			<StyledInput id="email" type="email" value={email ?? ""} onChange={(e) => setEmail(e.target.value)}/>
+			<ConfirmButton onClick={confirmButton}>Confirm</ConfirmButton>
 
 			<StyledText>
-                Or <StyledButton onClick={() => setModalType('signIn')}>Sign In</StyledButton> to manage events
+                Or <SignInButton onClick={() => setModalType('signIn')}>Sign In</SignInButton> to manage events
             </StyledText>
         </StyledCard>
     )

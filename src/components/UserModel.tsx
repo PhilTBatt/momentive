@@ -36,22 +36,12 @@ const StyledCard = styled.div`
 export function UserModal({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
 	const [modalType, setModalType] = useState("editUser")
 
-	const {user, setUser} = useContext(UserContext)
-	const [name, setName] = useState(user.name ?? "")
-	const [email, setEmail] = useState(user.email ?? "")
-
-	function closeModal() {
-		setIsModelOpen(false)
-		setUser({name: name.trim(), email: email.trim()})
-	}
-
     return (
-		<ModalBackground onClick={closeModal}>
+		<ModalBackground onClick={() => setIsModelOpen(false)}>
 			<StyledCard onClick={(e) => e.stopPropagation()}>
-				{modalType === "editUser" && <EditUser setModalType={setModalType}
-					name={name} setName={setName} email={email} setEmail={setEmail}/>}
+				{modalType === "editUser" && <EditUser setModalType={setModalType} setIsModelOpen={setIsModelOpen}/>}
 				{modalType === "signIn" && <SignIn setModalType={setModalType}/>}
-				{modalType === "signUp" && <SignUp setModalType={setModalType}/>}
+				{modalType === "signUp" && <SignUp setModalType={setModalType} setIsModelOpen={setIsModelOpen}/>}
 			</StyledCard>
 		</ModalBackground>
     )

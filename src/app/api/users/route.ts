@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
 		const user = await insertUser(name, email, password)
 		return NextResponse.json({ user }, { status: 201 })
 	} catch (err: any) {
+		console.error("Failed to insert user:", err)
 		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
 			{ status: err.status || 500 })
 	}
