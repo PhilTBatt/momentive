@@ -53,7 +53,7 @@ export function SignUp({setModalType}: {setModalType: Dispatch<SetStateAction<st
 			<StyledInput id="email" type="email" value="" onChange={(e) => (e.target.value)}>
 			</StyledInput>
 			<StyledLabel htmlFor="staffCode">Staff Code</StyledLabel>
-			<StyledInput id="email" type="email" value="" onChange={(e) => (e.target.value)}>
+			<StyledInput id="staffCode" type="email" value="" onChange={(e) => (e.target.value)}>
 			</StyledInput>
 
 			<StyledText>
