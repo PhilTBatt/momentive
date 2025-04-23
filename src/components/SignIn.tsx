@@ -1,6 +1,7 @@
 'use client'
 
-import { Dispatch, SetStateAction } from "react";
+import { getUserByEmail } from "@/lib/api/users";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 
 const StyledCard = styled.div`
@@ -28,18 +29,42 @@ const StyledInput = styled.input`
 	margin-bottom: 4vw;
 `
 
+const SignInButton = styled.button`
+	font-size: 4.5vw;
+	margin: 1vw 30vw;
+`
+
 const StyledText = styled.h3`
 	font-size: 6vw;
 	margin-bottom: 5vw;
-	margin-top: 7vw;
+	margin-top: 6vw;
 `
 
-const StyledButton = styled.button`
+const SignUpButton = styled.button`
 	font-size: 4.5vw;
 	padding: 0.1vh 0.7vw;
+	margin-top: 0.75vw;
+	vertical-align: top;
 `
 
 export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<string>>}) {
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [isSignInLoading, setIsSignInLoading] = useState(false)
+
+	const handleSignIn = () => {
+		setIsSignInLoading(true)
+		try {
+			const user = await getUserByEmail(email)
+		}
+		catch (err: any) {
+			alert(`${err.msg}`)
+		}
+		finally {
+			setIsSignInLoading(false)
+		}
+	}
+
     return (
         <StyledCard>
             <StyledHeading>
@@ -49,16 +74,18 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 			<StyledLabel htmlFor="email">
 				Email
 			</StyledLabel>
-			<StyledInput id="email" type="email" value="" onChange={(e) => (e.target.value)}>
+			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}>
 			</StyledInput>
 			<StyledLabel htmlFor="password">
 				Password
 			</StyledLabel>
-			<StyledInput id="email" type="email" value="" onChange={(e) => (e.target.value)}>
+			<StyledInput id="email" type="password" value={password} onChange={(e) => setPassword(e.target.value)}>
 			</StyledInput>
 
+			<SignInButton onClick={handleSignIn}>{isSignInLoading ? 'Loading...' : 'Sign In'}</SignInButton>
+
 			<StyledText>
-                Or <StyledButton onClick={() => setModalType('signUp')}>Sign Up</StyledButton>
+                Or <SignUpButton onClick={() => setModalType('signUp')}>Sign Up</SignUpButton> to manage events
             </StyledText>
         </StyledCard>
     )

@@ -37,6 +37,8 @@ const StyledText = styled.h3`
 const StyledButton = styled.button`
 	font-size: 4.5vw;
 	padding: 0.1vh 0.7vw;
+	margin-top: 0.75vw;
+	vertical-align: top;
 `
 
 export function EditUser({setModalType, name, setName, email, setEmail}: {setModalType: Dispatch<SetStateAction<string>>	, 
