@@ -16,8 +16,13 @@ export async function getUserById(id: string): Promise<User> {
 	return response.data.user
 }
 
-export async function postNewUser({ name, email }: { name: string; email: string }): Promise<User> {
-	const response = await axios.post('/api/users', { name, email })
+export async function getUserByEmail(email: string): Promise<User> {
+	const response = await axios.post('/api/users/by-email', { email })
+	return response.data.user
+}
+
+export async function postNewUser({ name, email, password }: { name: string; email: string, password: string }): Promise<User> {
+	const response = await axios.post('/api/users', { name, email, password })
 	return response.data.user
 }
 

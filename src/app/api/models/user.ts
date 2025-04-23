@@ -20,7 +20,7 @@ export async function fetchUsers(order = 'ASC', limit = 10, page = 1) {
 }
 
 export async function insertUser(name: string, email: string, password: string) {
-	for (const field of [name, email]) {
+	for (const field of [name, email, password]) {
         if (!field) 
 			throw { status: 400, msg: 'Field is missing' }
 		
@@ -30,13 +30,12 @@ export async function insertUser(name: string, email: string, password: string) 
 
 	const hashedPassword = await bcrypt.hash(password, 10)
 
-    const query = `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *`
+    const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *`
     const params = [name, email, hashedPassword]
 	
 	const newUser = await db.query(query, params)
 
 	const { password: _password, ...userWithoutPassword } = newUser[0]
-
 	
 	return userWithoutPassword
 }
@@ -48,7 +47,19 @@ export async function fetchUserById(id: string) {
 	if (user.length === 0) 
 		throw { status: 404, msg: "User not found" }
 
-	return user[0]
+	const { password: _password, ...userWithoutPassword } = user[0]
+	return userWithoutPassword
+}
+
+export async function fetchUserByEmail(email: string) {
+	const query = `SELECT * FROM users WHERE email = $1`
+	const user = await db.query(query, [email])
+
+	if (user.length === 0) 
+		throw { status: 404, msg: "User not found" }
+
+	const { password: _password, ...userWithoutPassword } = user[0]
+	return userWithoutPassword
 }
 
 export async function removeUserById(id: string) {
@@ -78,5 +89,6 @@ export async function updateUserById(id: string, name: string, email: string) {
 	if (user.length === 0)
 		throw { status: 404, msg: "User not found" }
 
-	return user[0]
+	const { password: _password, ...userWithoutPassword } = user[0]
+	return userWithoutPassword
 }

@@ -137,6 +137,21 @@ export async function GET() {
 			}
 		},
 
+		"POST /api/users/email": {
+			description: "Fetches a user by email",
+			queries: [],
+			requestBody: {
+				email: "alice@example.com"
+			},
+			exampleResponse: {
+				user: {
+					id: "1",
+					name: "Alice",
+					email: "alice@example.com"
+				}
+			}
+		},
+
 		"GET /api/users/:id": {
 			description: "Returns a single user by ID",
 			queries: [],
