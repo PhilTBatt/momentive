@@ -152,6 +152,16 @@ export async function GET() {
 			}
 		},
 
+		"POST /api/users/signin": {
+			description: "Checks a user's credentials and signs them in",
+			queries: [],
+			requestBody: {
+				email: "alice@example.com",
+				password: "password123"
+			},
+			exampleResponse: true
+		},
+
 		"GET /api/users/:id": {
 			description: "Returns a single user by ID",
 			queries: [],

@@ -92,13 +92,3 @@ export async function updateUserById(id: string, name: string, email: string) {
 	const { password: _password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
-
-export async function getPasswordHash(email: string){
-	const query = `SELECT password FROM users WHERE email = $1`
-	const result = await db.query(query, [email])
-
-	if (result.length === 0) 
-		throw { status: 404, msg: "User not found" }
-
-	return result[0].password
-}
