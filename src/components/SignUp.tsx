@@ -64,26 +64,25 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 		setIsSignUpLoading(true)
         
 		try {
-			if (staffCode !== '1234') 
-				throw new Error('Invalid staff code')
-				
-			const result = zxcvbn(password)
-
-			if (result.score < 2) 
-				throw Error('Password is too weak')
-
-			const user = await postNewUser({name, email, password})
+            const user = await postNewUser({name, email, password, staffCode})
 			setUser({...user, role: 'admin'})
             
 			setIsModelOpen(false)
 			router.push('/user')
 		}
 		catch (err: unknown) {
-			if (err instanceof AxiosError)
-				alert(`${err.response?.status}:  ${err.response?.statusText}\nPlease try again`)
-			else
-			  	alert(`An error occurred\nPlease try again`)
-		}
+            console.log(err)
+            if (err instanceof AxiosError){
+                if (err.status === 400)
+                    alert(`${err.response?.data.msg}\nPlease try again`)
+                else if (err.status === 409)
+                    alert("Email already in use\nPlease try again")
+                else
+                    alert("Invalid email or password\nPlease try again")
+            }
+            else 
+                alert(`An error occurred\nPlease try again`)
+        }
 		finally {
 			setIsSignUpLoading(false)
 		}

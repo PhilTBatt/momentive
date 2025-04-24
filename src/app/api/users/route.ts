@@ -1,6 +1,7 @@
 import { fetchUsers, insertUser } from "@/app/api/models/user"
 import { CustomError } from "@/types/error"
 import { NextRequest, NextResponse } from "next/server"
+import zxcvbn from "zxcvbn"
 
 
 export async function GET(request: NextRequest) { 
@@ -22,7 +23,15 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-	const { name, email, password } = await request.json()
+	const { name, email, password, staffCode } = await request.json()
+
+    if (staffCode !== '1234') 
+		return NextResponse.json({status: 400,  msg: "Invalid staff code" }, { status: 400 })
+
+	const result = zxcvbn(password)
+
+	if (result.score < 1) 
+		return NextResponse.json({status: 400,  msg: "Password is too weak" }, { status: 400 })
 
 	try {
 		const user = await insertUser(name, email, password)

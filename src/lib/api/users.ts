@@ -22,8 +22,8 @@ export async function getUserByEmail(email: string): Promise<User> {
 	return response.data.user
 }
 
-export async function postNewUser({ name, email, password }: { name: string; email: string, password: string }): Promise<User> {
-	const response = await axios.post('/api/users', { name, email, password })
+export async function postNewUser({ name, email, password, staffCode }: { name: string; email: string, password: string, staffCode: string }): Promise<User> {
+	const response = await axios.post('/api/users', { name, email, password, staffCode })
 	return response.data.user
 }
 
