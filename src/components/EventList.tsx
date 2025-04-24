@@ -10,9 +10,9 @@ const StyledBox = styled.section`
 `
 
 export function EventList() {
-    const [events, setevents] = useState([])
+    const [events] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState<Error | null>(null)
+    const [error] = useState<Error | null>(null)
 
     useEffect(() => {
         setIsLoading(true)

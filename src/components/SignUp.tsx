@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import zxcvbn from 'zxcvbn'
 import { useRouter } from 'next/navigation'
+import { CustomError } from "@/types/error";
 
 const StyledCard = styled.div`
 	display: grid;
@@ -75,13 +76,11 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 			setIsModelOpen(false)
 			router.push('/user')
 		}
-		catch (err: any) {
-			if (err.response?.data?.status && err.response?.data?.msg)
-				alert(`${err.response.data.status}:  ${err.response.data.msg}\nPlease try again`)
-			else if (err.message)
-				alert(`Error: ${err.message}`)
+		catch (err: unknown) {
+			if (err instanceof CustomError)
+				alert(`${err.status}:  ${err.msg}\nPlease try again`)
 			else
-				alert(`An error occurred\nPlease try again`)
+			  	alert(`An error occurred\nPlease try again`)
 		}
 		finally {
 			setIsSignUpLoading(false)

@@ -1,3 +1,4 @@
+import { CustomError } from '@/types/error';
 import axios from 'axios'
 
 interface User {
@@ -35,12 +36,15 @@ export async function deleteUser(id: string): Promise<{ status: number; msg: str
 	try {
 		await axios.delete(`/api/users/${id}`)
 		return { status: 204, msg: 'User deleted successfully' }
-	} catch (err: any) {
-		return { status: err.status, msg: err.msg }
-	}
+	} catch (err: unknown) {
+        if (err instanceof CustomError) 
+            return { status: err.status, msg: err.msg }
+        else
+            return { status: 500, msg: 'Internal server error' }
+    }
 }
 
-export async function signInUser({ email, password }: { email: string; password: string }): Promise<boolean> {
+export async function authenticateUser({ email, password }: { email: string; password: string }): Promise<boolean> {
 	const response = await axios.post('/api/users/authenticate', { email, password })
 	return response.data
 }

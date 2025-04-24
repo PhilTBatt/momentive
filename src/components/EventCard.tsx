@@ -8,8 +8,15 @@ const StyledCard = styled.li`
 
 const CardInformation = styled.div`
 `
+type Event = {
+    title: string
+    event_img_url: string
+    author: string
+    topic: string
+    date: string
+}
 
-export function EventCard({event}: {event: any}) {
+export function EventCard({event}: {event: Event}) {
     return (
         <StyledCard>
             <h3>

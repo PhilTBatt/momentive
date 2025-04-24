@@ -1,4 +1,5 @@
 import { db } from "@/lib/connection"
+import { CustomError } from "@/types/error"
 
 export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string | null, limit = 10, page = 1) {
 	const validColumns = ['title', 'date', 'created_by', 'location', 'topic', 'attendees']
@@ -32,10 +33,10 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 export async function insertEvent(title: string, description: string, date: string, location: string) {
 	for (const field of [title, description, date, location]) {
         if (!field) 
-            throw { status: 400, msg: 'Field is missing' }
+            throw new CustomError(400, 'Field is missing')
 		
         if (typeof field !== 'string') 
-            throw { status: 400, msg: 'Invalid input' }
+            throw new CustomError(400, 'Invalid input')
     }
 
     const query = `INSERT INTO events (title, description, date, location) VALUES ($1, $2, $3, $4) RETURNING *`
@@ -50,8 +51,9 @@ export async function fetchEventById(id: string) {
     const query = `SELECT * FROM events WHERE id = $1`
 	const event = await db.query(query, [id])
 
-    if (event.length === 0) 
-        throw { status: 404, msg: "Event not found" }
+    if (event.length === 0) {
+        new CustomError(404, "Event not found")
+    }
     
     return event[0]
 }
@@ -61,7 +63,7 @@ export async function removeEventById(id: string) {
 	const result = await db.query(query, [id])
 
     if (result.length === 0) 
-        throw { status: 404, msg: "Event not found" }
+        throw new CustomError(404, "Event not found")
 
     return true
 }
@@ -69,9 +71,9 @@ export async function removeEventById(id: string) {
 export async function updateEventById(id: string, title: string, description: string, date: string, location: string) {
     for (const field of [title, description, date, location]) {
         if (!field) 
-            throw { status: 400, msg: "Field is missing" }
+            throw new CustomError(400, "Field is missing")
         if (typeof field !== 'string') 
-            throw { status: 400, msg: "Invalid input" }
+            throw new CustomError(400, "Invalid input")
     }
 
     const query = `UPDATE events SET title = $1, description = $2, date = $3, location = $4 WHERE id = $5 RETURNING *`
@@ -79,17 +81,17 @@ export async function updateEventById(id: string, title: string, description: st
     const result = await db.query(query, params)
 
     if (result.length === 0)
-        throw { status: 404, msg: "Event not found" }
+        throw new CustomError(404, "Event not found")
 
     return result[0]
 }
 
 export async function addAttendeeToEvent(eventId: string, name: string, email: string) {
     if (!name || !email)
-        throw { status: 400, msg: 'Name and email are required for attendees.' }
+        throw new CustomError(400, 'Name and email are required for attendees.')
 
     if (typeof name !== 'string' || typeof email !== 'string')
-        throw { status: 400, msg: 'Invalid input types for name or email.' }
+        throw new CustomError(400, 'Invalid input types for name or email.')
 
     const query = `UPDATE events SET attendees = array_append(attendees, ROW($1, $2)::attendee) WHERE id = $3 RETURNING *`
 
@@ -97,7 +99,7 @@ export async function addAttendeeToEvent(eventId: string, name: string, email: s
     const result = await db.query(query, params)
 
     if (result.length === 0)
-		throw { status: 404, msg: "Event not found" }
+		throw new CustomError(404, "Event not found")
 
     return result[0]
 }

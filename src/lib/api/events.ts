@@ -1,3 +1,4 @@
+import { CustomError } from '@/types/error'
 import axios from 'axios'
 
 interface Event {
@@ -35,8 +36,11 @@ export async function deleteEvent(id: string): Promise<{ status: number; msg: st
 	try {
 		await axios.delete(`/api/events/${id}`)
 		return { status: 204, msg: 'Event deleted successfully' }
-	} catch (err: any) {
-		return { status: err.status, msg: err.msg }
+	} catch (err: unknown) {
+        if (err instanceof CustomError) 
+		    return { status: err.status, msg: err.msg }
+        else
+            return { status: 500, msg: 'Internal server error' }
 	}
 }
 

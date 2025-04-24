@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function Search() {
 	const [isModelOpen, setIsModelOpen] = useState(false)
-	const isUserSignedIn = false
+	// const isUserSignedIn = false
 
   	return (
     	<>

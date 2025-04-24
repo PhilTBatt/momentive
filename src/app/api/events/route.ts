@@ -1,4 +1,5 @@
 import { fetchEvents, insertEvent } from "@/app/api/models/events"
+import { CustomError } from "@/types/error"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
@@ -14,10 +15,12 @@ export async function GET(request: NextRequest) {
 		const events = await fetchEvents(sortBy, order, topic, limit, page)
 
 		return NextResponse.json({ events }, { status: 200 })
-	} catch (err: any) {
-		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
-			{ status: err.status || 500 })
-	}
+	} catch (err: unknown) {
+        if (err instanceof CustomError) 
+            return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+
+        return NextResponse.json({ status: 500, msg: "Internal server error" }, { status: 500 })
+    }
 }
    
 export async function POST(request: NextRequest) {
@@ -27,8 +30,10 @@ export async function POST(request: NextRequest) {
 		const event = await insertEvent(title, description, date, location)
 
 		return NextResponse.json({ event }, { status: 201 })
-	} catch (err: any) {
-		return NextResponse.json({ status: err.status || 500, msg: err.msg || "Internal server error" },
-			{ status: err.status || 500 })
-	}
+	} catch (err: unknown) {
+        if (err instanceof CustomError) 
+            return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
+
+        return NextResponse.json({ status: 500, msg: "Internal server error" }, { status: 500 })
+    }
 }
