@@ -98,3 +98,14 @@ export async function updateUserById(id: string, name: string, email: string) {
 	const { password: _password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
+
+export async function checkUserPassword(email: string, password: string) {
+    const query = `SELECT password FROM users WHERE email = $1`
+    const result = await db.query(query, [email])
+  
+    if (result.length === 0) 
+      throw new CustomError(404, "User not found")
+  
+    const hashedPassword = result[0].password
+    return bcrypt.compare(password, hashedPassword)
+}

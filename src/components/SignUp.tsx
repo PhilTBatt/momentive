@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import zxcvbn from 'zxcvbn'
 import { useRouter } from 'next/navigation'
-import { CustomError } from "@/types/error";
+import { AxiosError } from "axios";
 
 const StyledCard = styled.div`
 	display: grid;
@@ -73,13 +73,14 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 				throw Error('Password is too weak')
 
 			const user = await postNewUser({name, email, password})
-			setUser(user)
+			setUser({...user, role: 'admin'})
+            
 			setIsModelOpen(false)
 			router.push('/user')
 		}
 		catch (err: unknown) {
-			if (err instanceof CustomError)
-				alert(`${err.status}:  ${err.msg}\nPlease try again`)
+			if (err instanceof AxiosError)
+				alert(`${err.response?.status}:  ${err.response?.statusText}\nPlease try again`)
 			else
 			  	alert(`An error occurred\nPlease try again`)
 		}

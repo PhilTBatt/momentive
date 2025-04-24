@@ -34,8 +34,7 @@ export default function NavBar({setIsModelOpen}: {setIsModelOpen: Dispatch<SetSt
     const { user } = useContext(UserContext)
 
 	const handleUserClick = () => {
-        if (user) router.push('/user')
-
+        if (user.name && user.email && user.role === 'admin') router.push('/user')
 		else if (setIsModelOpen) setIsModelOpen(true)
     }
 

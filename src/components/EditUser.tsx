@@ -53,9 +53,11 @@ export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch
 	const [email, setEmail] = useState(user.email ?? "")
 	
 	function confirmButton() {
-		setIsModelOpen(false)
-		setUser({name: name.trim(), email: email.trim()})
-	}
+        if (name === '' || email === '') alert('A name and email is required\nPlease try again')
+		else {
+            setIsModelOpen(false)
+            setUser({name: name.trim(), email: email.trim(), role: 'guest'})}
+	    }
 
     return (
         <StyledCard>
@@ -64,9 +66,9 @@ export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch
 			</StyledHeading>
 
 			<StyledLabel htmlFor="name">Name</StyledLabel>
-            <StyledInput id="name" value={name ?? ""} onChange={(e) => setName(e.target.value)}/>
+            <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}/>
 			<StyledLabel htmlFor="email">Email</StyledLabel>
-			<StyledInput id="email" type="email" value={email ?? ""} onChange={(e) => setEmail(e.target.value)}/>
+			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
 			<ConfirmButton onClick={confirmButton}>Confirm</ConfirmButton>
 
 			<StyledText>

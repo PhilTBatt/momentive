@@ -9,9 +9,8 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const StyledText = styled.h2`
-    text-align: center;
     font-size: 10vw;
-    margin: 3vh auto;
+    margin-top: 3vh;
 `
 
 export default function Home() {

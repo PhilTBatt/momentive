@@ -3,7 +3,8 @@
 import { UserContext } from "@/contexts/User";
 import { authenticateUser, getUserByEmail } from "@/lib/api/users";
 import { CustomError } from "@/types/error";
-import { useRouter } from "next/router";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
@@ -61,20 +62,19 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 		setIsSignInLoading(true)
 
 		try {
-			const isUser = await authenticateUser({email, password})
-            
-            if (isUser) {
-                setUser(await getUserByEmail(email))
-                setIsModelOpen(false)
-                router.push('/user')
-            }
-            else {
-                alert("Invalid email or password")
-            }
+			await authenticateUser({email, password})
+            const user = await getUserByEmail(email)
+            setUser({...user, role: 'admin'})
+            setIsModelOpen(false)
+            router.push('/user')
 		}
 		catch (err: unknown) {
-            if (err instanceof CustomError) 
-                alert(`${err.status}:  ${err.msg}\nPlease try again`)
+            if (err instanceof AxiosError){
+                if (err.status === 404)
+                    alert("User not found\nPlease try again")
+                else
+                alert("Invalid email or password\nPlease try again")
+            }
             else 
                 alert(`An error occurred\nPlease try again`)
         }

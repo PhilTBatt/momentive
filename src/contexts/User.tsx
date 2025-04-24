@@ -9,10 +9,10 @@ type UserContextType = {
 	setUser: Dispatch<SetStateAction<User>>
 }
 
-export const UserContext = createContext<UserContextType>({ user: { name: null, email: null }, setUser: () => {} })
+export const UserContext = createContext<UserContextType>({ user: { name: null, email: null, role: 'guest' }, setUser: () => {} })
 
 export function UserContextProvider({children}: {children: JSX.Element}) {
-    const [user, setUser] = useState<User>({ name: null, email: null })
+    const [user, setUser] = useState<User>({ name: null, email: null , role: 'guest'})
 
 	useEffect(() => {
 		const storedUser = localStorage.getItem("user")
