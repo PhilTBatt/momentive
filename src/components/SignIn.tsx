@@ -1,7 +1,8 @@
 'use client'
 
 import { UserContext } from "@/contexts/User";
-import { getUserByEmail, signInUser } from "@/lib/api/users";
+import { authenticateUser, getUserByEmail } from "@/lib/api/users";
+import { CustomError } from "@/types/error";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
@@ -48,7 +49,7 @@ const SignUpButton = styled.button`
 	vertical-align: top;
 `
 
-export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<string>>}) {
+export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [isSignInLoading, setIsSignInLoading] = useState(false)
@@ -58,15 +59,21 @@ export function SignIn({setModalType}: {setModalType: Dispatch<SetStateAction<st
 		setIsSignInLoading(true)
 
 		try {
-			const user = await signInUser({email, password})
-			// setUser(user)
+			const isUser = await authenticateUser({email, password})
+            if (isUser) {
+                setUser(await getUserByEmail(email))
+                setIsModelOpen(false)
+            }
+            else {
+                alert("Invalid email or password")
+            }
 		}
-		catch (err: any) {
-			if (err.response?.data?.status && err.response?.data?.msg)
-				alert(`${err.response.data.status}:  ${err.response.data.msg}\nPlease try again`)
-			else
-				alert(`An error occurred\nPlease try again`)
-		}
+		catch (err: unknown) {
+            if (err instanceof CustomError) 
+                alert(`${err.status}:  ${err.msg}\nPlease try again`)
+            else 
+                alert(`An error occurred\nPlease try again`)
+        }
 		finally {
 			setIsSignInLoading(false)
 		}
