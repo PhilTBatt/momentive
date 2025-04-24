@@ -4,19 +4,18 @@ import { UserContext } from "@/contexts/User";
 import { postNewUser } from "@/lib/api/users";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
-import zxcvbn from 'zxcvbn'
 import { useRouter } from 'next/navigation'
 import { AxiosError } from "axios";
 
-const StyledCard = styled.div`
+const StyledCard = styled.form`
 	display: grid;
 `
 
 const StyledHeading = styled.h3`
   	text-align: center;
   	font-size: 6vw;
-  	margin-top: 3vw;
-  	margin-bottom: 6vw;
+  	margin-top: 2vw;
+  	margin-bottom: 4vw;
 `
 
 const StyledLabel = styled.label`
@@ -33,15 +32,15 @@ const StyledInput = styled.input`
 	margin-bottom: 4vw;
 `
 
-const StyledText = styled.h3`
-	font-size: 6vw;
-	margin-bottom: 5vw;
-	margin-top: 7vw;
-`
-
 const SignUpButton = styled.button`
 	font-size: 4.5vw;
 	margin: 2vw 30vw 1vw 30vw;
+`
+
+const StyledText = styled.h3`
+	font-size: 6vw;
+	margin-bottom: 3vw;
+	margin-top: 6vw;
 `
 
 const SignInButton = styled.button`
@@ -60,7 +59,8 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 	const { setUser } = useContext(UserContext)
 	const router = useRouter()
 
-	async function handleSignUp() {
+	async function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
 		setIsSignUpLoading(true)
         
 		try {
@@ -86,7 +86,7 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 	}
 
     return (
-        <StyledCard>
+        <StyledCard onSubmit={handleSignUp}>
             <StyledHeading>
 				Save your information for later
 			</StyledHeading>
@@ -108,10 +108,10 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 			</StyledLabel>
 			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-			<SignUpButton onClick={handleSignUp}>{isSignUpLoading ? 'Loading...' : 'Sign Up'}</SignUpButton>
+			<SignUpButton type="submit">{isSignUpLoading ? 'Loading...' : 'Sign Up'}</SignUpButton>
 
 			<StyledText>
-                Or <SignInButton onClick={() => setModalType('signIn')}>Sign In</SignInButton> if you have an account
+                Or <SignInButton type="button" onClick={() => setModalType('signIn')}>Sign In</SignInButton> if you have an account
             </StyledText>
         </StyledCard>
     )

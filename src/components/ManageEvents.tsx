@@ -1,11 +1,11 @@
 'use client'
 
-import { UserContext } from "@/contexts/User";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { EditNameModal } from "./EditName";
 import { EditEmailModal } from "./EditEmail";
 import { EventList } from "./EventList";
+import { CreateEventsModal } from "./CreateEventsModal";
 
 const ButtonCard = styled.div`
 	background: ${props => props.theme.colours.primary};
@@ -37,23 +37,22 @@ const StyledText = styled.p`
 `
 
 export default function ManageEvents() {
-    const {user} = useContext(UserContext)
-    const [profileModal, setProfileModal] = useState<null | string>(null)
+    const [eventsModalOpen, setEventsModalOpen] = useState(false)
     
   	return (
     	<>
             <ButtonCard>
-                <CreateEvent onClick={() => setProfileModal("name")}>
+                <CreateEvent onClick={() => setEventsModalOpen(true)}>
                     Create Event
                 </CreateEvent>
             </ButtonCard>
+            
             <StyledCard>
                 <StyledText>
                     Your Events
                 </StyledText>
                 <EventList/>
-                {profileModal === "name" && <EditNameModal setProfileModal={setProfileModal}/>}
-                {profileModal === "email" && <EditEmailModal setProfileModal={setProfileModal}/>}
+                {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen}/>}
             </StyledCard>
     	</>
   	)

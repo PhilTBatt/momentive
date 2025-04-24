@@ -20,6 +20,7 @@ const ModalBackground = styled.div`
 `
 
 const StyledCard = styled.div`
+    display: grid;
 	background: ${props => props.theme.colours.primary};
 	padding: 1vh 1vw;
 	border-radius: 12px;

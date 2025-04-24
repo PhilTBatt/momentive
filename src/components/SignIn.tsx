@@ -8,15 +8,15 @@ import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
-const StyledCard = styled.div`
+const StyledCard = styled.form`
 	display: grid;
 `
 
 const StyledHeading = styled.h3`
   	text-align: center;
   	font-size: 6vw;
-  	margin-top: 3vw;
-  	margin-bottom: 6vw;
+  	margin-top: 2vw;
+  	margin-bottom: 4vw;
 `
 
 const StyledLabel = styled.label`
@@ -40,7 +40,7 @@ const SignInButton = styled.button`
 
 const StyledText = styled.h3`
 	font-size: 6vw;
-	margin-bottom: 5vw;
+	margin-bottom: 3vw;
 	margin-top: 6vw;
 `
 
@@ -58,7 +58,8 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 	const { setUser } = useContext(UserContext)
     const router = useRouter()
 
-	async function handleSignIn() {
+	async function handleSignIn(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
 		setIsSignInLoading(true)
 
 		try {
@@ -82,7 +83,7 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 	}
 
     return (
-        <StyledCard>
+        <StyledCard onSubmit={handleSignIn}>
             <StyledHeading>
 				Sign In
 			</StyledHeading>
@@ -96,10 +97,10 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 			</StyledLabel>
 			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-			<SignInButton onClick={handleSignIn}>{isSignInLoading ? 'Loading...' : 'Sign In'}</SignInButton>
+			<SignInButton type="submit">{isSignInLoading ? 'Loading...' : 'Sign In'}</SignInButton>
 
 			<StyledText>
-                Or <SignUpButton onClick={() => setModalType('signUp')}>Sign Up</SignUpButton> to manage events
+                Or <SignUpButton type="button" onClick={() => setModalType('signUp')}>Sign Up</SignUpButton> to manage events
             </StyledText>
         </StyledCard>
     )

@@ -4,15 +4,15 @@ import { UserContext } from "@/contexts/User";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
-const StyledCard = styled.div`
+const StyledCard = styled.form`
 	display: grid;
 `
 
 const StyledHeading = styled.h3`
   	text-align: center;
   	font-size: 6vw;
-  	margin-top: 3vw;
-  	margin-bottom: 5vw;
+  	margin-top: 2vw;
+  	margin-bottom: 4vw;
 `
 
 const StyledLabel = styled.label`
@@ -31,8 +31,8 @@ const StyledInput = styled.input`
 
 const StyledText = styled.h3`
 	font-size: 6vw;
-	margin-bottom: 5vw;
-	margin-top: 7vw;
+	margin-bottom: 3vw;
+	margin-top: 6vw;
 `
 
 const ConfirmButton = styled.button`
@@ -52,27 +52,36 @@ export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch
 	const [name, setName] = useState(user.name ?? "")
 	const [email, setEmail] = useState(user.email ?? "")
 	
-	function confirmButton() {
+	function confirmButton(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+
         if (name === '' || email === '') alert('A name and email is required\nPlease try again')
 		else {
             setIsModelOpen(false)
-            setUser({name: name.trim(), email: email.trim(), role: 'guest', id: null})}
-	    }
+            setUser({name: name.trim(), email: email.trim(), role: 'guest', id: null})
+        }
+	}
 
     return (
-        <StyledCard>
+        <StyledCard onSubmit={confirmButton}>
             <StyledHeading>
 				Save your information for later
 			</StyledHeading>
 
-			<StyledLabel htmlFor="name">Name</StyledLabel>
+			<StyledLabel htmlFor="name">
+                Name
+            </StyledLabel>
             <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}/>
-			<StyledLabel htmlFor="email">Email</StyledLabel>
+			<StyledLabel htmlFor="email">
+                Email
+            </StyledLabel>
 			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-			<ConfirmButton onClick={confirmButton}>Confirm</ConfirmButton>
+			<ConfirmButton type="submit">
+                Confirm
+            </ConfirmButton>
 
 			<StyledText>
-                Or <SignInButton onClick={() => setModalType('signIn')}>Sign In</SignInButton> to manage events
+                Or <SignInButton type="button" onClick={() => setModalType('signIn')}>Sign In</SignInButton> to manage events
             </StyledText>
         </StyledCard>
     )

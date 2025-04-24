@@ -39,6 +39,7 @@ export default function ManageAccount() {
                         Edit Name
                     </Button>
                 </StyledText>
+                
                 <StyledText>
                     {user.email}
                     <Button onClick={() => setProfileModal("email")}>
