@@ -28,7 +28,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: { id: 
     }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
 	try {
 		const { name, email } = await request.json()
 		const user = await updateUserById(params.id, name, email)

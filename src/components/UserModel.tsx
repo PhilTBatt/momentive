@@ -17,8 +17,7 @@ const ModalBackground = styled.div`
 	align-items: center;
 	justify-content: center;
 	z-index: 100;
-`;
-
+`
 
 const StyledCard = styled.div`
 	background: ${props => props.theme.colours.primary};

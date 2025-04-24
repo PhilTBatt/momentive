@@ -20,6 +20,7 @@ const StyledNavBar = styled.footer`
     text-align: center;
     font-size: 17vw;
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
 `
 
 const IconWrapper = styled.div`

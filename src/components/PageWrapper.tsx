@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { ReactNode } from 'react';
 
 const StyledWrapper = styled.div`
-    padding-bottom: 20vw;
+    padding-top: 20vw;
+    padding-bottom: 27vw;
     display: grid;
     place-items: center;
     text-align: center;

@@ -67,8 +67,7 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
             setUser({...user, role: 'admin'})
             setIsModelOpen(false)
             router.push('/user')
-		}
-		catch (err: unknown) {
+		} catch (err: unknown) {
             if (err instanceof AxiosError){
                 if (err.status === 404)
                     alert("User not found\nPlease try again")
@@ -77,8 +76,7 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
             }
             else 
                 alert(`An error occurred\nPlease try again`)
-        }
-		finally {
+        } finally {
 			setIsSignInLoading(false)
 		}
 	}

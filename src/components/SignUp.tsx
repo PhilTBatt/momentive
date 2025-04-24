@@ -69,9 +69,7 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
             
 			setIsModelOpen(false)
 			router.push('/user')
-		}
-		catch (err: unknown) {
-            console.log(err)
+		} catch (err: unknown) {
             if (err instanceof AxiosError){
                 if (err.status === 400)
                     alert(`${err.response?.data.msg}\nPlease try again`)
@@ -82,8 +80,7 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
             }
             else 
                 alert(`An error occurred\nPlease try again`)
-        }
-		finally {
+        } finally {
 			setIsSignUpLoading(false)
 		}
 	}

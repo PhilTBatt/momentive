@@ -12,7 +12,7 @@ const StyledHeading = styled.h3`
   	text-align: center;
   	font-size: 6vw;
   	margin-top: 3vw;
-  	margin-bottom: 6vw;
+  	margin-bottom: 5vw;
 `
 
 const StyledLabel = styled.label`
@@ -56,7 +56,7 @@ export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch
         if (name === '' || email === '') alert('A name and email is required\nPlease try again')
 		else {
             setIsModelOpen(false)
-            setUser({name: name.trim(), email: email.trim(), role: 'guest'})}
+            setUser({name: name.trim(), email: email.trim(), role: 'guest', id: null})}
 	    }
 
     return (

@@ -41,6 +41,7 @@ export async function insertUser(name: string, email: string, password: string) 
 	
 	const newUser = await db.query(query, params)
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { password: _password, ...userWithoutPassword } = newUser[0]
 	
 	return userWithoutPassword
@@ -53,6 +54,7 @@ export async function fetchUserById(id: string) {
 	if (user.length === 0)
 		throw new CustomError(404, "User not found")
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { password: _password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
@@ -64,6 +66,7 @@ export async function fetchUserByEmail(email: string) {
 	if (user.length === 0) 
 		throw new CustomError(404, "User not found")
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { password: _password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
@@ -95,6 +98,7 @@ export async function updateUserById(id: string, name: string, email: string) {
 	if (user.length === 0)
 		throw new CustomError(404, "User not found")
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { password: _password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }

@@ -21,8 +21,8 @@ export default function Home() {
       		<Header/>
             <PageWrapper>
 				<StyledText>Welcome!</StyledText>
-				{isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
 				<EventList/>
+				{isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
 			</PageWrapper>
       		<NavBar setIsModelOpen={setIsModelOpen}/>
     	</>
