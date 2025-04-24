@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
+import PageWrapper from "@/components/PageWrapper";
 import { UserModal } from "@/components/UserModel";
 import { useState } from "react";
 
@@ -12,7 +13,9 @@ export default function Search() {
   	return (
     	<>
       		<Header/>
-			{isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
+            <PageWrapper>
+			    {isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
+            </PageWrapper>
       		<NavBar setIsModelOpen={setIsModelOpen}/>
     	</>
   	)

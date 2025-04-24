@@ -3,6 +3,7 @@
 import { UserContext } from "@/contexts/User";
 import { authenticateUser, getUserByEmail } from "@/lib/api/users";
 import { CustomError } from "@/types/error";
+import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
@@ -54,15 +55,18 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 	const [password, setPassword] = useState("")
 	const [isSignInLoading, setIsSignInLoading] = useState(false)
 	const { setUser } = useContext(UserContext)
+    const router = useRouter()
 
 	async function handleSignIn() {
 		setIsSignInLoading(true)
 
 		try {
 			const isUser = await authenticateUser({email, password})
+            
             if (isUser) {
                 setUser(await getUserByEmail(email))
                 setIsModelOpen(false)
+                router.push('/user')
             }
             else {
                 alert("Invalid email or password")

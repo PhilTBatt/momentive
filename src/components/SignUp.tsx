@@ -62,6 +62,7 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 
 	async function handleSignUp() {
 		setIsSignUpLoading(true)
+        
 		try {
 			if (staffCode !== '1234') 
 				throw new Error('Invalid staff code')

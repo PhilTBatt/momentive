@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Dispatch, SetStateAction, useContext } from "react";
 import { UserContext } from "@/contexts/User";
+import { useRouter } from "next/navigation";
 
 const StyledNavBar = styled.footer`
     position: fixed;
@@ -29,10 +30,11 @@ const IconWrapper = styled.div`
 `
 
 export default function NavBar({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>> | null}) {
+    const router = useRouter()
     const { user } = useContext(UserContext)
 
 	const handleUserClick = () => {
-        if (user) window.location.href = '/user'
+        if (user) router.push('/user')
 
 		else if (setIsModelOpen) setIsModelOpen(true)
     }

@@ -5,34 +5,34 @@ import ThemeProviderWrapper from "@/components/ThemeProviderWrapper";
 import { UserContextProvider } from "@/contexts/User";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Momentive",
-  description: "A platform where community members can view, sign up for, and add events to their personal calendars, while staff members can create and manage events.",
+    title: "Momentive",
+    description: "A platform where community members can view, sign up for, and add events to their personal calendars, while staff members can create and manage events.",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <ThemeProviderWrapper>
-	  	<UserContextProvider>
-			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-			{children}
-			</body>
-		</UserContextProvider>
-      </ThemeProviderWrapper>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <ThemeProviderWrapper>
+                <UserContextProvider>
+                    <body className={`${geistSans.variable} ${geistMono.variable}`}>
+                        {children}
+                    </body>
+                </UserContextProvider>
+            </ThemeProviderWrapper>
+        </html>
+    );
 }
