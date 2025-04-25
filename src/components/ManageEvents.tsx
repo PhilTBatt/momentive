@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import styled from "styled-components";
-import { EditNameModal } from "./EditName";
-import { EditEmailModal } from "./EditEmail";
 import { EventList } from "./EventList";
 import { CreateEventsModal } from "./CreateEventsModal";
 
@@ -46,7 +44,7 @@ export default function ManageEvents() {
                     Create Event
                 </CreateEvent>
             </ButtonCard>
-            
+
             <StyledCard>
                 <StyledText>
                     Your Events

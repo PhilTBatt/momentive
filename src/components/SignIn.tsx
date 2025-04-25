@@ -2,7 +2,6 @@
 
 import { UserContext } from "@/contexts/User";
 import { authenticateUser, getUserByEmail } from "@/lib/api/users";
-import { CustomError } from "@/types/error";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
