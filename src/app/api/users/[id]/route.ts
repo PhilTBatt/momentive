@@ -2,13 +2,12 @@ import { fetchUserById, removeUserById, updateUserById } from '@/app/api/models/
 import { CustomError } from '@/types/error';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
-    const searchParams = request.nextUrl.searchParams
-    const id = searchParams.get("id")
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const {id} = await params
 
 	try {
 		if (id) {
-            const user = await fetchUserById(id)
+            const user = await fetchUserById(Number(id))
             return NextResponse.json({ user }, { status: 200 })
         }
 	} catch (err: unknown) {
@@ -19,13 +18,13 @@ export async function GET(request: NextRequest) {
     }
 }
 
-export async function DELETE(request: NextRequest) {
-    const searchParams = request.nextUrl.searchParams
-    const id = searchParams.get("id")
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function DELETE(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const {id} = await params
 
 	try {
 		if (id) {
-            await removeUserById(id)
+            await removeUserById(Number(id))
             return new Response(null, { status: 204 })
         }
 	} catch (err: unknown) {
@@ -36,14 +35,13 @@ export async function DELETE(request: NextRequest) {
     }
 }
 
-export async function PATCH(request: NextRequest) {
-    const searchParams = request.nextUrl.searchParams
-    const id = searchParams.get("id")
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+    const {id} = await params
 
 	try {
 		const { name, email } = await request.json()
 		if (id) {
-            const updatedUser = await updateUserById(id, name, email)
+            const updatedUser = await updateUserById(Number(id), name, email)
             return NextResponse.json(updatedUser, { status: 200 })
         }
 	} catch (err: unknown) {

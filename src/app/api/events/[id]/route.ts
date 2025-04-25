@@ -2,13 +2,13 @@ import { addAttendeeToEvent, fetchEventById, removeEventById, updateEventById } 
 import { CustomError } from "@/types/error";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const searchParams  = request.nextUrl.searchParams;
-        const id = searchParams.get('id')
+        const {id} = await params
 
         if (id) {
-            const event = await fetchEventById(id)
+            const event = await fetchEventById(Number(id))
             return NextResponse.json({ event }, { status: 200 })
         }
     } catch (err: unknown) {
@@ -18,14 +18,14 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ status: 500, msg: "Internal server error" }, { status: 500 })
     }
 }
-   
-export async function DELETE(request: NextRequest) {
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function DELETE(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const searchParams  = request.nextUrl.searchParams;
-        const id = searchParams.get('id')
+        const {id} = await params
 
         if (id) {
-            await removeEventById(id)
+            await removeEventById(Number(id))
             return new Response(null, { status: 204 })
         }
     } catch (err: unknown) {
@@ -36,14 +36,13 @@ export async function DELETE(request: NextRequest) {
     }
 }
 
-export async function PATCH(request: NextRequest) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const searchParams  = request.nextUrl.searchParams;
-        const id = searchParams.get('id')
+        const {id} = await params
         const { title, description, date, location, topic } = await request.json()
 
         if (id) {
-            const updatedEvent = await updateEventById(id, title, description, date, location, topic)
+            const updatedEvent = await updateEventById(Number(id), title, description, date, location, topic)
             return NextResponse.json(updatedEvent, { status: 200 })
         }
     } catch (err: unknown) {
@@ -54,14 +53,13 @@ export async function PATCH(request: NextRequest) {
     }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const searchParams  = request.nextUrl.searchParams;
-        const id = searchParams.get('id')
+        const {id} = await params
         const { name, email } = await request.json()
         
         if (id) {
-            const updatedEvent = await addAttendeeToEvent(id, name, email)
+            const updatedEvent = await addAttendeeToEvent(Number(id), name, email)
             return NextResponse.json(updatedEvent, { status: 200 })
         }
     } catch (err: unknown) {

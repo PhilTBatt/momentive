@@ -16,6 +16,7 @@ export async function GET(request: NextRequest) {
 
 		return NextResponse.json({ events }, { status: 200 })
 	} catch (err: unknown) {
+        console.log(err)
         if (err instanceof CustomError) 
             return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
 
@@ -27,10 +28,11 @@ export async function POST(request: NextRequest) {
     const { id, title, description, date, location, topic } = await request.json()
 
 	try {
-		const event = await insertEvent(id, title, description, date, location, topic)
+		const event = await insertEvent(Number(id), title, description, date, location, topic)
 
 		return NextResponse.json({ event }, { status: 201 })
 	} catch (err: unknown) {
+        console.log(err)
         if (err instanceof CustomError) 
             return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
 

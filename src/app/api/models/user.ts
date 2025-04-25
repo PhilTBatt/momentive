@@ -47,7 +47,7 @@ export async function insertUser(name: string, email: string, password: string) 
 	return userWithoutPassword
 }
 
-export async function fetchUserById(id: string) {
+export async function fetchUserById(id: number) {
 	const query = `SELECT * FROM users WHERE id = $1`
 	const user = await db.query(query, [id])
 
@@ -55,7 +55,7 @@ export async function fetchUserById(id: string) {
 		throw new CustomError(404, "User not found")
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { password: _password, ...userWithoutPassword } = user[0]
+	const { password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
 
@@ -67,11 +67,11 @@ export async function fetchUserByEmail(email: string) {
 		throw new CustomError(404, "User not found")
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { password: _password, ...userWithoutPassword } = user[0]
+	const { password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
 
-export async function removeUserById(id: string) {
+export async function removeUserById(id: number) {
 	const query = `DELETE FROM users WHERE id = $1 RETURNING *`
 	const result = await db.query(query, [id])
 
@@ -81,7 +81,7 @@ export async function removeUserById(id: string) {
 	return true
 }
 
-export async function updateUserById(id: string, name: string, email: string) {
+export async function updateUserById(id: number, name: string, email: string) {
 	for (const field of [name, email]) {
 		if (!field)
 			throw new CustomError(400, "Field is missing")
@@ -99,7 +99,7 @@ export async function updateUserById(id: string, name: string, email: string) {
 		throw new CustomError(404, "User not found")
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { password: _password, ...userWithoutPassword } = user[0]
+	const { password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
 

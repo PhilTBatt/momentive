@@ -9,7 +9,6 @@ import { AxiosError } from 'axios'
 import type { Event } from "@/types/event"
 
 const StyledBox = styled.div`
-    display: grid;
 	background: ${props => props.theme.colours.primary};
 	border-radius: 12px;
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
@@ -28,7 +27,7 @@ export function EventList() {
 
     async function showUpcomingEvents() {
         try {
-            setIsLoading(false)
+            setIsLoading(true)
             const upcomingeEvents = await getEvents({})
             setEvents(upcomingeEvents)
 
@@ -51,7 +50,7 @@ export function EventList() {
             <StyledList>
                 {isLoading && <p>Loading...</p>}
                     {events.map(event => {
-                        return <EventCard key={'event.event_id'} event={event}/>
+                        return <EventCard event={event} key={event.id}/>
                     })}
             </StyledList>
             }

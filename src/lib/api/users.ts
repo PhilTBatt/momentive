@@ -1,18 +1,13 @@
 import { CustomError } from '@/types/error';
+import { User } from '@/types/user';
 import axios from 'axios'
-
-interface User {
-	id: string
-	name: string
-	email: string
-}
 
 export async function getUsers({ order, limit, page }: { order?: string; limit?: number; page?: number }): Promise<User[]> {
 	const response = await axios.get('/api/users', { params: { order, limit, page } })
 	return response.data.users
 }
 
-export async function getUserById(id: string): Promise<User> {
+export async function getUserById(id: number): Promise<User> {
 	const response = await axios.get(`/api/users/${id}`)
 	return response.data.user
 }
@@ -27,12 +22,12 @@ export async function postNewUser({ name, email, password, staffCode }: { name: 
 	return response.data.user
 }
 
-export async function updateUser(id: string, { name, email }: { name: string; email: string }): Promise<User> {
+export async function updateUser(id: number, { name, email }: { name: string; email: string }): Promise<User> {
 	const response = await axios.patch(`/api/users/${id}`, { name, email })
 	return response.data.user
 }
 
-export async function deleteUser(id: string): Promise<{ status: number; msg: string }> {
+export async function deleteUser(id: number): Promise<{ status: number; msg: string }> {
 	try {
 		await axios.delete(`/api/users/${id}`)
 		return { status: 204, msg: 'User deleted successfully' }

@@ -9,7 +9,6 @@ export async function POST(request: NextRequest) {
             
         return NextResponse.json({ success: isPasswordCorrect }, { status: isPasswordCorrect ? 200 : 401 })
     } catch (err: unknown) {
-        console.log(err)
         if (err instanceof CustomError)
             return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
     

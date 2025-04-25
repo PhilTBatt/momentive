@@ -2,7 +2,7 @@ import { db } from "@/lib/connection"
 import { CustomError } from "@/types/error"
 
 export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string | null, limit = 10, page = 1) {
-	const validColumns = ['title', 'date', 'created_by', 'location', 'topic', 'attendees']
+	const validColumns = ['title', 'date', 'createdBy', 'location', 'topic', 'attendees']
 	const validOrders = ['ASC', 'DESC']
 	
 	if (!validColumns.includes(sortBy)) 
@@ -21,6 +21,8 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 		query += ` WHERE topic = ${topic}`
 		params.push(topic)
 	}
+
+    if (sortBy === 'createdBy') sortBy = '"createdBy"'
 
 	query += ` ORDER BY ${sortBy} ${order} LIMIT $${params.length + 1} OFFSET $${params.length + 2}`
 	params.push(limit, (page - 1) * limit)
@@ -41,14 +43,14 @@ export async function insertEvent(id: number, title: string, description: string
             throw new CustomError(400, 'Invalid input')
     }
 
-    const query = `INSERT INTO events (title, description, date, location, topic, createdby) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
+    const query = `INSERT INTO events (title, description, date, location, topic, "createdBy") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
 
 	const newEvent = await db.query(query, params)
 
 	return newEvent[0]
 }
 
-export async function fetchEventById(id: string) {
+export async function fetchEventById(id: number) {
     const query = `SELECT * FROM events WHERE id = $1`
 	const event = await db.query(query, [id])
 
@@ -59,7 +61,7 @@ export async function fetchEventById(id: string) {
     return event[0]
 }
 
-export async function removeEventById(id: string) {
+export async function removeEventById(id: number) {
     const query = `DELETE FROM events WHERE id = $1 RETURNING *`
 	const result = await db.query(query, [id])
 
@@ -69,10 +71,10 @@ export async function removeEventById(id: string) {
     return true
 }
 
-export async function updateEventById(id: string, title: string, description: string, date: string, location: string, topic: string) {
+export async function updateEventById(id: number, title: string, description: string, date: string, location: string, topic: string) {
     const params = [title, description, date, location, topic, id]
     
-    for (const field of params) {
+    for (const field of [title, description, date, location, topic]) {
         if (!field) 
             throw new CustomError(400, "Field is missing")
         if (typeof field !== 'string') 
@@ -88,7 +90,7 @@ export async function updateEventById(id: string, title: string, description: st
     return result[0]
 }
 
-export async function addAttendeeToEvent(eventId: string, name: string, email: string) {
+export async function addAttendeeToEvent(eventId: number, name: string, email: string) {
     if (!name || !email)
         throw new CustomError(400, 'Name and email are required for attendees.')
 

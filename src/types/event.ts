@@ -1,10 +1,10 @@
 export type Event = {
-	id: string
+	id: number
 	title: string
 	description: string
 	date: string
 	location: string
 	topic: string
-	created_by: string
+	createdBy: number
 	attendees: number[]
 }
