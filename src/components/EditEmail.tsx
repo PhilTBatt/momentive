@@ -65,9 +65,9 @@ export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<Set
 
         try {
             if (user.id && user.name && user.email) {
-                const updatedUser = await updateUser(user.id, {name: user.name, email})
+                const updatedUser = await updateUser(String(user.id), {name: user.name, email})
                 setProfileModal(null)
-                setUser({...updatedUser, role: 'admin'})
+                setUser({...updatedUser, role: 'admin', id: Number(user.id)})
             }
         } catch (err: unknown) {
             if (err instanceof AxiosError){
