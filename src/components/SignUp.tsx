@@ -65,7 +65,7 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
         
 		try {
             const user = await postNewUser({name, email, password, staffCode})
-			setUser({...user, role: 'admin'})
+			setUser({...user, id: Number(user.id), role: 'admin'})
             
 			setIsModelOpen(false)
 			router.push('/user')

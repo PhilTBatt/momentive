@@ -64,7 +64,7 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 		try {
 			await authenticateUser({email, password})
             const user = await getUserByEmail(email)
-            setUser({...user, role: 'admin'})
+            setUser({...user, id: Number(user.id), role: 'admin'})
             setIsModelOpen(false)
             router.push('/user')
 		} catch (err: unknown) {

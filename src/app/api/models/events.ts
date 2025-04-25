@@ -30,8 +30,10 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 	return events
 }
 
-export async function insertEvent(title: string, description: string, date: string, location: string) {
-	for (const field of [title, description, date, location]) {
+export async function insertEvent(id: number, title: string, description: string, date: string, location: string, topic: string) {
+	const params = [title, description, date, location, topic, id]
+
+    for (const field of [title, description, date, location, topic]) {
         if (!field) 
             throw new CustomError(400, 'Field is missing')
 		
@@ -39,8 +41,7 @@ export async function insertEvent(title: string, description: string, date: stri
             throw new CustomError(400, 'Invalid input')
     }
 
-    const query = `INSERT INTO events (title, description, date, location) VALUES ($1, $2, $3, $4) RETURNING *`
-    const params = [title, description, date, location]
+    const query = `INSERT INTO events (title, description, date, location, topic, createdby) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
 
 	const newEvent = await db.query(query, params)
 
@@ -68,16 +69,17 @@ export async function removeEventById(id: string) {
     return true
 }
 
-export async function updateEventById(id: string, title: string, description: string, date: string, location: string) {
-    for (const field of [title, description, date, location]) {
+export async function updateEventById(id: string, title: string, description: string, date: string, location: string, topic: string) {
+    const params = [title, description, date, location, topic, id]
+    
+    for (const field of params) {
         if (!field) 
             throw new CustomError(400, "Field is missing")
         if (typeof field !== 'string') 
             throw new CustomError(400, "Invalid input")
     }
 
-    const query = `UPDATE events SET title = $1, description = $2, date = $3, location = $4 WHERE id = $5 RETURNING *`
-    const params = [title, description, date, location, id]
+    const query = `UPDATE events SET title = $1, description = $2, date = $3, location = $4, topic = $5 WHERE id = $6 RETURNING *`
     const result = await db.query(query, params)
 
     if (result.length === 0)

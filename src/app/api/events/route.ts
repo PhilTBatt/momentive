@@ -24,10 +24,10 @@ export async function GET(request: NextRequest) {
 }
    
 export async function POST(request: NextRequest) {
-    const { title, description, date, location } = await request.json()
+    const { id, title, description, date, location, topic } = await request.json()
 
 	try {
-		const event = await insertEvent(title, description, date, location)
+		const event = await insertEvent(id, title, description, date, location, topic)
 
 		return NextResponse.json({ event }, { status: 201 })
 	} catch (err: unknown) {

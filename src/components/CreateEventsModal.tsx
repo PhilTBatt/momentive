@@ -1,6 +1,8 @@
 'use client'
 
 import { UserContext } from "@/contexts/User";
+import { postNewEvent } from "@/lib/api/events";
+import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 
@@ -62,15 +64,37 @@ const CreateButton = styled.button`
 `
 
 export function CreateEventsModal({setEventsModalOpen}: {setEventsModalOpen: Dispatch<SetStateAction<boolean>>}) {
-	// const {user} = useContext(UserContext)
+	const {user} = useContext(UserContext)
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
     const [topic, setTopic] = useState("Topic")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState("")
+    const [isCreating, setIsCreating] = useState(false)
 	
-	function confirmButton(e: React.FormEvent<HTMLFormElement>) {
+	async function confirmButton(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+        setIsCreating(true)
+
+        try {
+            if (user.id)
+                await postNewEvent({id: user.id, title, description, location, date, topic})
+            setEventsModalOpen(false)
+
+        } catch (err: unknown) {
+            if (err instanceof AxiosError){
+                if (err.status === 400)
+                    alert(`${err.response?.data.msg}\nPlease try again`)
+                else if (err.status === 409)
+                    alert("Email already in use\nPlease try again")
+                else
+                    alert("Invalid email or password\nPlease try again")
+            }
+            else 
+                alert(`An error occurred\nPlease try again`)
+        } finally {
+            setIsCreating(false)
+        }
 	}
 
     return (
@@ -88,7 +112,7 @@ export function CreateEventsModal({setEventsModalOpen}: {setEventsModalOpen: Dis
                     Description
                 </StyledLabel>
                 <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
-                <TopicButton onClick={() => setTopic('topic')}>
+                <TopicButton type="button" onClick={() => setTopic('topic')}>
                     {topic[0].toUpperCase() + topic.slice(1)}
                 </TopicButton>
                 <StyledLabel htmlFor="location">
@@ -100,7 +124,7 @@ export function CreateEventsModal({setEventsModalOpen}: {setEventsModalOpen: Dis
                 </StyledLabel>
                 <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)}/>
 
-                <CreateButton type="submit">Create</CreateButton>
+                <CreateButton type="submit">{isCreating ? 'Creating...' : 'Create'}</CreateButton>
             </StyledCard>
         </ModalBackground>
     )
