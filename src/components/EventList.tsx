@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Dispatch, SetStateAction } from 'react'
 import { EventCard } from './EventCard'
 import { ErrorComponent } from './ErrorComponent'
 import styled from 'styled-components'
@@ -20,8 +20,7 @@ const StyledList = styled.ul`
     padding: 0;
 `
 
-export function EventList() {
-    const [events, setEvents] = useState<Event[]>([])
+export function EventList({ events, setEvents }: { events: Event[], setEvents: Dispatch<SetStateAction<Event[]>> }) {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 

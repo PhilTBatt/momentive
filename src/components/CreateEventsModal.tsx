@@ -2,6 +2,7 @@
 
 import { UserContext } from "@/contexts/User";
 import { postNewEvent } from "@/lib/api/events";
+import { Event } from "@/types/event";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
@@ -63,7 +64,10 @@ const CreateButton = styled.button`
 	margin: 2vw 30vw 3vw 30vw;
 `
 
-export function CreateEventsModal({setEventsModalOpen}: {setEventsModalOpen: Dispatch<SetStateAction<boolean>>}) {
+export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
+    setEventsModalOpen: Dispatch<SetStateAction<boolean>>,
+    setEvents: Dispatch<SetStateAction<Event[]>>
+}) {
 	const {user} = useContext(UserContext)
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
@@ -77,8 +81,10 @@ export function CreateEventsModal({setEventsModalOpen}: {setEventsModalOpen: Dis
         setIsCreating(true)
 
         try {
-            if (user.id)
-                await postNewEvent({id: user.id, title, description, location, date, topic})
+            if (user.id) {
+                const newEvent = await postNewEvent({id: user.id, title, description, location, date, topic})
+                setEvents(prev => [newEvent, ...prev])
+            }
             setEventsModalOpen(false)
 
         } catch (err: unknown) {

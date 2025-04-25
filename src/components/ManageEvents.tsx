@@ -4,6 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { EventList } from "./EventList";
 import { CreateEventsModal } from "./CreateEventsModal";
+import { Event } from "@/types/event";
 
 const ButtonCard = styled.div`
 	background: ${props => props.theme.colours.primary};
@@ -28,6 +29,7 @@ const StyledText = styled.p`
 
 export default function ManageEvents() {
     const [eventsModalOpen, setEventsModalOpen] = useState(false)
+    const [events, setEvents] = useState<Event[]>([])
     
   	return (
     	<>
@@ -40,8 +42,8 @@ export default function ManageEvents() {
             <StyledText>
                 Your Events
             </StyledText>
-            <EventList/>
-            {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen}/>}
+            <EventList events={events} setEvents={setEvents} />
+            {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen} setEvents={setEvents}/>}
     	</>
   	)
 }
