@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
         return NextResponse.json({
             "GET /api": {
@@ -205,7 +205,7 @@ export async function GET(request: NextRequest) {
                 },
             },
         }, { status: 200 });
-    } catch (err) {
+    } catch {
         return NextResponse.json({ status: 500, msg: "Internal server error" }, { status: 500 });
     }
 }
