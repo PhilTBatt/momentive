@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { EventList } from "./EventList";
 import { CreateEventsModal } from "./CreateEventsModal";
 import { Event } from "@/types/event";
+import { UserContext } from "@/contexts/User";
 
 const ButtonCard = styled.div`
 	background: ${props => props.theme.colours.primary};
@@ -30,7 +31,8 @@ const StyledText = styled.p`
 export default function ManageEvents() {
     const [eventsModalOpen, setEventsModalOpen] = useState(false)
     const [events, setEvents] = useState<Event[]>([])
-    
+    const {user} = useContext(UserContext)
+
   	return (
     	<>
             <ButtonCard>
@@ -42,7 +44,7 @@ export default function ManageEvents() {
             <StyledText>
                 Your Events
             </StyledText>
-            <EventList events={events} setEvents={setEvents} />
+            {user.id !== null && <EventList events={events} setEvents={setEvents} userId={user.id}/>}
             {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen} setEvents={setEvents}/>}
     	</>
   	)

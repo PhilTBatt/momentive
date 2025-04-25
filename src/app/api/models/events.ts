@@ -1,14 +1,18 @@
 import { db } from "@/lib/connection"
 import { CustomError } from "@/types/error"
 
-export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string | null, limit = 10, page = 1) {
-	const validColumns = ['title', 'date', 'createdBy', 'location', 'topic', 'attendees']
+export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string | null, userId: number | null, limit = 10, page = 1) {
+    if (sortBy === 'createdBy') sortBy = '"createdBy"'
+
+    const validColumns = ['title', 'date', '"createdBy"', 'location', 'topic', 'attendees']
 	const validOrders = ['ASC', 'DESC']
 	
 	if (!validColumns.includes(sortBy)) 
 		throw { status: 400, msg: 'Invalid sort_by query' }
 	if (!validOrders.includes(order)) 
 		throw { status: 400, msg: 'Invalid order query' }
+    if (userId && isNaN(userId)) 
+		throw { status: 400, msg: 'Invalid userId query' }
 	if (isNaN(limit)) 
 		throw { status: 400, msg: 'Invalid limit query' }
 	if (isNaN(page)) 
@@ -16,13 +20,17 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 	
 	let query = `SELECT * FROM events`
 	const params = []
+    const conditions = []
 
-	if (topic) {
-		query += ` WHERE topic = ${topic}`
-		params.push(topic)
-	}
+	if (userId)
+        conditions.push(`"createdBy" = ${userId}`)
+      
+    if (topic) 
+        conditions.push(`topic = ${topic}`)
+      
+    if (conditions.length > 0)
+        query += ' WHERE ' + conditions.join(' AND ')
 
-    if (sortBy === 'createdBy') sortBy = '"createdBy"'
 
 	query += ` ORDER BY ${sortBy} ${order} LIMIT $${params.length + 1} OFFSET $${params.length + 2}`
 	params.push(limit, (page - 1) * limit)

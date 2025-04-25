@@ -20,14 +20,16 @@ const StyledList = styled.ul`
     padding: 0;
 `
 
-export function EventList({ events, setEvents }: { events: Event[], setEvents: Dispatch<SetStateAction<Event[]>> }) {
+export function EventList({ events, setEvents, userId, topic }: { events: Event[], 
+    setEvents: Dispatch<SetStateAction<Event[]>>, userId?: number, topic?: string }
+) {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
     async function showUpcomingEvents() {
         try {
             setIsLoading(true)
-            const upcomingeEvents = await getEvents({})
+            const upcomingeEvents = await getEvents({userId, topic})
             setEvents(upcomingeEvents)
 
         } catch (err: unknown) {

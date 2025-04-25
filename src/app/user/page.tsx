@@ -7,9 +7,10 @@ import NavBar from "@/components/NavBar";
 import PageWrapper from "@/components/PageWrapper";
 import styled from "styled-components";
 
-const StyledText = styled.h2`
+const StyledHeading = styled.h2`
     font-size: 10vw;
-    margin: 3vh auto;
+    margin-top: 3vh;
+    margin-bottom: 5vw;
 `
 
 export default function Home() {
@@ -18,13 +19,14 @@ export default function Home() {
     	<>
       	    <Header/>
             <PageWrapper>
-                <StyledText>
+                <StyledHeading>
                     Manage Account
-                </StyledText>
+                </StyledHeading>
                 <ManageAccount/>
-                <StyledText>
+                <br/>
+                <StyledHeading>
                     Manage Events
-                </StyledText>
+                </StyledHeading>
                 <ManageEvents/>
             </PageWrapper>
       		<NavBar setIsModelOpen={null}/>

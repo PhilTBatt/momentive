@@ -2,10 +2,10 @@ import { CustomError } from '@/types/error'
 import axios from 'axios'
 import type { Event } from "@/types/event"
 
-export async function getEvents({ sortBy, order, topic, limit, page }: 
-    { sortBy?: string; order?: string; topic?: string; limit?: number; page?: number }): Promise<Event[]> 
+export async function getEvents({ sortBy, order, topic, limit, page, userId }: 
+    { sortBy?: string, order?: string, topic?: string, userId?: number, limit?: number, page?: number }): Promise<Event[]> 
 {
-	const response = await axios.get(`/api/events`, { params: { sortBy, order, topic, limit, page } })
+	const response = await axios.get(`/api/events`, { params: { sortBy, order, topic, userId, limit, page } })
 	return response.data.events
 }
   

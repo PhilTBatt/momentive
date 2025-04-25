@@ -8,11 +8,13 @@ export async function GET(request: NextRequest) {
 	const sortBy = searchParams.get("sortBy") || "date"
 	const order = searchParams.get("order") || "DESC"
 	const topic = searchParams.get("topic")
+    const userId = searchParams.get("userId")
+    const userIdNumber = userId !== null ? Number(userId) : null
 	const limit = Number(searchParams.get("limit") || 10)
 	const page = Number(searchParams.get("page") || 1)
 
 	try {
-		const events = await fetchEvents(sortBy, order, topic, limit, page)
+		const events = await fetchEvents(sortBy, order, topic, userIdNumber, limit, page)
 
 		return NextResponse.json({ events }, { status: 200 })
 	} catch (err: unknown) {
