@@ -92,6 +92,7 @@ export function CreateEventsModal({setEventsModalOpen}: {setEventsModalOpen: Dis
             }
             else 
                 alert(`An error occurred\nPlease try again`)
+            
         } finally {
             setIsCreating(false)
         }

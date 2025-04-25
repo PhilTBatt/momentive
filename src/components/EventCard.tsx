@@ -1,35 +1,38 @@
 'use client'
 
-import Image from "next/image";
 import styled from "styled-components";
+import type { Event } from "@/types/event";
 
 const StyledCard = styled.li`
+    border: 2px solid ${props => props.theme.colours.background};
+    margin: 0 2vw;
 `
 
 const CardInformation = styled.div`
+    margin-bottom: 2vw;
 `
-type Event = {
-    title: string
-    event_img_url: string
-    author: string
-    topic: string
-    date: string
-}
+
+const StyledHeading = styled.h3`
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+    font-size: 5vw;
+`
 
 export function EventCard({event}: {event: Event}) {
     return (
         <StyledCard>
-            <h3>
+            <StyledHeading>
                 {event.title}
-            </h3>
+            </StyledHeading>
 			
             <CardInformation>
-                <Image src={event.event_img_url} alt='Image of event topic'/>
-                Author: {event.author}
+                Description: {event.description}
                 <br/>
                 Topic: {event.topic.charAt(0).toUpperCase() + event.topic.slice(1)}
                 <br/>
-                Posted: {event.date}
+                Location: {event.location}
+                <br/>
+                Date: {(new Date(event.date)).toLocaleDateString()}
             </CardInformation>
         </StyledCard>
     )

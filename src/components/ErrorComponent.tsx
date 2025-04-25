@@ -1,7 +1,7 @@
-export function ErrorComponent({ msg, status }: { msg: string, status: number }) {
+export function ErrorComponent({ msg }: { msg: string }) {
     return (
       	<div>
-        	<h1> {status}: {msg}</h1>
+        	<h1>{msg}</h1>
       	</div>
     )
 }

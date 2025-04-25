@@ -1,17 +1,7 @@
 import { CustomError } from '@/types/error'
 import axios from 'axios'
+import type { Event } from "@/types/event"
 
-interface Event {
-	id: string
-	title: string
-	description: string
-	date: string
-	location: string
-	topic: string
-	created_by: string
-	attendees: number[]
-}
-  
 export async function getEvents({ sortBy, order, topic, limit, page }: 
     { sortBy?: string; order?: string; topic?: string; limit?: number; page?: number }): Promise<Event[]> 
 {

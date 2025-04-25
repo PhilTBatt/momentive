@@ -8,9 +8,15 @@ import { UserModal } from "@/components/UserModel";
 import { useState } from "react";
 import styled from "styled-components";
 
-const StyledText = styled.h2`
+const StyledHeading = styled.h2`
     font-size: 10vw;
     margin-top: 3vh;
+`
+
+const StyledText = styled.h3`
+    font-size: 8vw;
+    margin-top: 0;
+    margin-bottom: 5vw;
 `
 
 export default function Home() {
@@ -20,7 +26,8 @@ export default function Home() {
     	<>
       		<Header/>
             <PageWrapper>
-				<StyledText>Welcome!</StyledText>
+				<StyledHeading>Welcome!</StyledHeading>
+                <StyledText>Upcoming events</StyledText>
 				<EventList/>
 				{isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
 			</PageWrapper>
