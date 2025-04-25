@@ -2,11 +2,15 @@ import { fetchUserById, removeUserById, updateUserById } from '@/app/api/models/
 import { CustomError } from '@/types/error';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(_request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams
+    const id = searchParams.get("id")
+
 	try {
-		const user = await fetchUserById(params.id)
-		
-		return NextResponse.json({ user }, { status: 200 })
+		if (id) {
+            const user = await fetchUserById(id)
+            return NextResponse.json({ user }, { status: 200 })
+        }
 	} catch (err: unknown) {
         if (err instanceof CustomError) 
             return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
@@ -15,11 +19,15 @@ export async function GET(_request: NextRequest, { params }: { params: { id: str
     }
 }
 
-export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
-	try {
-		await removeUserById(params.id)
+export async function DELETE(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams
+    const id = searchParams.get("id")
 
-		return new Response(null, { status: 204 })
+	try {
+		if (id) {
+            await removeUserById(id)
+            return new Response(null, { status: 204 })
+        }
 	} catch (err: unknown) {
         if (err instanceof CustomError) 
             return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
@@ -28,12 +36,16 @@ export async function DELETE(_request: NextRequest, { params }: { params: { id: 
     }
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams
+    const id = searchParams.get("id")
+
 	try {
 		const { name, email } = await request.json()
-		const user = await updateUserById(params.id, name, email)
-
-		return NextResponse.json({ user }, { status: 200 })
+		if (id) {
+            const updatedUser = await updateUserById(id, name, email)
+            return NextResponse.json(updatedUser, { status: 200 })
+        }
 	} catch (err: unknown) {
         if (err instanceof CustomError) 
             return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
