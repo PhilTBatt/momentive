@@ -65,7 +65,7 @@ export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetS
 
 		try {
             if (user.id && user.name && user.email) {
-                const updatedUser = await updateUser(String(user.id), {name, email: user.email})
+                const updatedUser = await updateUser(user.id, {name, email: user.email})
                 setProfileModal(null)
                 setUser({...updatedUser, role: 'admin', id: Number(user.id)})
             }
