@@ -6,19 +6,48 @@ import { useEffect, useState } from "react";
 import { getUserById } from "@/lib/api/users";
 
 const StyledCard = styled.li`
-    border: 2px solid ${props => props.theme.colours.background};
+    border: 2px solid ${props => props.theme.colours.secondary};
     margin: 0 2vw 3vw 2vw;
-`
+    background-color: ${props => props.theme.colours.background};
+    border-radius: 12px;
+    overflow: hidden;
+`;
 
-const CardInformation = styled.div`
-    margin-bottom: 2vw;
-`
+const BannerImage = styled.img`
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    filter: brightness(70%);
+`;
 
 const StyledHeading = styled.h3`
-    margin-top: 1vw;
-    margin-bottom: 1vw;
-    font-size: 5vw;
-`
+    font-size: 7vw;
+    margin: 0vw 0;
+    color: ${props => props.theme.colours.primary};
+`;
+
+const CardInformation = styled.div`
+    padding: 0vw 2vw;
+    font-size: 4vw;
+    margin: 1vw 0;
+
+    p {
+        margin: 1vw 0;
+    }
+`;
+
+const CardFooter = styled.div`
+    background-color: ${props => props.theme.colours.primary};
+    padding: 2vw 2vw;
+    font-size: 3.25vw;
+    border-top: 1px solid ${props => props.theme.colours.primary};
+    padding: 1vw 0;
+    p {
+        margin: 0 0;
+    }
+    filter: brightness(115%);
+`;
+
 
 export function EventCard({event}: {event: Event}) {
     const [eventHost, setEventHost] = useState('')
@@ -37,21 +66,19 @@ export function EventCard({event}: {event: Event}) {
 
     return (
         <StyledCard>
-            <StyledHeading>
-                {event.title}
-            </StyledHeading>
-			
+            <BannerImage src="event-banner.jpg" alt="Event Banner" />
+
             <CardInformation>
-                Description: {event.description}
-                <br/>
-                Host: {eventHost}
-                <br/>
-                Topic: {event.topic.charAt(0).toUpperCase() + event.topic.slice(1)}
-                <br/>
-                Location: {event.location}
-                <br/>
-                Date: {(new Date(event.date)).toLocaleDateString()}
+                <StyledHeading>{event.title}</StyledHeading>
+                <p>{event.description}</p>
             </CardInformation>
+
+            <CardFooter>
+                <p><strong>Date:</strong> {(new Date(event.date)).toLocaleDateString()}</p>
+                <p><strong>Host:</strong> {eventHost}</p>
+                <p><strong>Location:</strong> {event.location}</p>
+            </CardFooter>
         </StyledCard>
+
     )
 }

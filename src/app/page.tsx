@@ -12,6 +12,7 @@ import styled from "styled-components";
 const StyledHeading = styled.h2`
     font-size: 10vw;
     margin-top: 3vh;
+    margin-bottom: 5vw;
 `
 
 const StyledText = styled.h3`
