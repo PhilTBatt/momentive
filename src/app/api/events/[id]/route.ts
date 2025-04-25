@@ -28,10 +28,10 @@ export async function DELETE(_request: NextRequest, { params }: { params: { id: 
     }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
 	try {
-        const { title, description, date, location } = await request.json()
-        const updatedEvent = await updateEventById(params.id, title, description, date, location)
+        const { title, description, date, location, topic } = await request.json()
+        const updatedEvent = await updateEventById(params.id, title, description, date, location, topic)
 
         return NextResponse.json(updatedEvent, { status: 200 })
     } catch (err: unknown) {
