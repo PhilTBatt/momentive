@@ -20,16 +20,16 @@ const StyledList = styled.ul`
     padding: 0;
 `
 
-export function EventList({ events, setEvents, userId, topic }: { events: Event[], 
-    setEvents: Dispatch<SetStateAction<Event[]>>, userId?: number, topic?: string }
+export function EventList({ events, setEvents, sortBy, order, userId, topic }: { events: Event[], 
+    setEvents: Dispatch<SetStateAction<Event[]>>, sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }
 ) {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
-    async function showUpcomingEvents() {
+    async function showEvents() {
         try {
             setIsLoading(true)
-            const upcomingeEvents = await getEvents({userId, topic})
+            const upcomingeEvents = await getEvents({sortBy, order, userId, topic})
             setEvents(upcomingeEvents)
 
         } catch (err: unknown) {
@@ -42,17 +42,15 @@ export function EventList({ events, setEvents, userId, topic }: { events: Event[
     }
 
     useEffect(() => {
-        showUpcomingEvents()
-    }, [])
+        showEvents()
+    }, [sortBy, order, topic])
 
     return (
         <StyledBox>
            { error ? <ErrorComponent msg={error} /> :
             <StyledList>
                 {isLoading && <p>Loading...</p>}
-                    {events.map(event => {
-                        return <EventCard event={event} key={event.id}/>
-                    })}
+                    {events.map( event =>  <EventCard event={event} key={event.id}/> )}
             </StyledList>
             }
         </StyledBox>

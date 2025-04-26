@@ -3,8 +3,8 @@ import axios from 'axios'
 import type { Event } from "@/types/event"
 
 export async function getEvents({ sortBy, order, topic, limit, page, userId }: 
-    { sortBy?: string, order?: string, topic?: string, userId?: number, limit?: number, page?: number }): Promise<Event[]> 
-{
+    { sortBy?: string, order?: string, topic?: string, userId?: number, limit?: number, page?: number }
+): Promise<Event[]> {
 	const response = await axios.get(`/api/events`, { params: { sortBy, order, topic, userId, limit, page } })
 	return response.data.events
 }
@@ -15,15 +15,15 @@ export async function getEventById(id: string): Promise<Event> {
 }
 
 export async function postNewEvent({ id, title, description, date, location, topic }: 
-    { id: number, title: string; description: string; date: string; location: string, topic: string }): Promise<Event> 
-{
+    { id: number, title: string; description: string; date: string; location: string, topic: string }
+): Promise<Event> {
 	const response = await axios.post('/api/events', { id, title, description, date, location, topic })
 	return response.data.event
 }
 
 export async function updateEvent(id: string, { title, description, date, location, topic }: 
-    { title: string; description: string; date: string; location: string, topic: string }): Promise<Event> 
-{
+    { title: string; description: string; date: string; location: string, topic: string }
+): Promise<Event> {
 	const response = await axios.patch(`/api/events/${id}`, { title, description, date, location, topic })
 	return response.data.event
 }

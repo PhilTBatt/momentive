@@ -22,11 +22,15 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 	const params = []
     const conditions = []
 
-	if (userId)
-        conditions.push(`"createdBy" = ${userId}`)
+	if (userId){
+        conditions.push(`"createdBy" = $${params.length + 1}`)
+        params.push(userId)
+    }
       
-    if (topic) 
-        conditions.push(`topic = ${topic}`)
+    if (topic && topic !== '') {
+        conditions.push(`topic = $${params.length + 1}`)
+        params.push(topic)
+    }
       
     if (conditions.length > 0)
         query += ' WHERE ' + conditions.join(' AND ')
