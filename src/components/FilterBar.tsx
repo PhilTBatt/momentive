@@ -3,7 +3,6 @@
 import { topics } from '@/lib/topics'
 import { Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
-import { EventCard } from './EventCard'
 
 const StyledCard = styled.div`
     background-color: ${props => props.theme.colours.background};
