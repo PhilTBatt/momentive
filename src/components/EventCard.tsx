@@ -8,10 +8,13 @@ import { topics } from "@/lib/topics";
 
 const StyledCard = styled.li`
     border: 2px solid black;
-    margin: 0 2vw 3vw 2vw;
+    margin: 0 0 3vw 0;
     background-color: ${props => props.theme.colours.background};
     border-radius: 12px;
     overflow: hidden;
+    &:last-child {
+        margin-bottom: 0;
+    }
 `
 
 const BannerImage = styled.img`

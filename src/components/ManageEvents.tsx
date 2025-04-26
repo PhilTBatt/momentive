@@ -7,16 +7,7 @@ import { CreateEventsModal } from "./CreateEventsModal";
 import { Event } from "@/types/event";
 import { UserContext } from "@/contexts/User";
 import { FilterBar } from "./FilterBar";
-
-const ButtonCard = styled.div`
-	background: ${props => props.theme.colours.primary};
-	padding: 1vh 1vw;
-	border-radius: 12px;
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-	width: 92vw;
-    margin-bottom: 3vw;
-    border: 2px solid black;
-`
+import { StyledCard } from "./styled-components/StyledCard";
 
 const CreateEvent = styled.button`
 	font-size: 4.5vw;
@@ -28,7 +19,7 @@ const CreateEvent = styled.button`
 
 const StyledText = styled.p`
   	font-size: 6.5vw;
-  	margin-top: 2vw;
+  	margin-top: 4vw;
   	margin-bottom: 2vw;
 `
 
@@ -42,11 +33,11 @@ export default function ManageEvents() {
 
   	return (
     	<>
-            <ButtonCard>
+            <StyledCard>
                 <CreateEvent onClick={() => setEventsModalOpen(true)}>
                     Create Event
                 </CreateEvent>
-            </ButtonCard>
+            </StyledCard>
 
             <StyledText>
                 Your Events

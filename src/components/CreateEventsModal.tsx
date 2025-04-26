@@ -6,19 +6,8 @@ import { Event } from "@/types/event";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
+import ModalBackground from "./styled-components/ModalBackground";
 
-const ModalBackground = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.5);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 100;
-`
 
 const StyledCard = styled.form`
     display: grid;
@@ -26,10 +15,7 @@ const StyledCard = styled.form`
 	padding: 1vh 1vw;
 	border-radius: 12px;
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-	width: 92vw;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
+	width: 90vw;
 	z-index: 101;
     border: 2px solid black;
 `

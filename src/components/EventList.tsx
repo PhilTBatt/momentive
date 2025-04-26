@@ -7,18 +7,12 @@ import styled from 'styled-components'
 import { getEvents } from '@/lib/api/events'
 import { AxiosError } from 'axios'
 import type { Event } from "@/types/event"
-
-const StyledBox = styled.div`
-	background: ${props => props.theme.colours.primary};
-	border-radius: 12px;
-	box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.25);
-	width: 90vw;
-    border: 2px solid black;
-`
+import { StyledCard } from './styled-components/StyledCard'
 
 const StyledList = styled.ul`
     list-style: none;
     padding: 0;
+    margin: 1vw;
 `
 
 export function EventList({ events, setEvents, sortBy, order, userId, topic }: { events: Event[], 
@@ -47,13 +41,13 @@ export function EventList({ events, setEvents, sortBy, order, userId, topic }: {
     }, [sortBy, order, topic])
 
     return (
-        <StyledBox>
+        <StyledCard>
            { error ? <ErrorComponent msg={error} /> :
             <StyledList>
                 {isLoading && <p>Loading...</p>}
                     {events.map( event =>  <EventCard event={event} key={event.id}/> )}
             </StyledList>
             }
-        </StyledBox>
+        </StyledCard>
     )
 }

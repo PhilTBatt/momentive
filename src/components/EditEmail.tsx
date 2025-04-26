@@ -5,33 +5,8 @@ import { updateUser } from "@/lib/api/users";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
-
-const ModalBackground = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.5);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 100;
-`
-
-const StyledCard = styled.div`
-    display: grid;
-	background: ${props => props.theme.colours.primary};
-	padding: 1vh 1vw;
-    border-radius: 12px;
-    border: 2px solid black;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-	width: 90vw;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	z-index: 101;
-`
+import ModalBackground from "./styled-components/ModalBackground";
+import StyledModal from "./styled-components/StyledModal";
 
 const StyledHeading = styled.h3`
   	text-align: center;
@@ -81,7 +56,7 @@ export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<Set
 
     return (
         <ModalBackground onClick={() => setProfileModal(null)}>
-            <StyledCard onClick={(e) => e.stopPropagation()}>
+            <StyledModal onClick={(e) => e.stopPropagation()}>
                 <StyledHeading>
                     Change your email
                 </StyledHeading>
@@ -89,7 +64,7 @@ export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<Set
                 <ConfirmButton onClick={confirmButton}>
                     {isRequestLoading ? 'Loading...' : 'Confirm'}
                 </ConfirmButton>
-            </StyledCard>
+            </StyledModal>
         </ModalBackground>
     )
 }

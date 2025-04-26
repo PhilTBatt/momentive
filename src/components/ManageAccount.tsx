@@ -5,20 +5,12 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import { EditNameModal } from "./EditName";
 import { EditEmailModal } from "./EditEmail";
-
-const StyledCard = styled.div`
-	background: ${props => props.theme.colours.primary};
-	padding: 1vh 1vw;
-	border-radius: 12px;
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    border: 2px solid black;
-	width: 92vw;
-`
+import { StyledCard } from "./styled-components/StyledCard";
 
 const StyledText = styled.p`
   	font-size: 5.5vw;
-  	margin-top: 2vw;
-  	margin-bottom: 2vw;
+  	margin-top: 3vw;
+  	margin-bottom: 3vw;
 `
 
 const Button = styled.button`

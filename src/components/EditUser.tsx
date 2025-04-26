@@ -3,6 +3,7 @@
 import { UserContext } from "@/contexts/User";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
+import InputForLabel from "./styled-components/InputForLabel";
 
 const StyledCard = styled.form`
 	display: grid;
@@ -18,15 +19,6 @@ const StyledHeading = styled.h3`
 const StyledLabel = styled.label`
   	font-size: 5vw;
   	margin: 0;
-`
-
-const StyledInput = styled.input`
-  	font-size: 5vw;
-	margin: 0;
-	width: 60vw;
-	justify-self: center;
-	margin-top: 2vw;
-	margin-bottom: 4vw;
 `
 
 const StyledText = styled.h3`
@@ -71,11 +63,11 @@ export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch
 			<StyledLabel htmlFor="name">
                 Name
             </StyledLabel>
-            <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}/>
+            <InputForLabel id="name" value={name} onChange={(e) => setName(e.target.value)}/>
 			<StyledLabel htmlFor="email">
                 Email
             </StyledLabel>
-			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+			<InputForLabel id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
 			<ConfirmButton type="submit">
                 Confirm
             </ConfirmButton>

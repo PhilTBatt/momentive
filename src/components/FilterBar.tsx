@@ -14,7 +14,7 @@ const StyledCard = styled.div`
 `
 
 const Label = styled.label`
-    font-size: 3.5vw;
+    font-size: 3.75vw;
 `
 
 const Select1 = styled.select`
