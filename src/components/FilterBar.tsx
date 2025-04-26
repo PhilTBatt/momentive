@@ -39,15 +39,16 @@ export function FilterBar({ topic, setTopic, sortBy, setSortBy, order, setOrder 
     const sortByOptions = ['title', 'date', '"createdBy"', 'location', 'topic', 'attendees']
     const CorrectSortByOptions = ['Title', 'Date', 'Host', 'Location', 'Topic', 'Attendees' ]
 
-
     return (
         <StyledCard>
             <Label htmlFor="topic-select">Filter by topic:</Label>
             <Select1 id="topic-select" value={topic} onChange={e => setTopic(e.target.value)}>
                 <option value="">All</option>
-                <option value="tech">Tech</option>
-                <option value="music">Music</option>
-                <option value="sports">Sports</option>
+                {Object.keys(topics).map((key) => (
+                    <option key={key} value={key}>
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </option>
+                ))}
             </Select1>
 
             <label htmlFor="sort-by-select">Sort by:</label>

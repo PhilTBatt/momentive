@@ -4,6 +4,7 @@ import styled from "styled-components";
 import type { Event } from "@/types/event";
 import { useEffect, useState } from "react";
 import { getUserById } from "@/lib/api/users";
+import { topics } from "@/lib/topics";
 
 const StyledCard = styled.li`
     border: 2px solid ${props => props.theme.colours.secondary};
@@ -15,9 +16,9 @@ const StyledCard = styled.li`
 
 const BannerImage = styled.img`
     width: 100%;
-    height: 30vh;
+    height: 10vh;
     object-fit: cover;
-    filter: brightness(70%);
+    filter: brightness(80%);
 `;
 
 const StyledHeading = styled.h3`
@@ -64,9 +65,12 @@ export function EventCard({event}: {event: Event}) {
         getEventHost()
     }, [])
 
+    const bannerImage = topics[event.topic]
+    console.log(bannerImage)
+
     return (
         <StyledCard>
-            <BannerImage src="event-banner.jpg" alt="Event Banner" />
+            <BannerImage src={bannerImage} alt="Event Banner" />
 
             <CardInformation>
                 <StyledHeading>{event.title}</StyledHeading>
