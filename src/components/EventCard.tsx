@@ -7,47 +7,50 @@ import { getUserById } from "@/lib/api/users";
 import { topics } from "@/lib/topics";
 
 const StyledCard = styled.li`
-    border: 2px solid ${props => props.theme.colours.secondary};
+    border: 2px solid black;
     margin: 0 2vw 3vw 2vw;
     background-color: ${props => props.theme.colours.background};
     border-radius: 12px;
     overflow: hidden;
-`;
+`
 
 const BannerImage = styled.img`
     width: 100%;
     height: 10vh;
     object-fit: cover;
     filter: brightness(80%);
-`;
+    border-radius: 10px;
+    border: 2px solid ${props => props.theme.colours.background};
+    box-sizing: border-box;
+`
 
 const StyledHeading = styled.h3`
     font-size: 7vw;
     margin: 0vw 0;
     color: ${props => props.theme.colours.primary};
-`;
+`
 
 const CardInformation = styled.div`
     padding: 0vw 2vw;
     font-size: 4vw;
     margin: 0;
-
     p {
         margin: 1vw 0;
     }
-`;
+`
 
 const CardFooter = styled.div`
     background-color: ${props => props.theme.colours.primary};
     padding: 2vw 2vw;
     font-size: 3.25vw;
-    border-top: 1px solid ${props => props.theme.colours.primary};
-    padding: 1vw 0;
+    border: 1px solid ${props => props.theme.colours.background};
+    border-radius: 12px;
+    padding: 0.5vw 0;
+    filter: brightness(115%);
     p {
         margin: 0 0;
     }
-    filter: brightness(115%);
-`;
+`
 
 
 export function EventCard({event}: {event: Event}) {

@@ -15,16 +15,19 @@ const ButtonCard = styled.div`
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 	width: 92vw;
     margin-bottom: 3vw;
+    border: 2px solid black;
 `
 
 const CreateEvent = styled.button`
 	font-size: 4.5vw;
     margin-top: 2vw;
     margin-bottom: 2vw;
+    border: 2px solid black;
+    border-radius: 8px;
 `
 
 const StyledText = styled.p`
-  	font-size: 5.5vw;
+  	font-size: 6.5vw;
   	margin-top: 2vw;
   	margin-bottom: 2vw;
 `

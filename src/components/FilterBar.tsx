@@ -7,9 +7,10 @@ import styled from 'styled-components'
 const StyledCard = styled.div`
     background: ${props => props.theme.colours.secondary};
     border-radius: 12px;
-    border: 2px solid ${props => props.theme.colours.primary};
+    border: 3px solid ${props => props.theme.colours.primary};
     padding: 0vw 2vw;
     margin-bottom: 3vw;
+    box-shadow: 0 0 0 1px black;
 `
 
 const Label = styled.label`

@@ -12,9 +12,11 @@ const StyledHeader = styled.header`
   	text-align: center;
   	font-size: 17vw;
   	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  	z-index: 100;
+  	z-index: 10;
   	text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
   	border-radius: 1vw;
+    border: 1px solid black;
+    box-sizing: border-box;
 `
 
 export default function Header() {

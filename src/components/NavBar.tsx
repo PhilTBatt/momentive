@@ -18,16 +18,24 @@ const StyledNavBar = styled.footer`
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     text-align: center;
-    font-size: 17vw;
+    font-size: 12vw;
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
     z-index: 10;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
 `
 
 const IconWrapper = styled.div`
     color: ${props => props.theme.colours.primary};
     svg {
-        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
     }
+    svg path {
+        stroke: black;
+        stroke-width: 5;
+    }
+
 `
 
 export default function NavBar({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>> | null}) {

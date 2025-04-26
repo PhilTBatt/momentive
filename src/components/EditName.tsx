@@ -24,8 +24,9 @@ const StyledCard = styled.div`
 	background: ${props => props.theme.colours.primary};
 	padding: 1vh 1vw;
 	border-radius: 12px;
+    border: 2px solid black;
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-	width: 92vw;
+	width: 90vw;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
@@ -38,21 +39,20 @@ const StyledHeading = styled.h3`
   	margin: 1vw 0 3vw 0;
 `
 
-const StyledLabel = styled.label`
-  	font-size: 5vw;
-  	margin: 0;
-`
-
 const StyledInput = styled.input`
   	font-size: 5vw;
 	margin: 0;
 	width: 50vw;
-	margin: 2vw 0 4vw 2vw;
+	margin: 2vw auto 4vw auto;
+    border: 1px solid black;
+    border-radius: 4px;
 `
 
 const ConfirmButton = styled.button`
 	font-size: 4.5vw;
 	margin: 1vw 30vw 3vw 30vw;
+    border: 2px solid black;
+    border-radius: 4px;
 `
 
 export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetStateAction<null | string>>}) {
@@ -86,9 +86,6 @@ export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetS
                     Change your name 
                 </StyledHeading>
 
-                <StyledLabel htmlFor="name">
-                    Name:
-                </StyledLabel>
                 <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}/>
                 <ConfirmButton onClick={confirmButton}>
                     {isRequestLoading ? 'Loading...' : 'Confirm'}

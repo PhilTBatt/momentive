@@ -31,6 +31,7 @@ const StyledCard = styled.form`
 	justify-content: center;
 	text-align: center;
 	z-index: 101;
+    border: 2px solid black;
 `
 
 const StyledHeading = styled.h3`
@@ -52,16 +53,22 @@ const StyledInput = styled.input`
 	justify-self: center;
 	margin-top: 2vw;
 	margin-bottom: 4vw;
+    border: 1px solid black;
+    border-radius: 4px;
 `
 
 const TopicButton = styled.button`
 	font-size: 4.5vw;
 	margin: 1vw 30vw 4vw 30vw;
+    border: 2px solid black;
+    border-radius: 8px;
 `
 
 const CreateButton = styled.button`
-	font-size: 4.5vw;
+	font-size: 6vw;
 	margin: 2vw 30vw 3vw 30vw;
+    border: 2px solid black;
+    border-radius: 8px;
 `
 
 export function CreateEventsModal({ setEventsModalOpen, setEvents }: {

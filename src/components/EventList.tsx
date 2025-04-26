@@ -11,8 +11,9 @@ import type { Event } from "@/types/event"
 const StyledBox = styled.div`
 	background: ${props => props.theme.colours.primary};
 	border-radius: 12px;
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.25);
 	width: 90vw;
+    border: 2px solid black;
 `
 
 const StyledList = styled.ul`
