@@ -12,7 +12,6 @@ const StyledCard = styled.div`
 	border-radius: 12px;
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 	width: 92vw;
-	z-index: 10;
 `
 
 const StyledText = styled.p`
@@ -23,7 +22,9 @@ const StyledText = styled.p`
 
 const Button = styled.button`
 	font-size: 4.5vw;
-    margin-left:2vw;
+    margin-left: 2vw;
+    position: relative;
+    top: -0.3vw;
 `
 
 export default function ManageAccount() {

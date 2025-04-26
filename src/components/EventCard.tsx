@@ -30,7 +30,7 @@ const StyledHeading = styled.h3`
 const CardInformation = styled.div`
     padding: 0vw 2vw;
     font-size: 4vw;
-    margin: 1vw 0;
+    margin: 0;
 
     p {
         margin: 1vw 0;

@@ -5,23 +5,26 @@ import { Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
 
 const StyledCard = styled.div`
-    background-color: ${props => props.theme.colours.background};
+    background: ${props => props.theme.colours.secondary};
     border-radius: 12px;
-    border: 2px solid ${props => props.theme.colours.secondary};
+    border: 2px solid ${props => props.theme.colours.primary};
     padding: 0vw 2vw;
     margin-bottom: 3vw;
 `
 
 const Label = styled.label`
+    font-size: 3.5vw;
 `
 
 const Select1 = styled.select`
+    background: ${props => props.theme.colours.secondary};
+    border: 1px solid ${props => props.theme.colours.primary};
     width: 17vw;
-    padding: 1vw 0vw 1vw 0.5vw;
+    padding: 0.5vw 0vw 0.5vw 0.5vw;
     margin: 1vw;
     margin-right: 2vw;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    font-size: 3.25vw;
 `
 const Select2 = styled(Select1)`
     width: 19vw;
@@ -29,6 +32,7 @@ const Select2 = styled(Select1)`
 `
 const Select3 = styled(Select1)`
     width: 7vw;
+    margin-right: 0;
 `
 
 export function FilterBar({ topic, setTopic, sortBy, setSortBy, order, setOrder }:
@@ -50,7 +54,7 @@ export function FilterBar({ topic, setTopic, sortBy, setSortBy, order, setOrder 
                 ))}
             </Select1>
 
-            <label htmlFor="sort-by-select">Sort by:</label>
+            <Label htmlFor="sort-by-select">Sort by:</Label>
             <Select2 id="sort-by-select" value={sortBy} onChange={e => setSortBy(e.target.value)}>
                 {sortByOptions.map( sortBy => <option value={sortBy} key={sortByOptions.indexOf(sortBy)}>
                     {CorrectSortByOptions[sortByOptions.indexOf(sortBy)]}

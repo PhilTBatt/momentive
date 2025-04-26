@@ -56,7 +56,7 @@ const StyledInput = styled.input`
 
 const TopicButton = styled.button`
 	font-size: 4.5vw;
-	margin: 2vw 30vw 3vw 30vw;
+	margin: 1vw 30vw 4vw 30vw;
 `
 
 const CreateButton = styled.button`
