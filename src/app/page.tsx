@@ -31,7 +31,7 @@ export default function Home() {
             <PageWrapper>
 				<StyledHeading>Welcome!</StyledHeading>
                 <StyledText>Upcoming events</StyledText>
-				<EventList events={events} setEvents={setEvents}/>
+				<EventList events={events} setEvents={setEvents} sortBy='date' order='DESC'/>
 				{isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
 			</PageWrapper>
       		<NavBar setIsModelOpen={setIsModelOpen}/>

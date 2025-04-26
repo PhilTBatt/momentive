@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
 		return NextResponse.json({ events }, { status: 200 })
 	} catch (err: unknown) {
-        if (err instanceof CustomError) 
+        if (err instanceof CustomError)
             return NextResponse.json({ status: err.status, msg: err.msg }, { status: err.status })
 
         return NextResponse.json({ status: 500, msg: "Internal server error" }, { status: 500 })
