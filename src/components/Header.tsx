@@ -2,23 +2,20 @@
 
 import styled from "styled-components";
 
-const StyledHeader = styled.header`
+const StyledHeader = styled.img`
     position: fixed;
+    left: 50%;
     top: 0;
-    width: 100%;
+    transform: translateX(-50%);
+    width: 120vw;
   	padding: 0vw;
-  	background: ${props => props.theme.colours.primary};
-  	color: ${props => props.theme.colours.background};
-  	text-align: center;
-  	font-size: 17vw;
-  	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  	z-index: 10;
-  	text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-  	border-radius: 1vw;
-    border: 1px solid black;
+    height: 12vh;
+    object-fit: cover;
+    border: 2px solid black;
     box-sizing: border-box;
+    z-index: 10
 `
 
 export default function Header() {
-  	return <StyledHeader>Momentive</StyledHeader>
+  	return <StyledHeader src='images/momentive-banner.png' alt='Momentive Banner' />
 }
