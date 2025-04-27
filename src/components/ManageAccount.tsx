@@ -20,7 +20,7 @@ const Button = styled.button`
     position: relative;
     top: -0.3vw;
     border: 2px solid black;
-    border-radius: 8px;
+    border-radius: 4px;
 `
 
 export default function ManageAccount() {

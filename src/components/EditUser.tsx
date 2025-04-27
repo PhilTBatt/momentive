@@ -3,40 +3,27 @@
 import { UserContext } from "@/contexts/User";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
-import InputForLabel from "./styled-components/InputForLabel";
+import { StyledButton } from "./styled-components/StyledButton";
+import { BlockButton } from "./styled-components/BlockButton";
+import BlockLabel from "./styled-components/BlockLabel";
+import StyledInput from "./styled-components/StyledInput";
 
 const StyledCard = styled.form`
 	display: grid;
 `
 
 const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 6vw;
-  	margin-top: 2vw;
+  	font-size: 7.5vw;
+  	margin-top: 3vw;
   	margin-bottom: 4vw;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
-const StyledLabel = styled.label`
-  	font-size: 5vw;
-  	margin: 0;
-`
-
-const StyledText = styled.h3`
-	font-size: 6vw;
-	margin-bottom: 3vw;
+const StyledText = styled.p`
+	font-size: 7vw;
+	margin-bottom: 4vw;
 	margin-top: 6vw;
-`
-
-const ConfirmButton = styled.button`
-	font-size: 4.5vw;
-	margin: 2vw 30vw 1vw 30vw;
-`
-
-const SignInButton = styled.button`
-	font-size: 4.5vw;
-	padding: 0.1vh 0.7vw;
-	margin-top: 0.75vw;
-	vertical-align: top;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
 export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
@@ -57,23 +44,25 @@ export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch
     return (
         <StyledCard onSubmit={confirmButton}>
             <StyledHeading>
-				Save your information for later
+				Save your information to use later
 			</StyledHeading>
 
-			<StyledLabel htmlFor="name">
+			<BlockLabel htmlFor="name">
                 Name
-            </StyledLabel>
-            <InputForLabel id="name" value={name} onChange={(e) => setName(e.target.value)}/>
-			<StyledLabel htmlFor="email">
+            </BlockLabel>
+            <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}/>
+
+			<BlockLabel htmlFor="email">
                 Email
-            </StyledLabel>
-			<InputForLabel id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-			<ConfirmButton type="submit">
+            </BlockLabel>
+			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            
+			<BlockButton type="submit">
                 Confirm
-            </ConfirmButton>
+            </BlockButton>
 
 			<StyledText>
-                Or <SignInButton type="button" onClick={() => setModalType('signIn')}>Sign In</SignInButton> to manage events
+                Or <StyledButton type="button" onClick={() => setModalType('signIn')}>Sign In</StyledButton> to manage events
             </StyledText>
         </StyledCard>
     )

@@ -6,48 +6,27 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from 'next/navigation'
 import { AxiosError } from "axios";
+import { BlockButton } from "./styled-components/BlockButton";
+import { StyledButton } from "./styled-components/StyledButton";
+import BlockLabel from "./styled-components/BlockLabel";
+import StyledInput from "./styled-components/StyledInput";
 
 const StyledCard = styled.form`
 	display: grid;
 `
 
 const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 6vw;
-  	margin-top: 2vw;
+  	font-size: 7.5vw;
+  	margin-top: 3vw;
   	margin-bottom: 4vw;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
-const StyledLabel = styled.label`
-  	font-size: 5vw;
-  	margin: 0;
-`
-
-const StyledInput = styled.input`
-  	font-size: 5vw;
-	margin: 0;
-	width: 60vw;
-	justify-self: center;
-	margin-top: 2vw;
+const StyledText = styled.p`
+	font-size: 7vw;
 	margin-bottom: 4vw;
-`
-
-const SignUpButton = styled.button`
-	font-size: 4.5vw;
-	margin: 2vw 30vw 1vw 30vw;
-`
-
-const StyledText = styled.h3`
-	font-size: 6vw;
-	margin-bottom: 3vw;
-	margin-top: 6vw;
-`
-
-const SignInButton = styled.button`
-	font-size: 4.5vw;
-	padding: 0.1vh 0.7vw;
-	margin-top: 0.75vw;
-	vertical-align: top;
+	margin-top: 7vw;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
 export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
@@ -88,30 +67,33 @@ export function SignUp({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
     return (
         <StyledCard onSubmit={handleSignUp}>
             <StyledHeading>
-				Save your information for later
+				Sign Up Information
 			</StyledHeading>
 
-			<StyledLabel htmlFor="name">
+			<BlockLabel htmlFor="name">
 				Name
-			</StyledLabel>
+			</BlockLabel>
             <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}/>
-			<StyledLabel htmlFor="email">
+
+			<BlockLabel htmlFor="email">
 				Email
-			</StyledLabel>
+			</BlockLabel>
 			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-			<StyledLabel htmlFor="staffCode">
+
+			<BlockLabel htmlFor="staffCode">
 				Staff Code
-				</StyledLabel>
+			</BlockLabel>
 			<StyledInput id="staffCode" value={staffCode} onChange={(e) => setStaffCode(e.target.value)}/>
-			<StyledLabel htmlFor="password">
+
+			<BlockLabel htmlFor="password">
 				Password
-			</StyledLabel>
+			</BlockLabel>
 			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-			<SignUpButton type="submit">{isSignUpLoading ? 'Loading...' : 'Sign Up'}</SignUpButton>
+			<BlockButton type="submit">{isSignUpLoading ? 'Loading...' : 'Sign Up'}</BlockButton>
 
 			<StyledText>
-                Or <SignInButton type="button" onClick={() => setModalType('signIn')}>Sign In</SignInButton> if you have an account
+                Or <StyledButton type="button" onClick={() => setModalType('signIn')}>Sign In</StyledButton> if you have an account
             </StyledText>
         </StyledCard>
     )

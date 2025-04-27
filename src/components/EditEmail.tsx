@@ -7,20 +7,12 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import ModalBackground from "./styled-components/ModalBackground";
 import StyledModal from "./styled-components/StyledModal";
+import StyledInput from "./styled-components/StyledInput";
 
 const StyledHeading = styled.h3`
   	text-align: center;
   	font-size: 6vw;
     margin: 1vw 0 3vw 0;
-`
-
-const StyledInput = styled.input`
-  	font-size: 5vw;
-	margin: 0;
-	width: 60vw;
-	margin: 2vw auto 4vw auto;
-    border: 1px solid black;
-    border-radius: 4px;
 `
 
 const ConfirmButton = styled.button`

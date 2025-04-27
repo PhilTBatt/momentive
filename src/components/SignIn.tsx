@@ -6,48 +6,27 @@ import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
+import { StyledButton } from "./styled-components/StyledButton";
+import { BlockButton } from "./styled-components/BlockButton";
+import BlockLabel from "./styled-components/BlockLabel";
+import StyledInput from "./styled-components/StyledInput";
 
 const StyledCard = styled.form`
 	display: grid;
 `
 
 const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 6vw;
-  	margin-top: 2vw;
+  	font-size: 7.5vw;
+  	margin-top: 3vw;
   	margin-bottom: 4vw;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
-const StyledLabel = styled.label`
-  	font-size: 5vw;
-  	margin: 0;
-`
-
-const StyledInput = styled.input`
-  	font-size: 5vw;
-	margin: 0;
-	width: 60vw;
-	justify-self: center;
-	margin-top: 2vw;
+const StyledText = styled.p`
+	font-size: 7vw;
 	margin-bottom: 4vw;
-`
-
-const SignInButton = styled.button`
-	font-size: 4.5vw;
-	margin: 2vw 30vw 1vw 30vw;
-`
-
-const StyledText = styled.h3`
-	font-size: 6vw;
-	margin-bottom: 3vw;
 	margin-top: 6vw;
-`
-
-const SignUpButton = styled.button`
-	font-size: 4.5vw;
-	padding: 0.1vh 0.7vw;
-	margin-top: 0.75vw;
-	vertical-align: top;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
 export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
@@ -87,19 +66,22 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 				Sign In
 			</StyledHeading>
 
-			<StyledLabel htmlFor="email">
+			<BlockLabel htmlFor="email">
 				Email
-			</StyledLabel>
+			</BlockLabel>
 			<StyledInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-			<StyledLabel htmlFor="password">
+                
+			<BlockLabel htmlFor="password">
 				Password
-			</StyledLabel>
+			</BlockLabel>
 			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-			<SignInButton type="submit">{isSignInLoading ? 'Loading...' : 'Sign In'}</SignInButton>
+			<BlockButton type="submit">
+                {isSignInLoading ? 'Loading...' : 'Sign In'}
+            </BlockButton>
 
 			<StyledText>
-                Or <SignUpButton type="button" onClick={() => setModalType('signUp')}>Sign Up</SignUpButton> to manage events
+                Or <StyledButton type="button" onClick={() => setModalType('signUp')}>Sign Up</StyledButton> to manage events
             </StyledText>
         </StyledCard>
     )
