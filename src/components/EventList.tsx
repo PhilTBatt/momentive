@@ -11,7 +11,7 @@ import { StyledCard } from './styled-components/StyledCard'
 
 const StyledList = styled.ul`
     list-style: none;
-    padding: 0;
+    padding: 2vw 1vw;
     margin: 1vw;
 `
 

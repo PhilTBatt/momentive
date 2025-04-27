@@ -11,6 +11,7 @@ const StyledText = styled.p`
   	font-size: 5.5vw;
   	margin-top: 3vw;
   	margin-bottom: 3vw;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 `
 
 const Button = styled.button`
@@ -21,6 +22,7 @@ const Button = styled.button`
     top: -0.3vw;
     border: 2px solid black;
     border-radius: 4px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 `
 
 export default function ManageAccount() {

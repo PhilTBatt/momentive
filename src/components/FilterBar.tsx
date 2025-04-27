@@ -9,8 +9,8 @@ const StyledCard = styled.div`
     border-radius: 12px;
     border: 3px solid ${props => props.theme.colours.primary};
     padding: 0vw 2vw;
-    margin-bottom: 3vw;
-    box-shadow: 0 0 0 1px black;
+    margin-bottom: 4vw;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 `
 
 const Label = styled.label`

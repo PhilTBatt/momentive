@@ -15,6 +15,7 @@ const StyledHeader = styled.img`
     box-sizing: border-box;
     z-index: 10;
     filter: brightness(120%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 `
 
 export default function Header() {

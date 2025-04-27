@@ -11,9 +11,10 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const StyledHeading = styled.h2`
-    font-size: 10vw;
-    margin-top: 3vh;
-    margin-bottom: 3vw;
+    font-size: 12vw;
+    margin-top: 3.5vh;
+    margin-bottom: 4vw;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 `
 
 export default function Search() {

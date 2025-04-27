@@ -8,8 +8,8 @@ import { topics } from "@/lib/topics";
 import { UserContext } from "@/contexts/User";
 
 const StyledCard = styled.li`
-    border: 2px solid black;
-    margin: 0 0 3vw 0;
+    border: 2px solid white;
+    margin: 0 0 4vw 0;
     background-color: ${props => props.theme.colours.background};
     border-radius: 12px;
     overflow: hidden;

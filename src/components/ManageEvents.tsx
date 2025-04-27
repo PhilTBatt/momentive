@@ -10,17 +10,19 @@ import { FilterBar } from "./FilterBar";
 import { StyledCard } from "./styled-components/StyledCard";
 
 const CreateEvent = styled.button`
-	font-size: 4.5vw;
+	font-size: 6.5vw;
     margin-top: 2vw;
     margin-bottom: 2vw;
     border: 2px solid black;
     border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 `
 
 const StyledText = styled.p`
   	font-size: 6.5vw;
   	margin-top: 4vw;
   	margin-bottom: 2vw;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 `
 
 export default function ManageEvents() {
