@@ -8,9 +8,6 @@ const StyledModal = styled.div`
     border: 3px solid black;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     width: 90vw;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     z-index: 101;
 `
 

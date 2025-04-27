@@ -7,54 +7,28 @@ import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import ModalBackground from "./styled-components/ModalBackground";
+import { BlockButton } from "./styled-components/BlockButton";
+import StyledInput from "./styled-components/StyledInput";
+import BlockLabel from "./styled-components/BlockLabel";
 
 
 const StyledCard = styled.form`
     display: grid;
 	background: ${props => props.theme.colours.primary};
-	padding: 1vh 1vw;
-	border-radius: 12px;
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-	width: 90vw;
-	z-index: 101;
-    border: 2px solid black;
+    padding: 0.4vh 3vw;
+    margin-bottom: 7.5vh;
+    border-radius: 12px;
+    border: 3px solid black;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    width: 90vw;
+    z-index: 101;
 `
 
 const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 6vw;
-  	margin-top: 2vw;
+  	font-size: 7.5vw;
+  	margin-top: 3vw;
   	margin-bottom: 4vw;
-`
-
-const StyledLabel = styled.label`
-  	font-size: 5vw;
-  	margin: 0;
-`
-
-const StyledInput = styled.input`
-  	font-size: 5vw;
-	margin: 0;
-	width: 60vw;
-	justify-self: center;
-	margin-top: 2vw;
-	margin-bottom: 4vw;
-    border: 1px solid black;
-    border-radius: 4px;
-`
-
-const TopicButton = styled.button`
-	font-size: 4.5vw;
-	margin: 1vw 30vw 4vw 30vw;
-    border: 2px solid black;
-    border-radius: 8px;
-`
-
-const CreateButton = styled.button`
-	font-size: 6vw;
-	margin: 2vw 30vw 3vw 30vw;
-    border: 2px solid black;
-    border-radius: 8px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
 export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
@@ -99,27 +73,33 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     Create your event
                 </StyledHeading>
 
-                <StyledLabel htmlFor="name">
+                <BlockLabel htmlFor="name">
                     Title
-                </StyledLabel>
+                </BlockLabel>
                 <StyledInput id="name" value={title} onChange={(e) => setTitle(e.target.value)}/>
-                <StyledLabel htmlFor="description">
+
+                <BlockLabel htmlFor="description">
                     Description
-                </StyledLabel>
+                </BlockLabel>
                 <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
-                <TopicButton type="button" onClick={() => setTopic('topic')}>
+
+                <BlockButton type="button" onClick={() => setTopic('topic')} style={{marginBottom: '5vw' }}>
                     {topic[0].toUpperCase() + topic.slice(1)}
-                </TopicButton>
-                <StyledLabel htmlFor="location">
+                </BlockButton>
+
+                <BlockLabel htmlFor="location">
                     Location
-                </StyledLabel>
+                </BlockLabel>
                 <StyledInput id="name" value={location} onChange={(e) => setLocation(e.target.value)}/>
-                <StyledLabel htmlFor="date">
+                    
+                <BlockLabel htmlFor="date">
                     Date
-                </StyledLabel>
+                </BlockLabel>
                 <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)}/>
 
-                <CreateButton type="submit">{isCreating ? 'Creating...' : 'Create'}</CreateButton>
+                <BlockButton type="submit" style={{marginBottom: '5vw', fontSize: '8vw' }}>
+                    {isCreating ? 'Creating...' : 'Create'}
+                </BlockButton>
             </StyledCard>
         </ModalBackground>
     )
