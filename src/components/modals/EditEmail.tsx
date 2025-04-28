@@ -42,18 +42,18 @@ export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<Set
 
     return (
         <ModalBackground onClick={() => setProfileModal(null)}>
-            <StyledModal onClick={(e) => e.stopPropagation()}>
-                <StyledHeading>
-                    Change your email
-                </StyledHeading>
+            <StyledModal onClick={e => e.stopPropagation()}>
+                    <StyledHeading>
+                        Change your email
+                    </StyledHeading>
 
-                <StyledInput id="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                    style={{fontSize: '6vw', width: '70vw'}}
-                />
+                    <StyledInput id="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                        style={{fontSize: '6vw', width: '70vw'}}
+                    />
 
-                <BlockButton onClick={confirmButton} style={{marginBottom: '2vh', width: '30vw'}}>
-                    {isRequestLoading ? 'Loading...' : 'Confirm'}
-                </BlockButton>
+                    <BlockButton onClick={confirmButton} style={{marginBottom: '2vh', width: '30vw'}}>
+                        {isRequestLoading ? 'Loading...' : 'Confirm'}
+                    </BlockButton>
             </StyledModal>
         </ModalBackground>
     )

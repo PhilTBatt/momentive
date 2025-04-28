@@ -29,7 +29,7 @@ const StyledText = styled.p`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
-export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
+export function SignIn({setModalType, setIsModalOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [isSignInLoading, setIsSignInLoading] = useState(false)
@@ -44,7 +44,8 @@ export function SignIn({setModalType, setIsModelOpen}: {setModalType: Dispatch<S
 			await authenticateUser({email, password})
             const user = await getUserByEmail(email)
             setUser({...user, id: Number(user.id), role: 'admin'})
-            setIsModelOpen(false)
+
+            setIsModalOpen(false)
             router.push('/user')
 		} catch (err: unknown) {
             if (err instanceof AxiosError){

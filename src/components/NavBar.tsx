@@ -40,13 +40,13 @@ const IconWrapper = styled.div`
 
 `
 
-export default function NavBar({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>> | null}) {
+export default function NavBar({setIsModalOpen}: {setIsModalOpen: Dispatch<SetStateAction<boolean>> | null}) {
     const router = useRouter()
     const { user } = useContext(UserContext)
 
 	const handleUserClick = () => {
         if (user.name && user.email && user.role === 'admin') router.push('/user')
-		else if (setIsModelOpen) setIsModelOpen(true)
+		else if (setIsModalOpen) setIsModalOpen(true)
     }
 
 	return (

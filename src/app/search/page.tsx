@@ -18,7 +18,7 @@ const StyledHeading = styled.h2`
 `
 
 export default function Search() {
-	const [isModelOpen, setIsModelOpen] = useState(false)
+	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [events, setEvents] = useState<Event[]>([])
     const [sortBy, setSortBy] = useState('date')
     const [order, setOrder] = useState<'DESC' | 'ASC'>('DESC')
@@ -33,9 +33,9 @@ export default function Search() {
                 </StyledHeading>
                 <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
                 <EventList events={events} setEvents={setEvents} sortBy={sortBy} order={order} topic={topic}/>
-			    {isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
+			    {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             </PageWrapper>
-      		<NavBar setIsModelOpen={setIsModelOpen}/>
+      		<NavBar setIsModalOpen={setIsModalOpen}/>
     	</>
   	)
 }

@@ -31,7 +31,7 @@ const StyledText = styled.h3`
 `
 
 export default function Home() {
-	const [isModelOpen, setIsModelOpen] = useState(false)
+	const [isModalOpen, setIsModalOpen] = useState(false)
     const [events, setEvents] = useState<Event[]>([])
 
   	return (
@@ -53,10 +53,10 @@ export default function Home() {
                     Upcoming events
                 </StyledText>
 				<EventList events={events} setEvents={setEvents} sortBy='date' order='DESC'/>
-				{isModelOpen && <UserModal setIsModelOpen={setIsModelOpen}/>}
+				{isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
 			</PageWrapper>
 
-      		<NavBar setIsModelOpen={setIsModelOpen}/>
+      		<NavBar setIsModalOpen={setIsModalOpen}/>
     	</>
   	)
 }

@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { getUserById } from "@/lib/api/users";
 import { topics } from "@/lib/topics";
 import { UserContext } from "@/contexts/User";
+import { EditEvent } from "./modals/EditEvent";
 
 const StyledCard = styled.li`
     border: 2px solid white;
@@ -59,11 +60,9 @@ const CardFooter = styled.div`
     }
 `
 
-const ExtraButton = styled.button<{ side: "left" | "right" }>`
+const ExtraButton = styled.button`
     position: absolute;
     top: 1vw;
-    ${props => props.side === 'left' && 'left: 1vw;'}
-    ${props => props.side === 'right' && 'right: 1vw;'}
     background-color: rgba(255, 255, 255, 0.8);
     border: none;
     border-radius: 40%;
@@ -84,7 +83,9 @@ const ExtraButton = styled.button<{ side: "left" | "right" }>`
 
 export function EventCard({event}: {event: Event}) {
     const [eventHost, setEventHost] = useState('')
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const { user } = useContext(UserContext)
+    console.log(user)
     
     async function getEventHost() {
         const user = await getUserById(event.createdBy)
@@ -96,7 +97,7 @@ export function EventCard({event}: {event: Event}) {
 
     useEffect(() => {
         getEventHost()
-    }, [])
+    }, [event])
 
     const bannerImage = topics[event.topic]
 
@@ -104,11 +105,11 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => {}} side="left">
+            <ExtraButton onClick={() => setIsModalOpen(true)} style={{left: '1vw'}}>
                 ✏️
             </ExtraButton>
 
-            <ExtraButton onClick={() => {}} side="right">
+            <ExtraButton onClick={() => {}} style={{right: '1vw'}}>
                 ✅
             </ExtraButton>
 
@@ -122,6 +123,8 @@ export function EventCard({event}: {event: Event}) {
                 <p><strong>Host:</strong> {eventHost}</p>
                 <p><strong>Location:</strong> {event.location}</p>
             </CardFooter>
+
+            {isModalOpen && <EditEvent event={event} setIsModalOpen={setIsModalOpen}/>}
         </StyledCard>
 
     )

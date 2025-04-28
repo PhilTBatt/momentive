@@ -26,7 +26,7 @@ const StyledText = styled.p`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
-export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
+export function EditUser({setModalType, setIsModalOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) {
 	const {user, setUser} = useContext(UserContext)
 	const [name, setName] = useState(user.name ?? "")
 	const [email, setEmail] = useState(user.email ?? "")
@@ -36,7 +36,7 @@ export function EditUser({setModalType, setIsModelOpen}: {setModalType: Dispatch
 
         if (name === '' || email === '') alert('A name and email is required\nPlease try again')
 		else {
-            setIsModelOpen(false)
+            setIsModalOpen(false)
             setUser({name: name.trim(), email: email.trim(), role: 'guest', id: null})
         }
 	}
