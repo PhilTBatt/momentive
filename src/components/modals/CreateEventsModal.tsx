@@ -28,7 +28,7 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
 	const [description, setDescription] = useState("")
     const [topic, setTopic] = useState("topic")
     const [location, setLocation] = useState("")
-    const [date, setDate] = useState("")
+    const [date, setDate] = useState((new Date()).toISOString().slice(0, 16))
     const [isCreating, setIsCreating] = useState(false)
 	
 	async function createEvent(e: React.FormEvent<HTMLFormElement>) {
@@ -65,12 +65,12 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     <BlockLabel htmlFor="name">
                         Title
                     </BlockLabel>
-                    <StyledInput id="name" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                    <StyledInput id="name" value={title} onChange={(e) => setTitle(e.target.value)} required/>
 
                     <BlockLabel htmlFor="description">
                         Description
                     </BlockLabel>
-                    <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                    <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
 
                     <BlockButton type="button" onClick={() => setTopic('topic')} style={{marginBottom: '5vw' }}>
                         {topic[0].toUpperCase() + topic.slice(1)}
@@ -79,12 +79,13 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     <BlockLabel htmlFor="location">
                         Location
                     </BlockLabel>
-                    <StyledInput id="name" value={location} onChange={(e) => setLocation(e.target.value)}/>
+                    <StyledInput id="name" value={location} onChange={(e) => setLocation(e.target.value)} required/>
                         
                     <BlockLabel htmlFor="date">
                         Date
                     </BlockLabel>
-                    <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)} style={{width: '30vw'}}/>
+                    <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)}
+                        style={{width: '65vw'}} type="datetime-local" min={(new Date).toISOString().slice(0, 16)} required/>
 
                     <BlockButton type="submit" style={{marginBottom: '5vw', fontSize: '7.5vw' }}>
                         {isCreating ? 'Creating...' : 'Create'}

@@ -21,14 +21,14 @@ export async function postNewEvent({ id, title, description, date, location, top
 	return response.data.event
 }
 
-export async function updateEvent(id: string, { title, description, date, location, topic }: 
+export async function updateEvent(id: number, { title, description, date, location, topic }: 
     { title: string; description: string; date: string; location: string, topic: string }
 ): Promise<Event> {
 	const response = await axios.patch(`/api/events/${id}`, { title, description, date, location, topic })
 	return response.data.event
 }
 
-export async function deleteEvent(id: string): Promise<{ status: number; msg: string }> {
+export async function deleteEvent(id: number): Promise<{ status: number; msg: string }> {
 	try {
 		await axios.delete(`/api/events/${id}`)
 		return { status: 204, msg: 'Event deleted successfully' }

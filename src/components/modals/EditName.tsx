@@ -16,13 +16,6 @@ const StyledHeading = styled.h3`
     margin: 1vw 0 3vw 0;
 `
 
-const ConfirmButton = styled.button`
-	font-size: 4.5vw;
-	margin: 1vw 30vw 3vw 30vw;
-    border: 2px solid black;
-    border-radius: 4px;
-`
-
 export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetStateAction<null | string>>}) {
 	const {user, setUser} = useContext(UserContext)
 	const [name, setName] = useState(user.name ?? "")
