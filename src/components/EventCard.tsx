@@ -11,9 +11,10 @@ const StyledCard = styled.li`
     border: 2px solid white;
     margin: 0 0 4vw 0;
     background-color: ${props => props.theme.colours.background};
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
     &:last-child {
         margin-bottom: 0;
     }
@@ -64,15 +65,16 @@ const EditButton = styled.button`
     left: 1vw;
     background-color: rgba(255, 255, 255, 0.8);
     border: none;
-    border-radius: 50%;
-    width: 6vw;
-    height: 6vw;
+    border-radius: 40%;
+    width: 6.5vw;
+    height: 6.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3vw;
+    font-size: 4.5vw;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 0 0 1.1vw 0.4vw;
     &:hover {
         background-color: rgba(255, 255, 255, 1);
     }
@@ -101,11 +103,9 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            {user.role === 'admin' && (
-                <EditButton onClick={() => {}} aria-label="Edit event">
-                    ✏️Edit
-                </EditButton>
-            )}
+            <EditButton onClick={() => {}}>
+                ✏️
+            </EditButton>
 
             <CardInformation>
                 <StyledHeading>{event.title}</StyledHeading>
