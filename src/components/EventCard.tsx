@@ -7,6 +7,8 @@ import { getUserById } from "@/lib/api/users";
 import { topics } from "@/lib/topics";
 import { UserContext } from "@/contexts/User";
 import { EditEvent } from "./modals/EditEvent";
+import { faPenToSquare, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyledCard = styled.li`
     border: 2px solid white;
@@ -74,7 +76,7 @@ const ExtraButton = styled.button`
     font-size: 4.5vw;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding: 0 0 1.1vw 0.4vw;
+    padding: 0vw 0 0.25vw 0vw;
     &:hover {
         background-color: rgba(255, 255, 255, 1);
     }
@@ -105,12 +107,12 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsModalOpen(true)} style={{left: '1vw'}}>
-                ✏️
+            <ExtraButton onClick={() => setIsModalOpen(true)} style={{left: '1vw', backgroundColor: 'red', color: 'white'}}>
+                <FontAwesomeIcon icon={faPenToSquare} />
             </ExtraButton>
 
-            <ExtraButton onClick={() => {}} style={{right: '1vw'}}>
-                ✅
+            <ExtraButton onClick={() => {}} style={{right: '1vw', backgroundColor: 'green', color: 'white'}}>
+                <FontAwesomeIcon icon={faSquareCheck} />
             </ExtraButton>
 
             <CardInformation>
