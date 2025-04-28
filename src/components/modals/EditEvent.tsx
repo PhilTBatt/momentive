@@ -54,8 +54,8 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
 	}
 
     return (
-        <ModalBackground>
-             <StyledModal>
+        <ModalBackground onClick={() => setIsModalOpen(false)}>
+             <StyledModal onClick={(e) => e.stopPropagation()}>
                 <form onSubmit={confirmButton} style={{display: 'grid' }}>
                     <StyledHeading>
                         Edit Event

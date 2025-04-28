@@ -6,8 +6,8 @@ const StyledHeader = styled.img`
     position: fixed;
     left: 50%;
     top: 0;
-    transform: translateX(-50%);
-    width: 120vw;
+    transform: translateX(-48%);
+    width: 130vw;
   	padding: 0vw;
     height: 12vh;
     object-fit: cover;
