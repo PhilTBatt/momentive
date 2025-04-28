@@ -59,10 +59,11 @@ const CardFooter = styled.div`
     }
 `
 
-const EditButton = styled.button`
+const ExtraButton = styled.button<{ side: "left" | "right" }>`
     position: absolute;
     top: 1vw;
-    left: 1vw;
+    ${props => props.side === 'left' && 'left: 1vw;'}
+    ${props => props.side === 'right' && 'right: 1vw;'}
     background-color: rgba(255, 255, 255, 0.8);
     border: none;
     border-radius: 40%;
@@ -103,9 +104,13 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <EditButton onClick={() => {}}>
+            <ExtraButton onClick={() => {}} side="left">
                 ✏️
-            </EditButton>
+            </ExtraButton>
+
+            <ExtraButton onClick={() => {}} side="right">
+                ✅
+            </ExtraButton>
 
             <CardInformation>
                 <StyledHeading>{event.title}</StyledHeading>
