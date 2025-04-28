@@ -5,7 +5,7 @@ import { FilterBar } from "@/components/FilterBar";
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
 import PageWrapper from "@/components/PageWrapper";
-import { UserModal } from "@/components/UserModel";
+import { UserModal } from "@/components/modals/UserModel";
 import { Event } from "@/types/event";
 import { useState } from "react";
 import styled from "styled-components";

@@ -13,6 +13,7 @@ const StyledCard = styled.li`
     background-color: ${props => props.theme.colours.background};
     border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     &:last-child {
         margin-bottom: 0;
     }
@@ -29,7 +30,7 @@ const BannerImage = styled.img`
 `
 
 const StyledHeading = styled.h3`
-    font-size: 7.5vw;
+    font-size: 9vw;
     margin: 0vw 0 0vw 0;
     color: ${props => props.theme.colours.primary};
     line-height: 1;
@@ -37,7 +38,7 @@ const StyledHeading = styled.h3`
 
 const CardInformation = styled.div`
     padding: 0vw 2vw;
-    font-size: 4.25vw;
+    font-size: 4.5vw;
     margin: 0;
     p {
         margin: 1vw 0 2vw 0;
@@ -47,11 +48,11 @@ const CardInformation = styled.div`
 const CardFooter = styled.div`
     background-color: ${props => props.theme.colours.primary};
     padding: 2vw 2vw;
-    font-size: 3.75vw;
+    font-size: 4vw;
     border: 1px solid ${props => props.theme.colours.background};
     border-radius: 12px;
     padding: 0.5vw 0;
-    filter: brightness(115%);
+    filter: brightness(125%);
     p {
         margin: 0 0;
     }
@@ -72,8 +73,6 @@ const EditButton = styled.button`
     font-size: 3vw;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-    
     &:hover {
         background-color: rgba(255, 255, 255, 1);
     }
@@ -97,7 +96,6 @@ export function EventCard({event}: {event: Event}) {
     }, [])
 
     const bannerImage = topics[event.topic]
-    console.log(bannerImage)
 
     return (
         <StyledCard>
@@ -105,7 +103,7 @@ export function EventCard({event}: {event: Event}) {
 
             {user.role === 'admin' && (
                 <EditButton onClick={() => {}} aria-label="Edit event">
-                    ✏️
+                    ✏️Edit
                 </EditButton>
             )}
 

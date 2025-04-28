@@ -6,10 +6,10 @@ import { Event } from "@/types/event";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
-import ModalBackground from "./styled-components/ModalBackground";
-import { BlockButton } from "./styled-components/BlockButton";
-import StyledInput from "./styled-components/StyledInput";
-import BlockLabel from "./styled-components/BlockLabel";
+import ModalBackground from "../styled-components/ModalBackground";
+import { BlockButton } from "../styled-components/BlockButton";
+import StyledInput from "../styled-components/StyledInput";
+import BlockLabel from "../styled-components/BlockLabel";
 
 
 const StyledCard = styled.form`
@@ -95,9 +95,9 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                 <BlockLabel htmlFor="date">
                     Date
                 </BlockLabel>
-                <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)}/>
+                <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)} style={{width: '30vw'}}/>
 
-                <BlockButton type="submit" style={{marginBottom: '5vw', fontSize: '8vw' }}>
+                <BlockButton type="submit" style={{marginBottom: '5vw', fontSize: '7.5vw' }}>
                     {isCreating ? 'Creating...' : 'Create'}
                 </BlockButton>
             </StyledCard>

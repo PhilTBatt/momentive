@@ -4,7 +4,7 @@ import { EventList } from "@/components/EventList";
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
 import PageWrapper from "@/components/PageWrapper";
-import { UserModal } from "@/components/UserModel";
+import { UserModal } from "@/components/modals/UserModel";
 import { Event } from "@/types/event";
 import { useState } from "react";
 import styled from "styled-components";
@@ -19,8 +19,8 @@ const StyledHeading = styled.h2`
 const StyledSubText = styled.p`
     font-size: 6vw;
     margin-top: 0;
-    margin-bottom: 5vw;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 2vw;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 `
 
 const StyledText = styled.h3`
@@ -43,7 +43,10 @@ export default function Home() {
                     Welcome!
                 </StyledHeading>
                 <StyledSubText>
-                    Browse our avaliable events and add them to your calender
+                    Browse our avaliable events and sign up to them
+                </StyledSubText>
+                <StyledSubText style={{marginBottom: '2vh'}}>
+                    You can even add them to your calender
                 </StyledSubText>
 
                 <StyledText>

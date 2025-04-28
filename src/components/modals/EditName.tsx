@@ -5,13 +5,14 @@ import { updateUser } from "@/lib/api/users";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
-import ModalBackground from "./styled-components/ModalBackground";
-import StyledModal from "./styled-components/StyledModal";
-import StyledInput from "./styled-components/StyledInput";
+import ModalBackground from "../styled-components/ModalBackground";
+import StyledModal from "../styled-components/StyledModal";
+import StyledInput from "../styled-components/StyledInput";
+import { BlockButton } from "../styled-components/BlockButton";
 
 const StyledHeading = styled.h3`
   	text-align: center;
-  	font-size: 6vw;
+  	font-size: 8vw;
     margin: 1vw 0 3vw 0;
 `
 
@@ -22,17 +23,17 @@ const ConfirmButton = styled.button`
     border-radius: 4px;
 `
 
-export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<SetStateAction<null | string>>}) {
+export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetStateAction<null | string>>}) {
 	const {user, setUser} = useContext(UserContext)
-	const [email, setEmail] = useState(user.email ?? "")
+	const [name, setName] = useState(user.name ?? "")
     const [isRequestLoading, setIsRequestLoading] = useState(false)
 	
 	async function confirmButton() {
-        if (email === '') alert('An email is required\nPlease try again')
+        if (name === '') alert('A name is required\nPlease try again')
 
-        try {
+		try {
             if (user.id && user.name && user.email) {
-                const updatedUser = await updateUser(user.id, {name: user.name, email})
+                const updatedUser = await updateUser(user.id, {name, email: user.email})
                 setProfileModal(null)
                 setUser({...updatedUser, role: 'admin', id: Number(user.id)})
             }
@@ -50,12 +51,16 @@ export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<Set
         <ModalBackground onClick={() => setProfileModal(null)}>
             <StyledModal onClick={(e) => e.stopPropagation()}>
                 <StyledHeading>
-                    Change your email
+                    Change your name 
                 </StyledHeading>
-                <StyledInput id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                <ConfirmButton onClick={confirmButton}>
+
+                <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}
+                    style={{fontSize: '6vw', width: '70vw'}}
+                />
+
+                <BlockButton onClick={confirmButton} style={{marginBottom: '2vh', width: '30vw'}}>
                     {isRequestLoading ? 'Loading...' : 'Confirm'}
-                </ConfirmButton>
+                </BlockButton>
             </StyledModal>
         </ModalBackground>
     )

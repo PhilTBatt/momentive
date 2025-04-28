@@ -4,8 +4,8 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { EditUser } from "./EditUser";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
-import ModalBackground from "./styled-components/ModalBackground";
-import StyledModal from "./styled-components/StyledModal";
+import ModalBackground from "../styled-components/ModalBackground";
+import StyledModal from "../styled-components/StyledModal";
 
 export function UserModal({setIsModelOpen}: {setIsModelOpen: Dispatch<SetStateAction<boolean>>}) {
 	const [modalType, setModalType] = useState("editUser")

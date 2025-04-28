@@ -3,15 +3,15 @@
 import { UserContext } from "@/contexts/User";
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { EditNameModal } from "./EditName";
-import { EditEmailModal } from "./EditEmail";
+import { EditNameModal } from "./modals/EditName";
+import { EditEmailModal } from "./modals/EditEmail";
 import { StyledCard } from "./styled-components/StyledCard";
 
 const StyledText = styled.p`
   	font-size: 5.5vw;
   	margin-top: 3vw;
   	margin-bottom: 3vw;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 `
 
 const Button = styled.button`
@@ -23,6 +23,7 @@ const Button = styled.button`
     border: 2px solid black;
     border-radius: 4px;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 `
 
 export default function ManageAccount() {

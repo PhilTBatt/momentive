@@ -9,4 +9,5 @@ export const StyledCard = styled.div`
 	box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.25);
 	width: 90vw;
     border: 2px solid black;
+    
 `

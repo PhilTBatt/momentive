@@ -6,10 +6,10 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from 'next/navigation'
 import { AxiosError } from "axios";
-import { BlockButton } from "./styled-components/BlockButton";
-import { StyledButton } from "./styled-components/StyledButton";
-import BlockLabel from "./styled-components/BlockLabel";
-import StyledInput from "./styled-components/StyledInput";
+import { BlockButton } from "../styled-components/BlockButton";
+import { StyledButton } from "../styled-components/StyledButton";
+import BlockLabel from "../styled-components/BlockLabel";
+import StyledInput from "../styled-components/StyledInput";
 
 const StyledCard = styled.form`
 	display: grid;
@@ -24,8 +24,8 @@ const StyledHeading = styled.h3`
 
 const StyledText = styled.p`
 	font-size: 7vw;
-	margin-bottom: 4vw;
-	margin-top: 7vw;
+	margin-bottom: 3vw;
+	margin-top: 3vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 

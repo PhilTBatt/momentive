@@ -3,20 +3,12 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { EventList } from "./EventList";
-import { CreateEventsModal } from "./CreateEventsModal";
+import { CreateEventsModal } from "./modals/CreateEventsModal";
 import { Event } from "@/types/event";
 import { UserContext } from "@/contexts/User";
 import { FilterBar } from "./FilterBar";
 import { StyledCard } from "./styled-components/StyledCard";
-
-const CreateEvent = styled.button`
-	font-size: 6.5vw;
-    margin-top: 2vw;
-    margin-bottom: 2vw;
-    border: 2px solid black;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-`
+import { BlockButton } from "./styled-components/BlockButton";
 
 const StyledText = styled.p`
   	font-size: 6.5vw;
@@ -36,9 +28,9 @@ export default function ManageEvents() {
   	return (
     	<>
             <StyledCard>
-                <CreateEvent onClick={() => setEventsModalOpen(true)}>
+                <BlockButton onClick={() => setEventsModalOpen(true)} style={{width: '40vw'}}>
                     Create Event
-                </CreateEvent>
+                </BlockButton>
             </StyledCard>
 
             <StyledText>
