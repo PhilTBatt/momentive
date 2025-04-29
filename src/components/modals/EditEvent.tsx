@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 import { StyledButton } from "../styled-components/StyledButton";
 import { BlockButton } from "../styled-components/BlockButton";
@@ -34,8 +34,6 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
     const [topic, setTopic] = useState(event.topic)
     const [isEditing, setIsEditing] = useState(false)
     const [isDeleting, setIsDeleting] = useState(false)
-    console.log(date)
-    console.log((new Date(event.date)).toISOString())
 	
 	async function confirmButton(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
