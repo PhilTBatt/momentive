@@ -2,7 +2,6 @@ import { addAttendeeToEvent, fetchEventById, removeEventById, updateEventById } 
 import { CustomError } from "@/types/error";
 import { NextRequest, NextResponse } from "next/server";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
         const {id} = await params

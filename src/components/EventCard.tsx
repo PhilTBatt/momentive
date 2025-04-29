@@ -99,7 +99,7 @@ export function EventCard({event}: {event: Event}) {
 
     useEffect(() => {
         getEventHost()
-    }, [event])
+    }, [])
 
     const bannerImage = topics[event.topic]
 
