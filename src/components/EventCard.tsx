@@ -7,7 +7,7 @@ import { getUserById } from "@/lib/api/users";
 import { topics } from "@/lib/topics";
 import { UserContext } from "@/contexts/User";
 import { EditEvent } from "./modals/EditEvent";
-import { faPenToSquare, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faSquareCheck, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyledCard = styled.li`
@@ -108,7 +108,8 @@ export function EventCard({event}: {event: Event}) {
             <BannerImage src={bannerImage} alt="Event Banner" />
 
             <ExtraButton onClick={() => setIsModalOpen(true)} style={{left: '1vw', backgroundColor: 'red', color: 'white'}}>
-                <FontAwesomeIcon icon={faPenToSquare} />
+                {user.role === 'admin' ? <FontAwesomeIcon icon={faPenToSquare} /> : 
+                    <FontAwesomeIcon icon={faSquareMinus} />}
             </ExtraButton>
 
             <ExtraButton onClick={() => {}} style={{right: '1vw', backgroundColor: 'green', color: 'white'}}>
