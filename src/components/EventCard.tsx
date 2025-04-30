@@ -9,6 +9,7 @@ import { UserContext } from "@/contexts/User";
 import { EditEvent } from "./modals/EditEvent";
 import { faPenToSquare, faSquareCheck, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { EventSignUp } from "./modals/EventSignUp";
 
 const StyledCard = styled.li`
     border: 2px solid white;
@@ -64,7 +65,7 @@ const CardFooter = styled.div`
 
 const ExtraButton = styled.button`
     position: absolute;
-    top: 1vw;
+    top: 19vw;
     background-color: rgba(255, 255, 255, 0.8);
     border: none;
     border-radius: 40%;
@@ -76,7 +77,6 @@ const ExtraButton = styled.button`
     font-size: 4.5vw;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding: 0vw 0 0.25vw 0vw;
     &:hover {
         background-color: rgba(255, 255, 255, 1);
     }
@@ -85,21 +85,19 @@ const ExtraButton = styled.button`
 
 export function EventCard({event}: {event: Event}) {
     const [eventHost, setEventHost] = useState('')
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
     const { user } = useContext(UserContext)
     console.log(user)
     
     async function getEventHost() {
         const user = await getUserById(event.createdBy)
-        if (user.name)
-            setEventHost(user.name)
-        else
-            setEventHost('Error getting host')
+        setEventHost(user?.name || 'Error getting host')
     }
 
     useEffect(() => {
         getEventHost()
-    }, [])
+    }, [event.createdBy])
 
     const bannerImage = topics[event.topic]
 
@@ -107,12 +105,12 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsModalOpen(true)} style={{left: '1vw', backgroundColor: 'red', color: 'white'}}>
+            <ExtraButton onClick={() => setIsEditModalOpen(true)} style={{left: '1.25vw', backgroundColor: 'red', color: 'white', paddingRight: '1.5vw'}}>
                 {user.role === 'admin' ? <FontAwesomeIcon icon={faPenToSquare} /> : 
                     <FontAwesomeIcon icon={faSquareMinus} />}
             </ExtraButton>
 
-            <ExtraButton onClick={() => {}} style={{right: '1vw', backgroundColor: 'green', color: 'white'}}>
+            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} style={{right: '1.25vw', backgroundColor: 'green', color: 'white'}}>
                 <FontAwesomeIcon icon={faSquareCheck} />
             </ExtraButton>
 
@@ -122,12 +120,17 @@ export function EventCard({event}: {event: Event}) {
             </CardInformation>
 
             <CardFooter>
-                <p><strong>Date:</strong> {(new Date(event.date)).toLocaleDateString()}</p>
-                <p><strong>Host:</strong> {eventHost}</p>
-                <p><strong>Location:</strong> {event.location}</p>
+                <p>
+                    <strong>Date:</strong> {(new Date(event.date)).toLocaleDateString()}
+                    <br/>
+                    <strong>Host:</strong> {eventHost}
+                    <br/>
+                    <strong>Location:</strong> {event.location}
+                </p>
             </CardFooter>
 
-            {isModalOpen && <EditEvent event={event} setIsModalOpen={setIsModalOpen}/>}
+            {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen}/>}
+            {isSignUpModalOpen && <EventSignUp event={event} setIsModalOpen={setIsSignUpModalOpen}/>}
         </StyledCard>
 
     )
