@@ -30,7 +30,7 @@ export function EventSignUp({event, setIsModalOpen}: {event: Event, setIsModalOp
             setIsModalOpen(false)
         } catch (err: unknown) {
             if (err instanceof AxiosError){
-                alert(`${err.response?.data.msg}\nPlease try again`)
+                alert(`${err.response?.data.msg}`)
             } else 
                 alert(`An error occurred\nPlease try again`)
         } finally {

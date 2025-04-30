@@ -130,3 +130,27 @@ export async function addAttendeeToEvent(eventId: number, name: string, email: s
 
     return result[0]
 }
+
+export async function removeAttendeeFromEvent(eventId: number, name: string, email: string) {
+    if (!name || !email)
+        throw new CustomError(400, 'Name and email are required to remove an attendee.')
+
+    if (typeof name !== 'string' || typeof email !== 'string')
+        throw new CustomError(400, 'Invalid input types for name or email.')
+
+    const checkQuery = `SELECT 1 FROM events WHERE id = $3 AND attendees @> ARRAY[ROW($1, $2)::attendee]`
+    const checkResult = await db.query(checkQuery, [name, email, eventId])
+
+    if (checkResult.length === 0)
+        throw new CustomError(400, 'This attendee is not part of the event.')
+
+    const removeQuery = `UPDATE events SET attendees = array_remove(attendees, ROW($1, $2)::attendee)
+        WHERE id = $3 RETURNING *`
+
+    const result = await db.query(removeQuery, [name, email, eventId])
+
+    if (result.length === 0)
+        throw new CustomError(404, 'Event not found.')
+
+    return result[0]
+}
