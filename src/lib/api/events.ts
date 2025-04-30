@@ -41,6 +41,6 @@ export async function deleteEvent(id: number): Promise<{ status: number; msg: st
 }
 
 export async function postAttendee(id: number, { name, email }: { name: string; email: string }): Promise<Event> {
-    const response = await axios.post(`/api/events/${id}`, { name, email })
+    const response = await axios.post(`/api/events/${id}/attendees`, { name, email })
     return response.data.event
 }
