@@ -28,11 +28,11 @@ const Select1 = styled.select`
     font-size: 3.25vw;
 `
 const Select2 = styled(Select1)`
-    width: 19vw;
+    width: 20vw;
     margin-right: 0;
 `
 const Select3 = styled(Select1)`
-    width: 7vw;
+    width: 8vw;
     margin-right: 0;
 `
 

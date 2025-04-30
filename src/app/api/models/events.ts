@@ -113,6 +113,13 @@ export async function addAttendeeToEvent(eventId: number, name: string, email: s
     if (typeof name !== 'string' || typeof email !== 'string')
         throw new CustomError(400, 'Invalid input types for name or email.')
 
+    const checkQuery = `SELECT 1 FROM events WHERE id = $3 AND attendees @> ARRAY[ROW($1, $2)::attendee]`
+
+    const checkResult = await db.query(checkQuery, [name, email, eventId])
+
+    if (checkResult.length > 0)
+        throw new CustomError(400, 'This email is already attending the event.')
+
     const query = `UPDATE events SET attendees = array_append(attendees, ROW($1, $2)::attendee) WHERE id = $3 RETURNING *`
 
     const params = [name, email, eventId]
