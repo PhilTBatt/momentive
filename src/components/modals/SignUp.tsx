@@ -88,7 +88,8 @@ export function SignUp({setModalType, setIsModalOpen}: {setModalType: Dispatch<S
 			<BlockLabel htmlFor="password">
 				Password
 			</BlockLabel>
-			<StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+			<StyledInput id="password" type="password" value={password} disabled={isSignUpLoading}
+                onChange={(e) => setPassword(e.target.value)}/>
 
 			<BlockButton type="submit">{isSignUpLoading ? 'Loading...' : 'Sign Up'}</BlockButton>
 

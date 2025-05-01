@@ -21,6 +21,8 @@ export function EventSignUp({event, setIsModalOpen}: {event: Event, setIsModalOp
     const [isRequestLoading, setIsRequestLoading] = useState(false)
 	
 	async function confirmButton() {
+        setIsRequestLoading(true)
+        
         try {
             if (user.name && user.email)
                 await postAttendee(event.id, {name: user.name, email: user.email})
@@ -43,7 +45,7 @@ export function EventSignUp({event, setIsModalOpen}: {event: Event, setIsModalOp
                         Sign up to event?
                     </StyledHeading>
 
-                    <BlockButton onClick={confirmButton} style={{marginBottom: '3vh', width: '30vw'}}>
+                    <BlockButton onClick={confirmButton} disabled={isRequestLoading} style={{marginBottom: '3vh', width: '30vw'}}>
                         {isRequestLoading ? 'Loading...' : 'Confirm'}
                     </BlockButton>
             </StyledModal>

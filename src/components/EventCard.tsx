@@ -2,12 +2,11 @@
 
 import styled from "styled-components";
 import type { Event } from "@/types/event";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getUserById } from "@/lib/api/users";
 import { topics } from "@/lib/topics";
-import { UserContext } from "@/contexts/User";
 import { EditEvent } from "./modals/EditEvent";
-import { faPenToSquare, faSquareCheck, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
+import { faSquareCheck, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EventSignUp } from "./modals/EventSignUp";
 

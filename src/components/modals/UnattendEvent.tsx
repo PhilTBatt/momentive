@@ -22,6 +22,8 @@ export function UnattendEvent({event, setIsModalOpen}: {event: Event, setIsModal
     const [isRequestLoading, setIsRequestLoading] = useState(false)
 	
 	async function confirmButton() {
+        setIsRequestLoading(true)
+        
         try {
             if (user.name && user.email)
                 await postAttendee(event.id, {name: user.name, email: user.email})

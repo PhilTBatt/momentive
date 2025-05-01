@@ -51,7 +51,7 @@ export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetS
                     style={{fontSize: '6vw', width: '70vw'}}
                 />
 
-                <BlockButton onClick={confirmButton} style={{marginBottom: '2vh', width: '30vw'}}>
+                <BlockButton onClick={confirmButton} style={{marginBottom: '2vh', width: '30vw'}} disabled={isRequestLoading}>
                     {isRequestLoading ? 'Loading...' : 'Confirm'}
                 </BlockButton>
             </StyledModal>

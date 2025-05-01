@@ -87,7 +87,7 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)}
                         style={{width: '65vw'}} type="datetime-local" min={(new Date).toISOString().slice(0, 16)} required/>
 
-                    <BlockButton type="submit" style={{marginBottom: '5vw', fontSize: '7.5vw' }}>
+                    <BlockButton type="submit" style={{marginBottom: '5vw', fontSize: '7.5vw' }} disabled={isCreating}>
                         {isCreating ? 'Creating...' : 'Create'}
                     </BlockButton>
                 </form>

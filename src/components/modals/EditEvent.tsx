@@ -108,7 +108,7 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
                     <StyledInput id="date" value={date} onChange={(e) => setDate(e.target.value)} type="datetime-local"
                         min={(new Date).toISOString().slice(0, 16)} required style={{width: '65vw'}}/>
                     
-                    <BlockButton type="submit">
+                    <BlockButton type="submit" disabled={isEditing}>
                         {isEditing ? 'Editing...' : 'Confirm'}
                     </BlockButton>
 
