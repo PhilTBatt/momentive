@@ -16,7 +16,7 @@ const StyledHeading = styled.h3`
     margin: 2vw 0 3vw 0;
 `
 
-export function UnattendEvent({event, setIsModalOpen, setIsEditModalOpen}: {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, setIsEditModalOpen: Dispatch<SetStateAction<boolean>>}) {
+export function UnattendEvent({event, setIsModalOpen,}: {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) {
 	const {user} = useContext(UserContext)
     const [isRequestLoading, setIsRequestLoading] = useState(false)
 	
