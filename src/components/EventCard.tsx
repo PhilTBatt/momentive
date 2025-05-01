@@ -87,8 +87,7 @@ export function EventCard({event}: {event: Event}) {
     const [eventHost, setEventHost] = useState('')
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
-    const { user } = useContext(UserContext)
-    console.log(user)
+    const [isUnattendModalOpen, setIsUnattendModalOpen] = useState(false)
     
     async function getEventHost() {
         const user = await getUserById(event.createdBy)
@@ -105,9 +104,8 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsEditModalOpen(true)} style={{left: '1.25vw', backgroundColor: 'red', color: 'white', paddingRight: '1.5vw'}}>
-                {user.role === 'admin' ? <FontAwesomeIcon icon={faPenToSquare} /> : 
-                    <FontAwesomeIcon icon={faSquareMinus} />}
+            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} style={{left: '1.25vw', backgroundColor: 'red', color: 'white'}}>
+                    <FontAwesomeIcon icon={faSquareMinus} />
             </ExtraButton>
 
             <ExtraButton onClick={() => setIsSignUpModalOpen(true)} style={{right: '1.25vw', backgroundColor: 'green', color: 'white'}}>
@@ -131,6 +129,7 @@ export function EventCard({event}: {event: Event}) {
 
             {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen}/>}
             {isSignUpModalOpen && <EventSignUp event={event} setIsModalOpen={setIsSignUpModalOpen}/>}
+            {isUnattendModalOpen && <EventSignUp event={event} setIsModalOpen={setIsEditModalOpen}/>}
         </StyledCard>
 
     )

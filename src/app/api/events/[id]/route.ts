@@ -18,7 +18,6 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function DELETE(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
         const {id} = await params

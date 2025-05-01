@@ -54,7 +54,6 @@ export async function fetchUserById(id: number) {
 	if (user.length === 0)
 		throw new CustomError(404, "User not found")
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { password, ...userWithoutPassword } = user[0]
 	return userWithoutPassword
 }
