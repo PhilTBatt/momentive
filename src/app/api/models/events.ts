@@ -18,7 +18,9 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 	if (isNaN(page)) 
 		throw { status: 400, msg: 'Invalid page query' }
 	
-	let query = `SELECT * FROM events`
+	let query = `SELECT id, title, description, location, date, "createdBy", topic, array_to_json(attendees) AS attendees,
+       "createdAt" FROM events`
+
 	const params = []
     const conditions = []
 
@@ -67,7 +69,8 @@ export async function insertEvent(id: number, title: string, description: string
 }
 
 export async function fetchEventById(id: number) {
-    const query = `SELECT * FROM events WHERE id = $1`
+    const query = `SELECT id, title, description, location, date, "createdBy", topic,array_to_json(attendees) AS attendees,
+       "createdAt" FROM events WHERE id = $1`
 	const event = await db.query(query, [id])
 
     if (event.length === 0) {

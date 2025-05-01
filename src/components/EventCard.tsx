@@ -69,8 +69,7 @@ const CardFooter = styled.div`
 
 const ExtraButton = styled.button`
     position: absolute;
-    bottom: 10vw;
-    background-color: rgba(255, 255, 255, 0.8);
+    bottom: 15vw;
     border: none;
     border-radius: 40%;
     width: 6.5vw;
@@ -141,6 +140,8 @@ export function EventCard({event}: {event: Event}) {
 
             <CardFooter>
                 <p>
+                    <strong>People Attending:</strong> {event.attendees.length}
+                    <br/>
                     <strong>Date:</strong> {(new Date(event.date)).toLocaleDateString()}
                     <br/>
                     <strong>Host:</strong> {eventHost}
