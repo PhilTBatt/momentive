@@ -40,6 +40,7 @@ const StyledHeading = styled.h3`
     margin: 0vw 0 0vw 0;
     color: ${props => props.theme.colours.primary};
     line-height: 1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
 const CardInformation = styled.div`
@@ -48,6 +49,7 @@ const CardInformation = styled.div`
     margin: 0;
     p {
         margin: 1vw 0 2vw 0;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
 `
 
@@ -61,12 +63,13 @@ const CardFooter = styled.div`
     filter: brightness(125%);
     p {
         margin: 0 0;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
 `
 
 const ExtraButton = styled.button`
     position: absolute;
-    top: 19vw;
+    bottom: 10vw;
     background-color: rgba(255, 255, 255, 0.8);
     border: none;
     border-radius: 40%;
@@ -78,6 +81,7 @@ const ExtraButton = styled.button`
     font-size: 4.5vw;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
     &:hover {
         background-color: rgba(255, 255, 255, 1);
     }
@@ -117,13 +121,13 @@ export function EventCard({event}: {event: Event}) {
             {user.role === 'admin' && 
                 <>
                     <ExtraButton onClick={() => setIsEditModalOpen(true)} 
-                        style={{left: '1vw', top: '29vw', backgroundColor: 'orange', color: 'white'}}
+                        style={{left: '1vw', bottom: '1vw', backgroundColor: 'orange', color: 'white'}}
                         >
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
                     <ExtraButton onClick={() => (true)} 
-                        style={{right: '1vw', top: '29vw', backgroundColor: 'blue', color: 'white'}}
+                        style={{right: '1vw', bottom: '1vw', backgroundColor: 'blue', color: 'white'}}
                         >
                         <FontAwesomeIcon icon={faUsers} />
                     </ExtraButton>

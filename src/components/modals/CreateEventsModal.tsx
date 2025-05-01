@@ -11,12 +11,23 @@ import { BlockButton } from "../styled-components/BlockButton";
 import StyledInput from "../styled-components/StyledInput";
 import BlockLabel from "../styled-components/BlockLabel";
 import StyledModal from "../styled-components/StyledModal";
+import { topics } from "@/lib/topics";
 
 const StyledHeading = styled.h3`
   	font-size: 7.5vw;
   	margin-top: 3vw;
   	margin-bottom: 4vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+`
+
+const StyledSelect = styled.select`
+    margin: 1vw auto 5vw auto;
+    font-size: 6vw;
+    padding: 2vw;
+    border: 2px solid ${props => props.theme.colours.primary};
+    border-radius: 10px;
+    background-color: ${props => props.theme.colours.background};
+    color: ${props => props.theme.colours.primary};
 `
 
 export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
@@ -72,9 +83,16 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     </BlockLabel>
                     <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
 
-                    <BlockButton type="button" onClick={() => setTopic('Sports')} style={{marginBottom: '5vw', fontSize: '6vw' }}>
-                        {topic[0].toUpperCase() + topic.slice(1)}
-                    </BlockButton>
+                    <BlockLabel htmlFor="topic">
+                        Topic
+                    </BlockLabel>
+                    <StyledSelect id="topic" value={topic} onChange={(e) => setTopic(e.target.value)}>
+                        {Object.keys(topics).map(key => (
+                            <option key={key} value={key}>
+                                {key}
+                            </option>
+                        ))}
+                    </StyledSelect>
 
                     <BlockLabel htmlFor="location">
                         Location
