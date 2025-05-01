@@ -21,8 +21,8 @@ const StyledHeading = styled.h3`
 
 const StyledText = styled.p`
 	font-size: 8vw;
-	margin-bottom: 4vw;
-	margin-top: 3vw;
+	margin-bottom: 5vw;
+	margin-top: 4vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 

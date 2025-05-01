@@ -3,7 +3,7 @@
 import styled from 'styled-components'
 
 export const BlockButton = styled.button`
-    font-size: 6vw;
+    font-size: 6.5vw;
     margin: 3vw auto 3vw auto;
     padding: 0.65vh 2vw 0.5vh 2vw;
     border: 2px solid black;

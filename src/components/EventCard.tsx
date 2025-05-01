@@ -9,6 +9,7 @@ import { EditEvent } from "./modals/EditEvent";
 import { faSquareCheck, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EventSignUp } from "./modals/EventSignUp";
+import { UnattendEvent } from "./modals/UnattendEvent";
 
 const StyledCard = styled.li`
     border: 2px solid white;
@@ -126,9 +127,9 @@ export function EventCard({event}: {event: Event}) {
                 </p>
             </CardFooter>
 
-            {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen}/>}
             {isSignUpModalOpen && <EventSignUp event={event} setIsModalOpen={setIsSignUpModalOpen}/>}
-            {isUnattendModalOpen && <EventSignUp event={event} setIsModalOpen={setIsEditModalOpen}/>}
+            {isUnattendModalOpen && <UnattendEvent event={event} setIsModalOpen={setIsUnattendModalOpen} setIsEditModalOpen={setIsEditModalOpen}/>}
+            {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen}/>}
         </StyledCard>
 
     )

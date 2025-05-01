@@ -13,7 +13,7 @@ import { postAttendee } from "@/lib/api/events";
 const StyledHeading = styled.h3`
   	text-align: center;
   	font-size: 8vw;
-    margin: 1vw 0 3vw 0;
+    margin: 2vw 0 3vw 0;
 `
 
 export function EventSignUp({event, setIsModalOpen}: {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) {

@@ -72,7 +72,7 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     </BlockLabel>
                     <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
 
-                    <BlockButton type="button" onClick={() => setTopic('topic')} style={{marginBottom: '5vw' }}>
+                    <BlockButton type="button" onClick={() => setTopic('topic')} style={{marginBottom: '5vw', fontSize: '6vw' }}>
                         {topic[0].toUpperCase() + topic.slice(1)}
                     </BlockButton>
 
@@ -87,7 +87,7 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)}
                         style={{width: '65vw'}} type="datetime-local" min={(new Date).toISOString().slice(0, 16)} required/>
 
-                    <BlockButton type="submit" style={{marginBottom: '5vw', fontSize: '7.5vw' }} disabled={isCreating}>
+                    <BlockButton type="submit" style={{marginBottom: '5.5vw' }} disabled={isCreating}>
                         {isCreating ? 'Creating...' : 'Create'}
                     </BlockButton>
                 </form>
