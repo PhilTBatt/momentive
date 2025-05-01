@@ -28,7 +28,7 @@ export default function ManageEvents() {
   	return (
     	<>
             <StyledCard>
-                <BlockButton onClick={() => setEventsModalOpen(true)} style={{width: '45vw', fontSize: '6vw'}}>
+                <BlockButton onClick={() => setEventsModalOpen(true)} style={{width: '55vw', fontSize: '8vw'}}>
                     Create Event
                 </BlockButton>
             </StyledCard>
