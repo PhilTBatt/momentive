@@ -34,6 +34,7 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
     const [topic, setTopic] = useState(event.topic)
     const [isEditing, setIsEditing] = useState(false)
     const [isDeleting, setIsDeleting] = useState(false)
+    const [isConfirmingDeleting, setIsConfirmingDeleting] = useState(false)
 	
 	async function confirmButton(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -78,6 +79,17 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
     return (
         <ModalBackground onClick={() => setIsModalOpen(false)}>
              <StyledModal onClick={(e) => e.stopPropagation()}>
+                {isConfirmingDeleting ? <>
+                    <StyledHeading>
+                        Are you sure?
+                    </StyledHeading>
+                
+                    <BlockButton onClick={removeEvent} disabled={isDeleting}
+                        style={{marginBottom: '2.5vh', marginTop: '0', width: '36vw', backgroundColor: 'red'}}>
+                            {isDeleting ? 'Deleting...' : 'Confirm'}
+                    </BlockButton>
+                </>
+                :
                 <form onSubmit={confirmButton} style={{display: 'grid' }}>
                     <StyledHeading>
                         Edit Event
@@ -113,11 +125,13 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
                     </BlockButton>
 
                     <StyledText>
-                        Or <StyledButton type="button" onClick={removeEvent} style={{fontSize: '6.5vw', marginTop: '0.75vw' , backgroundColor: 'red'}}>
-                            {isDeleting ? 'Deleting...' : 'Delete'}
+                        Or <StyledButton type="button" onClick={() => {setIsConfirmingDeleting(true)}} 
+                            style={{ marginTop: '0.75vw' , backgroundColor: 'red'}}
+                        >
+                            Delete
                         </StyledButton> the event
                     </StyledText>
-                </form>
+                </form>}
             </StyledModal>
         </ModalBackground>
     )

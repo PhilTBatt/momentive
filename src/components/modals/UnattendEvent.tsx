@@ -9,7 +9,6 @@ import StyledModal from "../styled-components/StyledModal";
 import { BlockButton } from "../styled-components/BlockButton";
 import { Event } from "@/types/event";
 import { deleteAttendee } from "@/lib/api/events";
-import { StyledButton } from "../styled-components/StyledButton";
 
 const StyledHeading = styled.h3`
   	text-align: center;
