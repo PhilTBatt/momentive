@@ -61,16 +61,6 @@ export function UnattendEvent({event, setIsModalOpen, setIsEditModalOpen}: {even
                         style={{marginBottom: '2.5vh', marginTop: '0', width: '30vw'}}>
                         {isRequestLoading ? 'Loading...' : 'Confirm'}
                     </BlockButton>
-
-                    {user.role === 'admin' && 
-                        <StyledText>
-                            Or do you want to <StyledButton onClick={editButton}
-                                style={{marginTop: '0.8vh', width: '15vw', fontSize: '6.25vw', paddingRight: '2vw'}}>
-                                    Edit
-                                </StyledButton>
-                            this event?
-                        </StyledText>
-                    }
             </StyledModal>
         </ModalBackground>
     )

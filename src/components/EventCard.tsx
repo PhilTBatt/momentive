@@ -2,14 +2,15 @@
 
 import styled from "styled-components";
 import type { Event } from "@/types/event";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getUserById } from "@/lib/api/users";
 import { topics } from "@/lib/topics";
 import { EditEvent } from "./modals/EditEvent";
-import { faSquareCheck, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faSquareCheck, faSquareMinus, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EventSignUp } from "./modals/EventSignUp";
 import { UnattendEvent } from "./modals/UnattendEvent";
+import { UserContext } from "@/contexts/User";
 
 const StyledCard = styled.li`
     border: 2px solid white;
@@ -88,6 +89,7 @@ export function EventCard({event}: {event: Event}) {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
     const [isUnattendModalOpen, setIsUnattendModalOpen] = useState(false)
+    const {user} = useContext(UserContext)
     
     async function getEventHost() {
         const user = await getUserById(event.createdBy)
@@ -104,13 +106,29 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} style={{left: '1.25vw', backgroundColor: 'red', color: 'white'}}>
+            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} style={{left: '1vw', backgroundColor: 'red', color: 'white'}}>
                     <FontAwesomeIcon icon={faSquareMinus} />
             </ExtraButton>
 
-            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} style={{right: '1.25vw', backgroundColor: 'green', color: 'white'}}>
+            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} style={{right: '1vw', backgroundColor: 'green', color: 'white'}}>
                 <FontAwesomeIcon icon={faSquareCheck} />
             </ExtraButton>
+
+            {user.role === 'admin' && 
+                <>
+                    <ExtraButton onClick={() => setIsEditModalOpen(true)} 
+                        style={{left: '1vw', top: '29vw', backgroundColor: 'orange', color: 'white'}}
+                        >
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                    </ExtraButton>
+
+                    <ExtraButton onClick={() => (true)} 
+                        style={{right: '1vw', top: '29vw', backgroundColor: 'blue', color: 'white'}}
+                        >
+                        <FontAwesomeIcon icon={faUsers} />
+                    </ExtraButton>
+                </>
+            }
 
             <CardInformation>
                 <StyledHeading>{event.title}</StyledHeading>

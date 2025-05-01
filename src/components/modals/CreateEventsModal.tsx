@@ -72,7 +72,7 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
                     </BlockLabel>
                     <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
 
-                    <BlockButton type="button" onClick={() => setTopic('topic')} style={{marginBottom: '5vw', fontSize: '6vw' }}>
+                    <BlockButton type="button" onClick={() => setTopic('Sports')} style={{marginBottom: '5vw', fontSize: '6vw' }}>
                         {topic[0].toUpperCase() + topic.slice(1)}
                     </BlockButton>
 
