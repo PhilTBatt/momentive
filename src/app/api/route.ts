@@ -9,7 +9,7 @@ export async function GET() {
 
             "GET /api/events": {
                 description: "Returns a list of events",
-                queries: ["sortBy", "order", "topic", "limit", "page"],
+                queries: ["sortBy", "order", "topic", "userId", "limit", "page"],
                 exampleResponse: {
                     events: [
                         {
@@ -30,6 +30,7 @@ export async function GET() {
                 description: "Adds a new event",
                 queries: [],
                 requestBody: {
+                    id: 2,
                     title: "Event Title",
                     description: "Event Description",
                     date: "2025-04-30",
