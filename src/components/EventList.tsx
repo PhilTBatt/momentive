@@ -15,9 +15,8 @@ const StyledList = styled.ul`
     margin: 1vw;
 `
 
-export function EventList({ events, setEvents, sortBy, order, userId, topic }: { events: Event[], 
-    setEvents: Dispatch<SetStateAction<Event[]>>, sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }
-) {
+export function EventList({ sortBy, order, userId, topic }: { sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }) {
+    const [events, setEvents] = useState<Event[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
@@ -45,7 +44,7 @@ export function EventList({ events, setEvents, sortBy, order, userId, topic }: {
            { error ? <ErrorComponent msg={error} /> :
             <StyledList>
                 {isLoading && <p>Loading...</p>}
-                    {events.map( event =>  <EventCard event={event} key={event.id}/> )}
+                    {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
             </StyledList>
             }
         </StyledCard>

@@ -26,7 +26,9 @@ const StyledText = styled.p`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 `
 
-export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) {
+export function EditEvent({event, setIsModalOpen, updateList}: 
+    {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, updateList: () => void}) 
+{
 	const [title, setTitle] = useState(event.title)
 	const [description, setDescription] = useState(event.description)
     const [location, setLocation] = useState(event.location)
@@ -44,6 +46,7 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
             await updateEvent(event.id, 
                 {title: title.trim(), description: description.trim(), date, location: location.trim(), topic})
             setIsModalOpen(false)
+            updateList()
 
         } catch (err: unknown) {
             if (err instanceof AxiosError){
@@ -63,6 +66,7 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
         try {
             await deleteEvent(event.id)
             setIsModalOpen(false)
+            updateList()
 
         } catch (err: unknown) {
             if (err instanceof AxiosError){

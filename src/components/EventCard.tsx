@@ -69,7 +69,7 @@ const CardFooter = styled.div`
 
 const ExtraButton = styled.button`
     position: absolute;
-    bottom: 14vw;
+    bottom: 14.25vw;
     border: none;
     border-radius: 40%;
     width: 6.5vw;
@@ -87,7 +87,7 @@ const ExtraButton = styled.button`
 `
 
 
-export function EventCard({event}: {event: Event}) {
+export function EventCard({event, updateList}: {event: Event, updateList: () => void}) {
     const [eventHost, setEventHost] = useState('')
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
@@ -101,7 +101,7 @@ export function EventCard({event}: {event: Event}) {
 
     useEffect(() => {
         getEventHost()
-    }, [event.createdBy])
+    }, [])
 
     const bannerImage = topics[event.topic]
 
@@ -150,9 +150,9 @@ export function EventCard({event}: {event: Event}) {
                 </p>
             </CardFooter>
 
-            {isSignUpModalOpen && <EventSignUp event={event} setIsModalOpen={setIsSignUpModalOpen}/>}
-            {isUnattendModalOpen && <UnattendEvent event={event} setIsModalOpen={setIsUnattendModalOpen}/>}
-            {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen}/>}
+            {isSignUpModalOpen && <EventSignUp event={event} setIsModalOpen={setIsSignUpModalOpen} updateList={updateList}/>}
+            {isUnattendModalOpen && <UnattendEvent event={event} setIsModalOpen={setIsUnattendModalOpen} updateList={updateList}/>}
+            {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen} updateList={updateList}/>}
         </StyledCard>
 
     )

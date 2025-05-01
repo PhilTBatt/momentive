@@ -4,9 +4,10 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { UserContext } from "@/contexts/User";
 import { useRouter } from "next/navigation";
+import { UserModal } from "./modals/UserModal";
 
 const StyledNavBar = styled.footer`
     position: fixed;
@@ -40,7 +41,8 @@ const IconWrapper = styled.div`
 
 `
 
-export default function NavBar({setIsModalOpen}: {setIsModalOpen: Dispatch<SetStateAction<boolean>> | null}) {
+export default function NavBar() {
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const router = useRouter()
     const { user } = useContext(UserContext)
 
@@ -50,24 +52,27 @@ export default function NavBar({setIsModalOpen}: {setIsModalOpen: Dispatch<SetSt
     }
 
 	return (
-        <StyledNavBar>
-            <Link href='search'>
-                <IconWrapper>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </IconWrapper>
-            </Link>
+        <>
+            {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
+            <StyledNavBar>
+                <Link href='search'>
+                    <IconWrapper>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </IconWrapper>
+                </Link>
 
-            <Link href='/'>
-                <IconWrapper>
-                    <FontAwesomeIcon icon={faHouse} />
-                </IconWrapper>
-            </Link>
-			
-            <span onClick={handleUserClick}>
-                <IconWrapper>
-                    <FontAwesomeIcon icon={faUser} />
-                </IconWrapper>
-            </span>
-        </StyledNavBar>
+                <Link href='/'>
+                    <IconWrapper>
+                        <FontAwesomeIcon icon={faHouse} />
+                    </IconWrapper>
+                </Link>
+                
+                <span onClick={handleUserClick}>
+                    <IconWrapper>
+                        <FontAwesomeIcon icon={faUser} />
+                    </IconWrapper>
+                </span>
+            </StyledNavBar>
+        </>
     )
 }

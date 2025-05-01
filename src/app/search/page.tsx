@@ -5,8 +5,7 @@ import { FilterBar } from "@/components/FilterBar";
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
 import PageWrapper from "@/components/PageWrapper";
-import { UserModal } from "@/components/modals/UserModel";
-import { Event } from "@/types/event";
+import { UserModal } from "@/components/modals/UserModal";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -19,8 +18,7 @@ const StyledHeading = styled.h2`
 
 export default function Search() {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [events, setEvents] = useState<Event[]>([])
-    const [sortBy, setSortBy] = useState('date')
+    const [sortBy, setSortBy] = useState('attendees')
     const [order, setOrder] = useState<'DESC' | 'ASC'>('DESC')
     const [topic, setTopic] = useState('')
 
@@ -32,10 +30,10 @@ export default function Search() {
                     Search Events
                 </StyledHeading>
                 <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
-                <EventList events={events} setEvents={setEvents} sortBy={sortBy} order={order} topic={topic}/>
+                <EventList sortBy={sortBy} order={order} topic={topic}/>
 			    {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             </PageWrapper>
-      		<NavBar setIsModalOpen={setIsModalOpen}/>
+      		<NavBar/>
     	</>
   	)
 }

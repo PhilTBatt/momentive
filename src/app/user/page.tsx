@@ -29,7 +29,7 @@ export default function Home() {
                 </StyledHeading>
                 <ManageEvents/>
             </PageWrapper>
-      		<NavBar setIsModalOpen={null}/>
+      		<NavBar/>
     	</>
   	)
 }

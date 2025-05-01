@@ -28,7 +28,7 @@ const Select1 = styled.select`
     font-size: 3.25vw;
 `
 const Select2 = styled(Select1)`
-    width: 20vw;
+    width: 21vw;
     margin-right: 0;
 `
 const Select3 = styled(Select1)`
@@ -41,7 +41,7 @@ export function FilterBar({ topic, setTopic, sortBy, setSortBy, order, setOrder 
         setSortBy: Dispatch<SetStateAction<string>>, order: 'DESC' | 'ASC', setOrder: Dispatch<SetStateAction<'DESC' | 'ASC'>> }
 ) {
     const sortByOptions = ['title', 'date', '"createdBy"', 'location', 'topic', 'attendees']
-    const CorrectSortByOptions = ['Title', 'Date', 'Host', 'Location', 'Topic', 'Attendees' ]
+    const CorrectSortByOptions = ['Title', 'Date', 'Host', 'Location', 'Topic', 'Attending' ]
 
     return (
         <StyledCard>

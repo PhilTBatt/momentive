@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledModal = styled.div`
+    text-align: center;
     background: ${props => props.theme.colours.primary};
     padding: 0.4vh 3vw;
     margin-bottom: 7.5vh;

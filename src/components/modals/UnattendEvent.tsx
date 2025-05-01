@@ -16,7 +16,9 @@ const StyledHeading = styled.h3`
     margin: 2vw 0 3vw 0;
 `
 
-export function UnattendEvent({event, setIsModalOpen,}: {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) {
+export function UnattendEvent({event, setIsModalOpen, updateList}: 
+    {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, updateList: () => void}) 
+{
 	const {user} = useContext(UserContext)
     const [isRequestLoading, setIsRequestLoading] = useState(false)
 	
@@ -27,6 +29,7 @@ export function UnattendEvent({event, setIsModalOpen,}: {event: Event, setIsModa
             if (user.name && user.email)
                 await deleteAttendee(event.id, {name: user.name, email: user.email})
 
+            updateList()
             setIsModalOpen(false)
         } catch (err: unknown) {
             if (err instanceof AxiosError){

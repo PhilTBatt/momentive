@@ -9,7 +9,6 @@ import BlockLabel from "../styled-components/BlockLabel";
 import StyledInput from "../styled-components/StyledInput";
 
 const StyledCard = styled.form`
-	display: grid;
 `
 
 const StyledHeading = styled.h3`
