@@ -10,7 +10,6 @@ import { BlockButton } from "../styled-components/BlockButton";
 import { Event } from "@/types/event";
 import { postAttendee } from "@/lib/api/events";
 import { UserModal } from "./UserModal";
-import { AddEventToCalender } from "./AddEventToCalender";
 
 const StyledHeading = styled.h3`
   	text-align: center;
@@ -18,13 +17,12 @@ const StyledHeading = styled.h3`
     margin: 2vw 0 3vw 0;
 `
 
-export function EventSignUp({event, setIsModalOpen, updateList}: 
+export function AddEventToCalender({event, setIsModalOpen, updateList}: 
     {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, updateList: () => void}) 
 {
 	const {user} = useContext(UserContext)
     const [isRequestLoading, setIsRequestLoading] = useState(false)
-    const [isUserModalOpen, setIsUserModelOpen] = useState(false) 
-    const [isCalenderModal, setIsCalenderModal] = useState(false)
+    const [isUserModalOpen, setIsUserModelOpen] = useState(false)
 	
 	async function confirmButton() {
         setIsRequestLoading(true)
@@ -51,11 +49,10 @@ export function EventSignUp({event, setIsModalOpen, updateList}:
 
     return (
         isUserModalOpen ? <UserModal setIsModalOpen={setIsModalOpen}/> :
-        isCalenderModal ? <AddEventToCalender setIsModalOpen={setIsModalOpen}/> :
             <ModalBackground onClick={() => setIsModalOpen(false)}>
                 <StyledModal onClick={e => e.stopPropagation()}>
                         <StyledHeading>
-                            Sign up to event?
+                            Add this event to your calender?
                         </StyledHeading>
 
                         <BlockButton onClick={confirmButton} disabled={isRequestLoading} style={{marginBottom: '1.75vh', width: '30vw'}}>

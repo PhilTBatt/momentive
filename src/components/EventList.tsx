@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Dispatch, SetStateAction } from 'react'
+import { useState, useEffect } from 'react'
 import { EventCard } from './EventCard'
 import { ErrorComponent } from './ErrorComponent'
 import styled from 'styled-components'

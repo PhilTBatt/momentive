@@ -4,7 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/User";
 import { useRouter } from "next/navigation";
 import { UserModal } from "./modals/UserModal";
