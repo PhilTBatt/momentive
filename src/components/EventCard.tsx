@@ -151,7 +151,7 @@ export function EventCard({event}: {event: Event}) {
             </CardFooter>
 
             {isSignUpModalOpen && <EventSignUp event={event} setIsModalOpen={setIsSignUpModalOpen}/>}
-            {isUnattendModalOpen && <UnattendEvent event={event} setIsModalOpen={setIsUnattendModalOpen} setIsEditModalOpen={setIsEditModalOpen}/>}
+            {isUnattendModalOpen && <UnattendEvent event={event} setIsModalOpen={setIsUnattendModalOpen}/>}
             {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen}/>}
         </StyledCard>
 
