@@ -45,7 +45,7 @@ export function EventSignUp({event, setIsModalOpen}: {event: Event, setIsModalOp
                         Sign up to event?
                     </StyledHeading>
 
-                    <BlockButton onClick={confirmButton} disabled={isRequestLoading} style={{marginBottom: '3vh', width: '30vw'}}>
+                    <BlockButton onClick={confirmButton} disabled={isRequestLoading} style={{marginBottom: '1.75vh', width: '30vw'}}>
                         {isRequestLoading ? 'Loading...' : 'Confirm'}
                     </BlockButton>
             </StyledModal>

@@ -85,7 +85,7 @@ export function EditEvent({event, setIsModalOpen}: {event: Event, setIsModalOpen
                     </StyledHeading>
                 
                     <BlockButton onClick={removeEvent} disabled={isDeleting}
-                        style={{marginBottom: '2.5vh', marginTop: '0', width: '36vw', backgroundColor: 'red'}}>
+                        style={{marginBottom: '1.75vh', marginTop: '0', width: '36vw', backgroundColor: 'red'}}>
                             {isDeleting ? 'Deleting...' : 'Confirm'}
                     </BlockButton>
                 </>

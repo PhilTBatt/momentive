@@ -69,7 +69,7 @@ const CardFooter = styled.div`
 
 const ExtraButton = styled.button`
     position: absolute;
-    bottom: 15vw;
+    bottom: 14vw;
     border: none;
     border-radius: 40%;
     width: 6.5vw;
@@ -109,24 +109,24 @@ export function EventCard({event}: {event: Event}) {
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} style={{left: '1vw', backgroundColor: 'red', color: 'white'}}>
+            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} style={{left: '1.5vw', backgroundColor: 'red', color: 'white'}}>
                     <FontAwesomeIcon icon={faSquareMinus} />
             </ExtraButton>
 
-            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} style={{right: '1vw', backgroundColor: 'green', color: 'white'}}>
+            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} style={{right: '1.5vw', backgroundColor: 'green', color: 'white'}}>
                 <FontAwesomeIcon icon={faSquareCheck} />
             </ExtraButton>
 
             {user.role === 'admin' && 
                 <>
                     <ExtraButton onClick={() => setIsEditModalOpen(true)} 
-                        style={{left: '1vw', bottom: '1vw', backgroundColor: 'orange', color: 'white'}}
+                        style={{left: '1.5vw', bottom: '1vw', backgroundColor: 'orange', color: 'white'}}
                         >
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
                     <ExtraButton onClick={() => (true)} 
-                        style={{right: '1vw', bottom: '1vw', backgroundColor: 'blue', color: 'white'}}
+                        style={{right: '1.5vw', bottom: '1vw', backgroundColor: 'blue', color: 'white'}}
                         >
                         <FontAwesomeIcon icon={faUsers} />
                     </ExtraButton>

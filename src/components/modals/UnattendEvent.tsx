@@ -16,12 +16,6 @@ const StyledHeading = styled.h3`
     margin: 2vw 0 3vw 0;
 `
 
-const StyledText = styled.p`
-  	text-align: center;
-  	font-size: 8vw;
-    margin: 1vw 0 3vw 0;
-`
-
 export function UnattendEvent({event, setIsModalOpen, setIsEditModalOpen}: {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, setIsEditModalOpen: Dispatch<SetStateAction<boolean>>}) {
 	const {user} = useContext(UserContext)
     const [isRequestLoading, setIsRequestLoading] = useState(false)
@@ -44,11 +38,6 @@ export function UnattendEvent({event, setIsModalOpen, setIsEditModalOpen}: {even
         }
     }
 
-    async function editButton() {
-        setIsModalOpen(false)
-        setIsEditModalOpen(true)
-    }
-
     return (
         <ModalBackground onClick={() => setIsModalOpen(false)}>
             <StyledModal onClick={e => e.stopPropagation()}>
@@ -57,7 +46,7 @@ export function UnattendEvent({event, setIsModalOpen, setIsEditModalOpen}: {even
                     </StyledHeading>
 
                     <BlockButton onClick={confirmButton} disabled={isRequestLoading}
-                        style={{marginBottom: '2.5vh', marginTop: '0', width: '30vw'}}>
+                        style={{marginBottom: '1.75vh', marginTop: '0', width: '30vw'}}>
                         {isRequestLoading ? 'Loading...' : 'Confirm'}
                     </BlockButton>
             </StyledModal>

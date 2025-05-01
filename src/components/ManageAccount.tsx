@@ -6,24 +6,13 @@ import styled from "styled-components";
 import { EditNameModal } from "./modals/EditName";
 import { EditEmailModal } from "./modals/EditEmail";
 import { StyledCard } from "./styled-components/StyledCard";
+import { BlockButton } from "./styled-components/BlockButton";
 
 const StyledText = styled.p`
-  	font-size: 5.5vw;
-  	margin-top: 3vw;
-  	margin-bottom: 3vw;
+  	font-size: 8vw;
+  	margin-top: 2vw;
+  	margin-bottom: 0vw;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-`
-
-const Button = styled.button`
-    padding-top: 0.5vw;
-	font-size: 4.5vw;
-    margin-left: 2vw;
-    position: relative;
-    top: -0.3vw;
-    border: 2px solid black;
-    border-radius: 4px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
 `
 
 export default function ManageAccount() {
@@ -35,17 +24,19 @@ export default function ManageAccount() {
             <StyledCard>
                 <StyledText>
                     {user.name}
-                    <Button onClick={() => setProfileModal("name")}>
-                        Edit Name
-                    </Button>
                 </StyledText>
+                <BlockButton onClick={() => setProfileModal("name")} style={{fontSize: '6vw'}}>
+                    Edit Name
+                </BlockButton>
                 
-                <StyledText>
+                <StyledText style={{fontSize: '7vw'}}>
                     {user.email}
-                    <Button onClick={() => setProfileModal("email")}>
-                        Edit Email
-                    </Button>
+                    <br/>
                 </StyledText>
+                <BlockButton onClick={() => setProfileModal("email")} style={{fontSize: '6vw'}}>
+                    Edit Email
+                </BlockButton>
+                    
                 {profileModal === "name" && <EditNameModal setProfileModal={setProfileModal}/>}
                 {profileModal === "email" && <EditEmailModal setProfileModal={setProfileModal}/>}
             </StyledCard>
