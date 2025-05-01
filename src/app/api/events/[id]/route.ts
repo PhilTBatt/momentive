@@ -1,4 +1,4 @@
-import { addAttendeeToEvent, fetchEventById, removeEventById, updateEventById } from "@/app/api/models/events";
+import { fetchEventById, removeEventById, updateEventById } from "@/app/api/models/events";
 import { CustomError } from "@/types/error";
 import { NextRequest, NextResponse } from "next/server";
 

@@ -138,7 +138,7 @@ export async function removeAttendeeFromEvent(eventId: number, name: string, ema
     if (typeof name !== 'string' || typeof email !== 'string')
         throw new CustomError(400, 'Invalid input types for name or email.')
 
-    const checkQuery = `SELECT 1 FROM events WHERE id = $3 AND attendees @> ARRAY[ROW($1, $2)::attendee]`
+    const checkQuery = `SELECT * FROM events WHERE id = $3 AND attendees @> ARRAY[ROW($1, $2)::attendee]`
     const checkResult = await db.query(checkQuery, [name, email, eventId])
 
     if (checkResult.length === 0)

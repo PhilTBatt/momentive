@@ -6,7 +6,6 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
-import StyledInput from "../styled-components/StyledInput";
 import { BlockButton } from "../styled-components/BlockButton";
 import { Event } from "@/types/event";
 import { postAttendee } from "@/lib/api/events";
