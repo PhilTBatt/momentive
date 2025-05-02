@@ -33,13 +33,15 @@ export function AddEventToCalender({event, setIsModalOpen}:
                 </StyledHeading>
 
                 <a href={googleCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Google Calendar">
-                    <Image src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
-                        alt="Google Calendar" style={{ borderRadius: '6px', margin: '2vw', border: '2px solid white'  }}/>
+                    <img src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
+                        alt="Google Calendar"
+                        style={{ borderRadius: '6px', margin: '2vw', border: '2px solid white', width: '60vw' }}/>
                 </a>
 
                 <a href={outlookCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Outlook Calendar">
                     <img src="https://img.shields.io/badge/Outlook%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
-                    alt="Outlook Calendar" style={{ borderRadius: '6px', margin: '2vw', border: '2px solid black'  }}/>
+                    alt="Outlook Calendar"
+                    style={{ borderRadius: '6px', margin: '2vw', border: '2px solid black', width: '60vw' }}/>
                 </a>
             </StyledModal>
         </ModalBackground>

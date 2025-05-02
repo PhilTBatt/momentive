@@ -69,7 +69,7 @@ export async function insertEvent(id: number, title: string, description: string
 }
 
 export async function fetchEventById(id: number) {
-    const query = `SELECT id, title, description, location, date, "createdBy", topic,array_to_json(attendees) AS attendees,
+    const query = `SELECT id, title, description, location, date, "createdBy", topic, array_to_json(attendees) AS attendees,
        "createdAt" FROM events WHERE id = $1`
 	const event = await db.query(query, [id])
 

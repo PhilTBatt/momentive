@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EventSignUp } from "./modals/EventSignUp";
 import { UnattendEvent } from "./modals/UnattendEvent";
 import { UserContext } from "@/contexts/User";
+import { AttendingList } from "./modals/AttendingList";
 
 const StyledCard = styled.li`
     border: 2px solid white;
@@ -92,6 +93,7 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
     const [isUnattendModalOpen, setIsUnattendModalOpen] = useState(false)
+    const [isAttendingListOpen, setIsAttendingListOpen] = useState(false)
     const {user} = useContext(UserContext)
     
     async function getEventHost() {
@@ -125,7 +127,7 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
-                    <ExtraButton onClick={() => (true)} 
+                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} 
                         style={{right: '1.5vw', bottom: '1vw', backgroundColor: 'blue', color: 'white'}}
                         >
                         <FontAwesomeIcon icon={faUsers} />
@@ -153,6 +155,7 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
             {isSignUpModalOpen && <EventSignUp event={event} setIsModalOpen={setIsSignUpModalOpen} updateList={updateList}/>}
             {isUnattendModalOpen && <UnattendEvent event={event} setIsModalOpen={setIsUnattendModalOpen} updateList={updateList}/>}
             {isEditModalOpen && <EditEvent event={event} setIsModalOpen={setIsEditModalOpen} updateList={updateList}/>}
+            {isAttendingListOpen && <AttendingList event={event} setIsModalOpen={setIsAttendingListOpen}/>}
         </StyledCard>
 
     )
