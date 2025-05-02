@@ -29,7 +29,7 @@ export function EventSignUp({event, setIsModalOpen, updateList}:
 	async function confirmButton() {
         setIsRequestLoading(true)
         
-        try {
+        try { 
             if (!user.name || !user.email) {
                 setIsUserModelOpen(true)
                 return
@@ -37,8 +37,7 @@ export function EventSignUp({event, setIsModalOpen, updateList}:
 
             await postAttendee(event.id, {name: user.name, email: user.email})
             updateList()
-
-            setIsModalOpen(false)
+            setIsCalenderModal(true)
         } catch (err: unknown) {
             if (err instanceof AxiosError){
                 alert(`${err.response?.data.msg}`)
@@ -51,7 +50,7 @@ export function EventSignUp({event, setIsModalOpen, updateList}:
 
     return (
         isUserModalOpen ? <UserModal setIsModalOpen={setIsModalOpen}/> :
-        isCalenderModal ? <AddEventToCalender setIsModalOpen={setIsModalOpen}/> :
+        isCalenderModal ? <AddEventToCalender event={event} setIsModalOpen={setIsModalOpen}/> :
             <ModalBackground onClick={() => setIsModalOpen(false)}>
                 <StyledModal onClick={e => e.stopPropagation()}>
                         <StyledHeading>

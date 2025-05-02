@@ -1,14 +1,10 @@
-'use client'
-
 import { UserContext } from "@/contexts/User";
-import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import { BlockButton } from "../styled-components/BlockButton";
 import { Event } from "@/types/event";
-import { postAttendee } from "@/lib/api/events";
 import { UserModal } from "./UserModal";
 
 const StyledHeading = styled.h3`
@@ -17,48 +13,37 @@ const StyledHeading = styled.h3`
     margin: 2vw 0 3vw 0;
 `
 
-export function AddEventToCalender({event, setIsModalOpen, updateList}: 
-    {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, updateList: () => void}) 
+export function AddEventToCalender({event, setIsModalOpen}: 
+    {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) 
 {
-	const {user} = useContext(UserContext)
-    const [isRequestLoading, setIsRequestLoading] = useState(false)
-    const [isUserModalOpen, setIsUserModelOpen] = useState(false)
-	
-	async function confirmButton() {
-        setIsRequestLoading(true)
-        
-        try {
-            if (!user.name || !user.email) {
-                setIsUserModelOpen(true)
-                return
-            }
+    const duration =  60
 
-            await postAttendee(event.id, {name: user.name, email: user.email})
-            updateList()
+    const startDateTime = new Date(event.date).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"
 
-            setIsModalOpen(false)
-        } catch (err: unknown) {
-            if (err instanceof AxiosError){
-                alert(`${err.response?.data.msg}`)
-            } else 
-                alert(`An error occurred\nPlease try again`)
-        } finally {
-            setIsRequestLoading(false)
-        }
-    }
+    const endDateTime = new Date(new Date(event.date).getTime() + duration * 60 * 1000)
+        .toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"
+
+    const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDateTime}/${endDateTime}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+
+    const outlookCalendarLink = `https://outlook.live.com/calendar/0/action/compose?allday=false&body=${encodeURIComponent(event.description)}&enddt=${endDateTime}&location=${encodeURIComponent(event.location)}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=${startDateTime}&subject=${encodeURIComponent(event.title)}`;
 
     return (
-        isUserModalOpen ? <UserModal setIsModalOpen={setIsModalOpen}/> :
-            <ModalBackground onClick={() => setIsModalOpen(false)}>
-                <StyledModal onClick={e => e.stopPropagation()}>
-                        <StyledHeading>
-                            Add this event to your calender?
-                        </StyledHeading>
+        <ModalBackground onClick={() => setIsModalOpen(false)}>
+            <StyledModal onClick={e => e.stopPropagation()}>
+                <StyledHeading>
+                    Add this event to your calendar?
+                </StyledHeading>
 
-                        <BlockButton onClick={confirmButton} disabled={isRequestLoading} style={{marginBottom: '1.75vh', width: '30vw'}}>
-                            {isRequestLoading ? 'Loading...' : 'Confirm'}
-                        </BlockButton>
-                </StyledModal>
-            </ModalBackground>
+                <a href={googleCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Google Calendar">
+                    <img src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
+                        alt="Google Calendar" style={{ borderRadius: '6px', margin: '2vw', border: '2px solid white'  }}/>
+                </a>
+
+                <a href={outlookCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Outlook Calendar">
+                    <img src="https://img.shields.io/badge/Outlook%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
+                    alt="Outlook Calendar" style={{ borderRadius: '6px', margin: '2vw', border: '2px solid black'  }}/>
+                </a>
+            </StyledModal>
+        </ModalBackground>
     )
 }
