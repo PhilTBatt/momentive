@@ -1,11 +1,8 @@
-import { UserContext } from "@/contexts/User";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
-import { BlockButton } from "../styled-components/BlockButton";
 import { Event } from "@/types/event";
-import { UserModal } from "./UserModal";
 
 const StyledHeading = styled.h3`
   	text-align: center;
