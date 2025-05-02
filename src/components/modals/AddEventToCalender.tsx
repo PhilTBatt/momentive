@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
