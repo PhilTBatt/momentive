@@ -7,10 +7,19 @@ import { UserCard } from '../UserCard'
 import ModalBackground from '../styled-components/ModalBackground'
 import { Dispatch, SetStateAction } from 'react'
 
+const StyledCardContainer = styled(StyledCard)`
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+`;
+
 const StyledList = styled.ul`
     list-style: none;
     padding: 2vw 1vw;
     margin: 1vw;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 40vh;
 `
 
 const StyledHeading = styled.h3`
@@ -23,14 +32,14 @@ export function AttendingList({ event, setIsModalOpen }: { event: Event, setIsMo
 
     return (
         <ModalBackground onClick={() => setIsModalOpen(false)}>
-            <StyledCard>
+            <StyledCardContainer>
                 <StyledHeading>
                     People Attending
                 </StyledHeading>
                 <StyledList>
                         {users.map( user =>  <UserCard user={user} key={user.email}/> )}
                 </StyledList>
-            </StyledCard>
+            </StyledCardContainer>
         </ModalBackground>
     )
 }

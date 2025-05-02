@@ -16,7 +16,7 @@ const StyledCard = styled.li`
 `
 
 const UserInfo = styled.h3`
-    font-size: 5vw;
+    font-size: 5.5vw;
     margin: 4vw 0.25vw 4vw 0.25vw;
 `
 
@@ -24,9 +24,9 @@ export function UserCard({user}: {user: {name: string, email: string}}) {
     return (
         <StyledCard>
             <UserInfo>
-                Name: {user.name}
+                {user.name}
                 <br/>
-                Email: {user.email}
+                {user.email}
             </UserInfo>
         </StyledCard>
 
