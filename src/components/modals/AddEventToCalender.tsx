@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import { Event } from "@/types/event";
+import Image from "next/image";
 
 const StyledHeading = styled.h3`
   	text-align: center;
@@ -32,7 +33,7 @@ export function AddEventToCalender({event, setIsModalOpen}:
                 </StyledHeading>
 
                 <a href={googleCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Google Calendar">
-                    <img src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
+                    <Image src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
                         alt="Google Calendar" style={{ borderRadius: '6px', margin: '2vw', border: '2px solid white'  }}/>
                 </a>
 

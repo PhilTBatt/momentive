@@ -19,7 +19,6 @@ const StyledText = styled.p`
 
 export default function ManageEvents() {
     const [eventsModalOpen, setEventsModalOpen] = useState(false)
-    const [events, setEvents] = useState<Event[]>([])
     const {user} = useContext(UserContext)
     const [sortBy, setSortBy] = useState('date')
     const [order, setOrder] = useState<'DESC' | 'ASC'>('DESC')
@@ -37,9 +36,9 @@ export default function ManageEvents() {
                 Your Events
             </StyledText>
             <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
-            {user.id !== null && <EventList events={events} setEvents={setEvents} userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
+            {user.id !== null && <EventList userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
             
-            {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen} setEvents={setEvents}/>}
+            {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen}/>}
     	</>
   	)
 }

@@ -30,10 +30,7 @@ const StyledSelect = styled.select`
     color: ${props => props.theme.colours.primary};
 `
 
-export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
-    setEventsModalOpen: Dispatch<SetStateAction<boolean>>,
-    setEvents: Dispatch<SetStateAction<Event[]>>
-}) {
+export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: Dispatch<SetStateAction<boolean>>}) {
 	const {user} = useContext(UserContext)
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
@@ -49,7 +46,6 @@ export function CreateEventsModal({ setEventsModalOpen, setEvents }: {
         try {
             if (user.id) {
                 const newEvent = await postNewEvent({id: user.id, title, description, location, date, topic})
-                setEvents(prev => [newEvent, ...prev])
             }
             setEventsModalOpen(false)
 
