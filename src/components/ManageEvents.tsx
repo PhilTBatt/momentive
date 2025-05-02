@@ -4,7 +4,6 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import { EventList } from "./EventList";
 import { CreateEventsModal } from "./modals/CreateEventsModal";
-import { Event } from "@/types/event";
 import { UserContext } from "@/contexts/User";
 import { FilterBar } from "./FilterBar";
 import { StyledCard } from "./styled-components/StyledCard";
