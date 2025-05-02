@@ -2,7 +2,6 @@
 
 import { UserContext } from "@/contexts/User";
 import { postNewEvent } from "@/lib/api/events";
-import { Event } from "@/types/event";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import styled from "styled-components";
@@ -45,7 +44,7 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
 
         try {
             if (user.id) {
-                const newEvent = await postNewEvent({id: user.id, title, description, location, date, topic})
+                await postNewEvent({id: user.id, title, description, location, date, topic})
             }
             setEventsModalOpen(false)
 
