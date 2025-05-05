@@ -1,9 +1,9 @@
 'use client'
 
-import Header from "@/components/Header";
+import Header from "@/components/MobileHeader";
 import ManageAccount from "@/components/ManageAccount";
 import ManageEvents from "@/components/ManageEvents";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/MobileNavBar";
 import PageWrapper from "@/components/PageWrapper";
 import styled from "styled-components";
 
@@ -18,7 +18,6 @@ export default function Home() {
     
   	return (
     	<>
-      	    <Header/>
             <PageWrapper>
                 <StyledHeading>
                     Manage Account
@@ -29,7 +28,6 @@ export default function Home() {
                 </StyledHeading>
                 <ManageEvents/>
             </PageWrapper>
-      		<NavBar/>
     	</>
   	)
 }

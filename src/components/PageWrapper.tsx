@@ -1,16 +1,19 @@
 'use client'
 
-import styled from 'styled-components';
 import { ReactNode } from 'react';
-
-const StyledWrapper = styled.div`
-    padding-top: 20vw;
-    padding-bottom: 27vw;
-    display: grid;
-    place-items: center;
-    text-align: center;
-`
+import MobileWrapper from './MobileWrapper';
+import DesktopWrapper from './DesktopWrapper';
 
 export default function PageWrapper({ children }: { children: ReactNode }) {
-    return <StyledWrapper>{children}</StyledWrapper>
+    return (
+        <>
+            <MobileWrapper>
+                {children}
+            </MobileWrapper>
+
+            <DesktopWrapper>
+                {children}
+            </DesktopWrapper>
+        </>
+    )
 }

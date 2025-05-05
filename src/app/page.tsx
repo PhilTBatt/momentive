@@ -1,8 +1,8 @@
 'use client'
 
 import { EventList } from "@/components/EventList";
-import Header from "@/components/Header";
-import NavBar from "@/components/NavBar";
+import Header from "@/components/MobileHeader";
+import NavBar from "@/components/MobileNavBar";
 import PageWrapper from "@/components/PageWrapper";
 import styled from "styled-components";
 
@@ -31,8 +31,6 @@ export default function Home() {
 
   	return (
     	<>
-      		<Header/>
-
             <PageWrapper>
 				<StyledHeading>
                     Welcome!
@@ -49,8 +47,6 @@ export default function Home() {
                 </StyledText>
 				<EventList sortBy='date' order='DESC'/>
 			</PageWrapper>
-
-      		<NavBar/>
     	</>
   	)
 }

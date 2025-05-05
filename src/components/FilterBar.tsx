@@ -7,8 +7,8 @@ import styled from 'styled-components'
 const StyledCard = styled.div`
     background: ${props => props.theme.colours.secondary};
     border-radius: 12px;
-    border: 3px solid ${props => props.theme.colours.primary};
-    padding: 0vw 2vw;
+    border: 2px solid ${props => props.theme.colours.primary};
+    padding: 0.5vw 1.5vw;
     margin-bottom: 4vw;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 `
@@ -20,7 +20,7 @@ const Label = styled.label`
 const Select1 = styled.select`
     background: ${props => props.theme.colours.secondary};
     border: 1px solid ${props => props.theme.colours.primary};
-    width: 17vw;
+    width: 16vw;
     padding: 0.5vw 0vw 0.5vw 0.5vw;
     margin: 1vw;
     margin-right: 2vw;
@@ -32,7 +32,7 @@ const Select2 = styled(Select1)`
     margin-right: 0;
 `
 const Select3 = styled(Select1)`
-    width: 8vw;
+    width: 9vw;
     margin-right: 0;
 `
 

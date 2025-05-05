@@ -2,8 +2,8 @@
 
 import { EventList } from "@/components/EventList";
 import { FilterBar } from "@/components/FilterBar";
-import Header from "@/components/Header";
-import NavBar from "@/components/NavBar";
+import Header from "@/components/MobileHeader";
+import NavBar from "@/components/MobileNavBar";
 import PageWrapper from "@/components/PageWrapper";
 import { UserModal } from "@/components/modals/UserModal";
 import { useState } from "react";
@@ -24,7 +24,6 @@ export default function Search() {
 
   	return (
     	<>
-      		<Header/>
             <PageWrapper>
                 <StyledHeading>
                     Search Events
@@ -33,7 +32,6 @@ export default function Search() {
                 <EventList sortBy={sortBy} order={order} topic={topic}/>
 			    {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             </PageWrapper>
-      		<NavBar/>
     	</>
   	)
 }
