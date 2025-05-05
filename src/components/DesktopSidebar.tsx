@@ -9,24 +9,24 @@ import { UserContext } from "@/contexts/User";
 import { useRouter } from "next/navigation";
 import { UserModal } from "./modals/UserModal";
 
-const StyledSidebar = styled.footer`
+const StyledSidebar = styled.section`
     position: fixed;
     left: 0;
     top: 0;
     width: 20%;
     height: 100%;
-    padding: 0vw;
+    border: 4px solid white;
+    box-sizing: border-box;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
     background: ${props => props.theme.colours.primary};
+    padding: 0vw;
     display: grid;
     justify-items: center;
     text-align: center;
-    border: 2px solid white;
-    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
     z-index: 9;
-    box-sizing: border-box;
 `
 
-const IconWrapper = styled.div`
+const IconWrapper = styled.span`
     margin-top: 2px;
     font-size: 5vw;
     line-height: 1.1;

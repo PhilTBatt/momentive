@@ -19,7 +19,7 @@ const StyledHeader = styled.img`
         width: 79.25vw;
         height: 15vh;
         left: 20%;
-        border: 2px solid white;
+        border: 4px solid white;
         border-left: 0;
     }
 `
