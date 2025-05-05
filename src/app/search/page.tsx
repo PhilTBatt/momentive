@@ -2,8 +2,6 @@
 
 import { EventList } from "@/components/EventList";
 import { FilterBar } from "@/components/FilterBar";
-import Header from "@/components/Header";
-import NavBar from "@/components/MobileNavBar";
 import PageWrapper from "@/components/PageWrapper";
 import { UserModal } from "@/components/modals/UserModal";
 import { useState } from "react";

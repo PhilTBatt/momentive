@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import { Event } from "@/types/event";
-import Image from "next/image";
 
 const StyledHeading = styled.h3`
   	text-align: center;

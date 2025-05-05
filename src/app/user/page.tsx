@@ -1,9 +1,7 @@
 'use client'
 
-import Header from "@/components/Header";
 import ManageAccount from "@/components/ManageAccount";
 import ManageEvents from "@/components/ManageEvents";
-import NavBar from "@/components/MobileNavBar";
 import PageWrapper from "@/components/PageWrapper";
 import styled from "styled-components";
 
