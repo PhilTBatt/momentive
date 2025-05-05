@@ -4,18 +4,24 @@ import styled from "styled-components";
 
 const StyledHeader = styled.img`
     position: fixed;
-    left: 50%;
+    left: -15.25%;
     top: 0;
-    transform: translateX(-48%);
     width: 130vw;
-  	padding: 0vw;
     height: 12vh;
+    padding: 0vw;
     object-fit: cover;
-    border: 2px solid black;
     box-sizing: border-box;
     z-index: 10;
-    filter: brightness(120%);
+    filter: brightness(125%);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    @media (min-width: 768px) {
+        width: 79.25vw;
+        height: 15vh;
+        left: 20%;
+        border: 2px solid white;
+        border-left: 0;
+    }
 `
 
 export default function Header() {

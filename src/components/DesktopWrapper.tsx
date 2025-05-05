@@ -2,12 +2,11 @@
 
 import styled from 'styled-components';
 import { ReactNode } from 'react';
-import Header from './MobileHeader';
+import Header from './Header';
 import SideBar from './DesktopSidebar';
 
 const DesktopStyledWrapper = styled.div`
-    padding-top: 23vw;
-    padding-bottom: 27vw;
+    padding: 10vh 0% 5vh 19%;
     display: grid;
     place-items: center;
     text-align: center;

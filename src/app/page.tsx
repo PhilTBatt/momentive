@@ -1,7 +1,7 @@
 'use client'
 
 import { EventList } from "@/components/EventList";
-import Header from "@/components/MobileHeader";
+import Header from "@/components/Header";
 import NavBar from "@/components/MobileNavBar";
 import PageWrapper from "@/components/PageWrapper";
 import styled from "styled-components";

@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import { ReactNode } from 'react';
-import Header from './MobileHeader';
+import Header from './Header';
 import NavBar from './MobileNavBar';
 
 const StyledWrapper = styled.div`

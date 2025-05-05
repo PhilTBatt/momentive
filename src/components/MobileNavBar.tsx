@@ -38,7 +38,9 @@ const IconWrapper = styled.div`
         stroke: black;
         stroke-width: 5;
     }
-
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 export default function NavBar() {
