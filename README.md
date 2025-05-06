@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Momentive
+A community-driven events platform where users can browse upcoming events and staff members can create and manage them.
 
-## Getting Started
+🌐 Live Demo
+Access the live application here: momentive.vercel.app
 
-First, run the development server:
+🛠️ Features
+Event Listings: Users can view a list of upcoming community events.
 
-```bash
+Staff Management: Staff members have the capability to create and manage events. Staff Code is 1234.
+
+Prerequisites
+Ensure you have the following installed:
+
+Node.js (v18 or higher)
+
+npm (v9 or higher)
+
+Installation
+
+Clone the repository:
+git clone https://github.com/PhilTBatt/momentive.git
+cd momentive
+
+Install dependencies:
+npm install
+
+Run the development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🧪 Test Account Access
+Note: Authentication functionality is not currently implemented in this project.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧰 Technologies Used
+Frontend: Next.js with TypeScript
 
-## Learn More
+Styling: Styled Components
 
-To learn more about Next.js, take a look at the following resources:
+Font: Geist
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📄 License
+This project is licensed under the MIT License.
