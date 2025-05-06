@@ -1,6 +1,6 @@
 'use client';
 
-import { EventList } from "@/components/EventList";
+import { EventsList } from "@/components/EventsList";
 import { FilterBar } from "@/components/FilterBar";
 import PageWrapper from "@/components/PageWrapper";
 import { UserModal } from "@/components/modals/UserModal";
@@ -20,7 +20,7 @@ export default function Search() {
                     Search Events
                 </StyledHeading>
                 <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
-                <EventList sortBy={sortBy} order={order} topic={topic}/>
+                <EventsList sortBy={sortBy} order={order} topic={topic}/>
 			    {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             </PageWrapper>
     	</>

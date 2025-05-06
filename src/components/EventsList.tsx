@@ -9,13 +9,26 @@ import { AxiosError } from 'axios'
 import type { Event } from "@/types/event"
 import { StyledCard } from './styled-components/StyledCard'
 
+const ThinStyledCard = styled(StyledCard)`
+    @media (min-width: 768px) {
+        width: 33.5vw;
+        padding: 0vh 0vw;
+    }
+`
+
 const StyledList = styled.ul`
     list-style: none;
     padding: 2vw 1vw;
     margin: 1vw;
+
+    @media (min-width: 768px) {
+        display: grid;
+        place-items: center;
+        padding: 1.5vh 0;
+    }
 `
 
-export function EventList({ sortBy, order, userId, topic }: { sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }) {
+export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }) {
     const [events, setEvents] = useState<Event[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
@@ -40,13 +53,13 @@ export function EventList({ sortBy, order, userId, topic }: { sortBy: string, or
     }, [sortBy, order, topic])
 
     return (
-        <StyledCard>
+        <ThinStyledCard>
            { error ? <ErrorComponent msg={error} /> :
             <StyledList>
                 {isLoading && <p>Loading...</p>}
                     {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
             </StyledList>
             }
-        </StyledCard>
+        </ThinStyledCard>
     )
 }

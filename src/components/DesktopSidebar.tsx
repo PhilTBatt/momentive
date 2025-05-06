@@ -13,7 +13,7 @@ const StyledSidebar = styled.section`
     position: fixed;
     left: 0;
     top: 0;
-    width: 20%;
+    width: 18%;
     height: 100%;
     border: 4px solid white;
     box-sizing: border-box;
@@ -44,9 +44,9 @@ const StyledText = styled.p`
     font-size: 3vw;
     color: ${props => props.theme.colours.secondary};
     &:hover {
-        color: ${props => props.theme.colours.secondary};  // Change the color when hovered
-        transform: scale(1.2);  // Slightly scale the icon when hovered
-        cursor: pointer;  // Change the cursor to indicate it's clickable
+        color: ${props => props.theme.colours.secondary};
+        transform: scale(1.2);
+        cursor: pointer;
     }
 `
 

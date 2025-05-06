@@ -24,6 +24,11 @@ const StyledCard = styled.li`
     &:last-child {
         margin-bottom: 0;
     }
+
+    @media (min-width: 768px) {
+        width: 30vw;
+        margin: 0 0 4vh 0;
+    }
 `
 
 const BannerImage = styled.img`
@@ -34,6 +39,10 @@ const BannerImage = styled.img`
     border-radius: 10px;
     border: 2px solid white;
     box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        height: 12vh;
+    }
 `
 
 const StyledHeading = styled.h3`
@@ -42,6 +51,11 @@ const StyledHeading = styled.h3`
     color: ${props => props.theme.colours.primary};
     line-height: 1;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    @media (min-width: 768px) {
+        font-size: 2.5vw;
+        margin: 1vh 0 0vw 0;
+    }
 `
 
 const CardInformation = styled.div`
@@ -51,6 +65,13 @@ const CardInformation = styled.div`
     p {
         margin: 1vw 0 2vw 0;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (min-width: 768px) {
+        font-size: 1.25vw;
+        p {
+            margin: 1vh 0 1.5vh 0;
+        }
     }
 `
 
@@ -66,11 +87,25 @@ const CardFooter = styled.div`
         margin: 0 0;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
+
+    @media (min-width: 768px) {
+        font-size: 1.1vw;
+    }
 `
 
-const ExtraButton = styled.button`
+type ExtraButtonProps = {
+    $left?: string;
+    $right?: string;
+    $bottom?: string;
+    $bg?: string;
+}
+  
+const ExtraButton = styled.button<ExtraButtonProps>`
+    font-size: 4.5vw;
     position: absolute;
-    bottom: 14.25vw;
+    bottom: ${props => props.$bottom || '14.25vw'};
+    left: ${props => props.$left || 'auto'};
+    right: ${props => props.$right || 'auto'};
     border: none;
     border-radius: 40%;
     width: 6.5vw;
@@ -78,14 +113,24 @@ const ExtraButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4.5vw;
     cursor: pointer;
+    background-color: ${props => props.$bg || 'gray'};
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    &:hover {
-        background-color: rgba(255, 255, 255, 1);
+  
+    svg {
+        color: white;
     }
-`
+  
+    @media (min-width: 768px) {
+        font-size: 1.4vw;
+        width: 2vw;
+        height: 2vw;
+        bottom: ${props => props.$bottom || '4.5vw'};
+        left: ${props => props.$left || 'auto'};
+        right: ${props => props.$right || 'auto'};
+    }
+`;
 
 
 export function EventCard({event, updateList}: {event: Event, updateList: () => void}) {
@@ -111,25 +156,21 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} style={{left: '1.5vw', backgroundColor: 'red', color: 'white'}}>
-                    <FontAwesomeIcon icon={faSquareMinus} />
+            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} $left="0.5vw" $bg="red">
+                <FontAwesomeIcon icon={faSquareMinus} />
             </ExtraButton>
-
-            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} style={{right: '1.5vw', backgroundColor: 'green', color: 'white'}}>
+ 
+            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} $right="0.5vw" $bg="green">
                 <FontAwesomeIcon icon={faSquareCheck} />
             </ExtraButton>
 
             {user.role === 'admin' && 
                 <>
-                    <ExtraButton onClick={() => setIsEditModalOpen(true)} 
-                        style={{left: '1.5vw', bottom: '1vw', backgroundColor: 'orange', color: 'white'}}
-                        >
+                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="0.5vw" $bottom="0.5vw" $bg="orange">
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
-                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} 
-                        style={{right: '1.5vw', bottom: '1vw', backgroundColor: 'blue', color: 'white'}}
-                        >
+                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="0.5vw" $bottom="0.5vw" $bg="blue">
                         <FontAwesomeIcon icon={faUsers} />
                     </ExtraButton>
                 </>

@@ -2,7 +2,7 @@
 
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { EventList } from "./EventList";
+import { EventsList } from "./EventsList";
 import { CreateEventsModal } from "./modals/CreateEventsModal";
 import { UserContext } from "@/contexts/User";
 import { FilterBar } from "./FilterBar";
@@ -35,7 +35,7 @@ export default function ManageEvents() {
                 Your Events
             </StyledText>
             <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
-            {user.id !== null && <EventList userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
+            {user.id !== null && <EventsList userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
             
             {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen}/>}
     	</>

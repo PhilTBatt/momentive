@@ -10,4 +10,8 @@ export const StyledCard = styled.div`
 	width: 90vw;
     border: 2px solid black;
     
+    @media (min-width: 768px) {
+        width: 75vw;
+        padding: 0vh 0vw;
+    }
 `
