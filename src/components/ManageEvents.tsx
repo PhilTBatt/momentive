@@ -2,7 +2,7 @@
 
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { EventsList } from "./EventsList";
+import { WideEventsList } from "./WideEventsList";
 import { CreateEventsModal } from "./modals/CreateEventsModal";
 import { UserContext } from "@/contexts/User";
 import { FilterBar } from "./FilterBar";
@@ -11,7 +11,20 @@ import { BlockButton } from "./styled-components/BlockButton";
 
 const Card = styled(StyledCard)`
     @media (min-width: 768px) {
-        width: 40vw
+        width: 26vw;
+        margin-top: 4vh;
+        padding: 0;
+    }
+`
+
+const CreateButton = styled(BlockButton)`
+    width: 55vw;
+    font-size: 8vw;
+
+    @media (min-width: 768px) {
+        font-size: 2.5vw;
+        width: 20vw;
+        margin: 2.5vh 0 2.5vh 0;
     }
 `
 
@@ -22,19 +35,8 @@ const StyledText = styled.p`
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 
     @media (min-width: 768px) {
-        font-size: 3vw;
-        margin: 3vh 0 3vh 0;
-    }
-`
-
-const CreateButton = styled(BlockButton)`
-    width: 55vw;
-    font-size: 8vw;
-
-    @media (min-width: 768px) {
-        font-size: 3vw;
-        width: 30vw;
-        margin: 3vh 0 3vh 0;
+        font-size: 3.25vw;
+        margin: 6vh 0 1vh 0;
     }
 `
 
@@ -57,7 +59,7 @@ export default function ManageEvents() {
                 Your Events
             </StyledText>
             <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
-            {user.id !== null && <EventsList userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
+            {user.id !== null && <WideEventsList userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
             
             {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen}/>}
     	</>

@@ -11,7 +11,8 @@ const Heading1 = styled(StyledHeading)`
     margin-bottom: 1.5vh;
 
     @media (min-width: 768px) {
-        font-size: 4.5vw;
+        font-size: 4vw;
+        margin-top: 1vh;
     }
 `
 
@@ -22,6 +23,7 @@ const Heading2 = styled(StyledHeading)`
 
     @media (min-width: 768px) {
         font-size: 4vw;
+        margin-top: 8vh;
     }
 `
 

@@ -11,7 +11,7 @@ import { StyledCard } from './styled-components/StyledCard'
 
 const ThinStyledCard = styled(StyledCard)`
     @media (min-width: 768px) {
-        width: 33vw;
+        width: 65vw;
         padding: 0vh 0vw;
     }
 `
@@ -23,12 +23,14 @@ const StyledList = styled.ul`
 
     @media (min-width: 768px) {
         display: grid;
+        grid-template-columns: 1fr 1fr;
         place-items: center;
         padding: 1vh 0vw;
+        gap: 1vw;
     }
 `
 
-export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }) {
+export function WideEventsList({ sortBy, order, userId, topic }: { sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }) {
     const [events, setEvents] = useState<Event[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)

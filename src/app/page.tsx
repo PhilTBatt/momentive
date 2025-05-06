@@ -13,7 +13,7 @@ const StyledSubText = styled.p`
         
     @media (min-width: 768px) {
         font-size: 2.5vw;
-        margin: 2vh 1vw 0 1vw;
+        margin: 2vh 2vw 0 2vw;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 `
@@ -38,15 +38,15 @@ const StyledSubheading = styled.h3`
     }
 `
 
-const DesktopStyledSubheading = styled(StyledSubheading)`
-    @media (max-width: 768px) {
-        display: none
-    }
-`
-
 const DesktopOnlyWrapper = styled.span`
     @media (max-width: 768px) {
         display: none;
+    }
+`
+
+const DesktopStyledSubheading = styled(StyledSubheading)`
+    @media (max-width: 768px) {
+        display: none
     }
 `
 

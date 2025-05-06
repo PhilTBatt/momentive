@@ -11,20 +11,29 @@ import { useRouter } from 'next/navigation';
 
 const DesktopGrid = styled.span`
     @media (min-width: 768px) {
-        padding-right: 1.5vw;
         display: grid;
         grid-template-columns: 2fr 1fr;
-        place-items: center
+        place-items: center;
+        padding-right: 4vw;
+    }
+`
+
+const Card = styled(StyledCard)`
+    @media (min-width: 768px) {
+        margin-top: 4vh;
+        margin-bottom: 2vh;
+        padding-bottom: 2vh;
     }
 `
 
 const StyledText = styled.p`
   	font-size: 9vw;
-  	margin: 2vh 0 0 1vw;
+  	margin: 0.75vh 0 0 0vw;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 
     @media (min-width: 768px) {
-        font-size: 4vw;
+        font-size: 3vw;
+        margin: 2vh 0 0 1vw;
     }
 `
 
@@ -32,15 +41,23 @@ const StyledEmail = styled(StyledText)`
     font-size: 7.5vw;
 
     @media (min-width: 768px) {
-        font-size: 4vw;
+        font-size: 2.75vw;
     }
 `
 
 const EditButton = styled(BlockButton)`
     @media (min-width: 768px) {
-        font-size: 3vw;
+        font-size: 2.25vw;
         margin-top: 2.25vh;
-        padding: 0vh 0.75vw 0vh 0.75vw;
+        padding: 0.5vh 1vw 0.5vh 1vw;
+    }
+`
+
+const SignOutCard = styled(StyledCard)`
+    margin-top: 2vh;
+
+    @media (min-width: 768px) {
+        width: 20vw;
     }
 `
 
@@ -50,9 +67,7 @@ const SignOutButton = styled(BlockButton)`
   	margin-bottom: 1.75vh;
 
     @media (min-width: 768px) {
-        font-size: 3.5vw;
-        margin-top: 2vh;
-  	    margin-bottom: 4vh;
+        font-size: 2vw;
     }
 `
 
@@ -68,7 +83,7 @@ export default function ManageAccount() {
     
   	return (
     	<>
-            <StyledCard>
+            <Card>
                 <DesktopGrid>
                     <StyledText>
                         {user.name}
@@ -85,14 +100,15 @@ export default function ManageAccount() {
                         Edit Email
                     </EditButton>
                 </DesktopGrid>
-                <br/>
+            </Card>
+            <SignOutCard>
                 <SignOutButton onClick={handleSignOut}>
                     Sign Out
                 </SignOutButton>
                     
                 {profileModal === "name" && <EditNameModal setProfileModal={setProfileModal}/>}
                 {profileModal === "email" && <EditEmailModal setProfileModal={setProfileModal}/>}
-            </StyledCard>
+            </SignOutCard>
     	</>
   	)
 }

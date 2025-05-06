@@ -11,10 +11,20 @@ const StyledCard = styled.div`
     padding: 0.5vw 1.5vw;
     margin-bottom: 4vw;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+    @media (min-width: 768px) {
+        width: 70vw;
+        padding: 0;
+        margin-top: 3vh;
+    }
 `
 
 const Label = styled.label`
     font-size: 3.75vw;
+
+    @media (min-width: 768px) {
+        font-size: 2.25vw;
+    }
 `
 
 const Select1 = styled.select`
@@ -26,14 +36,28 @@ const Select1 = styled.select`
     margin-right: 2vw;
     border-radius: 8px;
     font-size: 3.25vw;
+
+    @media (min-width: 768px) {
+        font-size: 2vw;
+        width: 19vw;
+        margin-right: 3vw;
+    }
 `
 const Select2 = styled(Select1)`
     width: 21vw;
     margin-right: 0;
+
+    @media (min-width: 768px) {
+        width: 15vw;
+    }
 `
 const Select3 = styled(Select1)`
     width: 9vw;
     margin-right: 0;
+
+    @media (min-width: 768px) {
+        width: 4vw;
+    }
 `
 
 export function FilterBar({ topic, setTopic, sortBy, setSortBy, order, setOrder }:

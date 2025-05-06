@@ -17,7 +17,7 @@ const StyledCard = styled.li`
     border: 2px solid white;
     margin: 0 0 4vw 0;
     background-color: ${props => props.theme.colours.background};
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -27,7 +27,7 @@ const StyledCard = styled.li`
 
     @media (min-width: 768px) {
         width: 30vw;
-        margin: 0 0 4vh 0;
+        margin: 0 auto 4vh auto;
     }
 `
 
@@ -36,7 +36,7 @@ const BannerImage = styled.img`
     height: 9vh;
     object-fit: cover;
     filter: brightness(80%);
-    border-radius: 10px;
+    border-radius: 8px;
     border: 2px solid white;
     box-sizing: border-box;
 
@@ -80,7 +80,7 @@ const CardFooter = styled.div`
     padding: 2vw 2vw;
     font-size: 4vw;
     border: 1px solid ${props => props.theme.colours.background};
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 0.5vw 0;
     filter: brightness(125%);
     p {
@@ -183,11 +183,17 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
 
             <CardFooter>
                 <p>
-                    <strong>People Attending:</strong> {event.attendees.length}
+                    <strong>
+                        People Attending:
+                    </strong> {event.attendees.length}
                     <br/>
-                    <strong>Date:</strong> {(new Date(event.date)).toLocaleDateString()}
+                    <strong>
+                        Date:
+                    </strong> {(new Date(event.date)).toLocaleString(undefined, {dateStyle: 'medium', timeStyle: 'short'})}
                     <br/>
-                    <strong>Host:</strong> {eventHost}
+                    <strong>
+                        Host:
+                    </strong> {eventHost}
                     <br/>
                     <strong>Location:</strong> {event.location}
                 </p>
