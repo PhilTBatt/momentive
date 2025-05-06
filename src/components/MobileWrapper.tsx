@@ -20,8 +20,8 @@ export default function MobileWrapper({ children }: { children: ReactNode }) {
     return (
         <StyledWrapper>
             <Header />
-            <NavBar />
             {children}
+            <NavBar />
         </StyledWrapper>
     )
 }

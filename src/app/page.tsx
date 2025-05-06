@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const StyledSubText = styled.p`
     font-size: 6vw;
-    margin: 0 0.5vw 2vw 0.5vw;
+    margin: 0 1vw 2vw 1vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         
     @media (min-width: 768px) {
