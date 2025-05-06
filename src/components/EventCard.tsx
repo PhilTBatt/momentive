@@ -103,7 +103,7 @@ type ExtraButtonProps = {
 const ExtraButton = styled.button<ExtraButtonProps>`
     font-size: 4.5vw;
     position: absolute;
-    bottom: ${props => props.$bottom || '14.25vw'};
+    bottom: ${props => props.$bottom || '14vw'};
     left: ${props => props.$left || 'auto'};
     right: ${props => props.$right || 'auto'};
     border: none;
@@ -127,8 +127,8 @@ const ExtraButton = styled.button<ExtraButtonProps>`
         width: 2vw;
         height: 2vw;
         bottom: ${props => props.$bottom || '4.5vw'};
-        left: ${props => props.$left || 'auto'};
-        right: ${props => props.$right || 'auto'};
+        left: ${props => props.$left ? `${parseFloat(props.$left) / 3}vw` : 'auto'};
+        right: ${props => props.$right ? `${parseFloat(props.$right) / 3}vw` : 'auto'};
     }
 `;
 
@@ -156,21 +156,21 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} $left="0.5vw" $bg="red">
+            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} $left="1.5vw" $bg="red">
                 <FontAwesomeIcon icon={faSquareMinus} />
             </ExtraButton>
  
-            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} $right="0.5vw" $bg="green">
+            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} $right="1.5vw" $bg="green">
                 <FontAwesomeIcon icon={faSquareCheck} />
             </ExtraButton>
 
             {user.role === 'admin' && 
                 <>
-                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="0.5vw" $bottom="0.5vw" $bg="orange">
+                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="1.5vw" $bottom="1vw" $bg="orange">
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
-                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="0.5vw" $bottom="0.5vw" $bg="blue">
+                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="1.5vw" $bottom="1vw" $bg="blue">
                         <FontAwesomeIcon icon={faUsers} />
                     </ExtraButton>
                 </>

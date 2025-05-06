@@ -9,11 +9,33 @@ import { FilterBar } from "./FilterBar";
 import { StyledCard } from "./styled-components/StyledCard";
 import { BlockButton } from "./styled-components/BlockButton";
 
+const Card = styled(StyledCard)`
+    @media (min-width: 768px) {
+        width: 40vw
+    }
+`
+
 const StyledText = styled.p`
   	font-size: 6.5vw;
   	margin-top: 4vw;
   	margin-bottom: 2vw;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+
+    @media (min-width: 768px) {
+        font-size: 3vw;
+        margin: 3vh 0 3vh 0;
+    }
+`
+
+const CreateButton = styled(BlockButton)`
+    width: 55vw;
+    font-size: 8vw;
+
+    @media (min-width: 768px) {
+        font-size: 3vw;
+        width: 30vw;
+        margin: 3vh 0 3vh 0;
+    }
 `
 
 export default function ManageEvents() {
@@ -25,11 +47,11 @@ export default function ManageEvents() {
 
   	return (
     	<>
-            <StyledCard>
-                <BlockButton onClick={() => setEventsModalOpen(true)} style={{width: '55vw', fontSize: '8vw'}}>
+            <Card>
+                <CreateButton onClick={() => setEventsModalOpen(true)}>
                     Create Event
-                </BlockButton>
-            </StyledCard>
+                </CreateButton>
+            </Card>
 
             <StyledText>
                 Your Events

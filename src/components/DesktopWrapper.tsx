@@ -6,7 +6,7 @@ import Header from './Header';
 import SideBar from './DesktopSidebar';
 
 const DesktopStyledWrapper = styled.div`
-    padding: 10vh 0% 5vh 18%;
+    padding: 15vh 0% 5vh 18%;
     display: grid;
     place-items: center;
     text-align: center;

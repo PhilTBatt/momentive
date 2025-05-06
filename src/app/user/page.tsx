@@ -4,20 +4,40 @@ import ManageAccount from "@/components/ManageAccount";
 import ManageEvents from "@/components/ManageEvents";
 import PageWrapper from "@/components/PageWrapper";
 import { StyledHeading } from "@/components/styled-components/StyledHeading";
+import styled from "styled-components";
+
+const Heading1 = styled(StyledHeading)`
+    font-size: 11vw;
+    margin-bottom: 1.5vh;
+
+    @media (min-width: 768px) {
+        font-size: 4.5vw;
+    }
+`
+
+const Heading2 = styled(StyledHeading)`
+    font-size: 11vw;
+    margin-bottom: 1.5vh;
+    margin-top: 2.5vh;
+
+    @media (min-width: 768px) {
+        font-size: 4vw;
+    }
+`
 
 export default function Home() {
     
   	return (
     	<>
             <PageWrapper>
-                <StyledHeading>
+                <Heading1>
                     Manage Account
-                </StyledHeading>
+                </Heading1>
                 <ManageAccount/>
-                
-                <StyledHeading>
+
+                <Heading2>
                     Manage Events
-                </StyledHeading>
+                </Heading2>
                 <ManageEvents/>
             </PageWrapper>
     	</>

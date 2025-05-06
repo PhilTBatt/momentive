@@ -6,7 +6,7 @@ import Header from './Header';
 import NavBar from './MobileNavBar';
 
 const StyledWrapper = styled.div`
-    padding-top: 23vw;
+    padding-top: 12.5vh;
     padding-bottom: 27vw;
     display: grid;
     place-items: center;

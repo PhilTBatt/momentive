@@ -14,6 +14,7 @@ const StyledHeader = styled.img`
     z-index: 10;
     filter: brightness(125%);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid black;
 
     @media (min-width: 768px) {
         width: 81.2vw;
