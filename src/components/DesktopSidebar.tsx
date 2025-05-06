@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useContext, useState } from "react";
@@ -20,15 +20,34 @@ const StyledSidebar = styled.section`
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
     background: ${props => props.theme.colours.primary};
     padding: 0vw;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-items: center;
     text-align: center;
     z-index: 9;
 `
 
+const StyledText = styled.p`
+    font-size: 2.25vw;
+    margin: 2vh 0vw 0vh 0vw;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid black;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+    vertical-align: middle;
+    &:hover {
+        color: ${props => props.theme.colours.secondary};
+        transform: scale(1.03, 1.1);
+        cursor: pointer;
+    }
+`
+
 const IconWrapper = styled.span`
-    font-size: 4vw;
-    margin: 0vh 1vw 0vh 1vw;
+    font-size: 3vw;
+    margin: 0vh 0vw 1vh 1vw;
+    display: inline-block;
+    vertical-align: middle;
     line-height: 1.1;
     color: ${props => props.theme.colours.primary};
     svg {
@@ -40,15 +59,16 @@ const IconWrapper = styled.span`
     }
 `
 
-const StyledText = styled.p`
-    font-size: 3vw;
-    color: ${props => props.theme.colours.secondary};
-    &:hover {
-        color: ${props => props.theme.colours.secondary};
-        transform: scale(1.2);
-        cursor: pointer;
-    }
+const StyledFooter = styled.footer`
+    margin: 60vh 0 0vh 0;
+    font-size: 1vw;
+    color: black;
 `
+const GlobalStyle = createGlobalStyle`
+  a {
+    text-decoration: none; /* Remove underline from all links */
+  }
+`;
 
 export default function SideBar() {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -63,6 +83,7 @@ export default function SideBar() {
 	return (
         <>
             {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
+            <GlobalStyle />
             <StyledSidebar>
                 <Link href='/'>
                     <StyledText>
@@ -90,6 +111,10 @@ export default function SideBar() {
                         </IconWrapper>
                     </StyledText>
                 </span>
+                
+                <StyledFooter>
+                    © 2025 Momentive · Designed and developed by Phil Battersby
+                </StyledFooter>
             </StyledSidebar>
         </>
     )

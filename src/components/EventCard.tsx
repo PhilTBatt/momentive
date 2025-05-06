@@ -126,7 +126,7 @@ const ExtraButton = styled.button<ExtraButtonProps>`
         font-size: 1.4vw;
         width: 2vw;
         height: 2vw;
-        bottom: ${props => props.$bottom || '4.5vw'};
+        bottom: ${props => props.$bottom ? `${parseFloat(props.$bottom) / 3}vw` : '4.5vw'};
         left: ${props => props.$left ? `${parseFloat(props.$left) / 3}vw` : 'auto'};
         right: ${props => props.$right ? `${parseFloat(props.$right) / 3}vw` : 'auto'};
     }
