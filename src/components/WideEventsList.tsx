@@ -11,7 +11,7 @@ import { StyledCard } from './styled-components/StyledCard'
 
 const ThinStyledCard = styled(StyledCard)`
     @media (min-width: 768px) {
-        width: 65vw;
+        width: 70vw;
         padding: 0vh 0vw;
     }
 `
@@ -26,7 +26,7 @@ const StyledList = styled.ul`
         grid-template-columns: 1fr 1fr;
         place-items: center;
         padding: 1vh 0vw;
-        gap: 1vw;
+        gap: 0.5vw 0;
     }
 `
 

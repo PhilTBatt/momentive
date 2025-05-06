@@ -3,12 +3,21 @@ import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import { Event } from "@/types/event";
+import ModalHeading from "../styled-components/ModalHeading";
 
-const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 8vw;
-    margin: 2vw 0 3vw 0;
-`
+const CalendarImage = styled.img`
+    border-radius: 6px;
+    border: 2px solid white;
+    width: 60vw;
+    margin-top: 3vw;
+    margin-bottom: 5vw;
+
+    @media (min-width: 768px) {
+        width: 25vw;
+        margin-top: 3vh;
+        margin-bottom: 5vh;
+    }
+`;
 
 export function AddEventToCalender({event, setIsModalOpen}: 
     {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) 
@@ -27,20 +36,18 @@ export function AddEventToCalender({event, setIsModalOpen}:
     return (
         <ModalBackground onClick={() => setIsModalOpen(false)}>
             <StyledModal onClick={e => e.stopPropagation()}>
-                <StyledHeading>
+                <ModalHeading>
                     Add this event to your calendar?
-                </StyledHeading>
+                </ModalHeading>
 
                 <a href={googleCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Google Calendar">
-                    <img src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
-                        alt="Google Calendar"
-                        style={{ borderRadius: '6px', margin: '2vw', border: '2px solid white', width: '60vw' }}/>
+                    <CalendarImage src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
+                        alt="Google Calendar"/>
                 </a>
 
                 <a href={outlookCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Outlook Calendar">
-                    <img src="https://img.shields.io/badge/Outlook%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
-                    alt="Outlook Calendar"
-                    style={{ borderRadius: '6px', margin: '2vw', border: '2px solid black', width: '60vw' }}/>
+                    <CalendarImage src="https://img.shields.io/badge/Outlook%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
+                        alt="Outlook Calendar"/>
                 </a>
             </StyledModal>
         </ModalBackground>

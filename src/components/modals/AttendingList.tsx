@@ -6,6 +6,7 @@ import { StyledCard } from '../styled-components/StyledCard'
 import { UserCard } from '../UserCard'
 import ModalBackground from '../styled-components/ModalBackground'
 import { Dispatch, SetStateAction } from 'react'
+import ModalHeading from '../styled-components/ModalHeading'
 
 const StyledCardContainer = styled(StyledCard)`
     display: flex;
@@ -20,11 +21,14 @@ const StyledList = styled.ul`
     overflow-y: auto;
     flex: 1;
     max-height: 40vh;
-`
 
-const StyledHeading = styled.h3`
-    font-size: 8vw;
-    margin: 2vw 0.25vw 2vw 0.25vw;
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        place-items: center;
+        padding: 1vh 0vw;
+        gap: 0.5vw 0;
+    }
 `
 
 export function AttendingList({ event, setIsModalOpen }: { event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>> }) {
@@ -33,9 +37,9 @@ export function AttendingList({ event, setIsModalOpen }: { event: Event, setIsMo
     return (
         <ModalBackground onClick={() => setIsModalOpen(false)}>
             <StyledCardContainer>
-                <StyledHeading>
+                <ModalHeading>
                     People Attending
-                </StyledHeading>
+                </ModalHeading>
                 <StyledList>
                         {users.map( user =>  <UserCard user={user} key={user.email}/> )}
                 </StyledList>

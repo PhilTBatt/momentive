@@ -8,6 +8,7 @@ import { EditEmailModal } from "./modals/EditEmail";
 import { StyledCard } from "./styled-components/StyledCard";
 import { BlockButton } from "./styled-components/BlockButton";
 import { useRouter } from 'next/navigation';
+import { StyledButton } from "./styled-components/StyledButton";
 
 const DesktopGrid = styled.span`
     @media (min-width: 768px) {
@@ -45,7 +46,7 @@ const StyledEmail = styled(StyledText)`
     }
 `
 
-const EditButton = styled(BlockButton)`
+const EditButton = styled(StyledButton)`
     @media (min-width: 768px) {
         font-size: 2.25vw;
         margin-top: 2.25vh;
@@ -67,7 +68,7 @@ const SignOutButton = styled(BlockButton)`
   	margin-bottom: 1.75vh;
 
     @media (min-width: 768px) {
-        font-size: 2vw;
+        font-size: 2.25vw;
     }
 `
 

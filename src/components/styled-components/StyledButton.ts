@@ -8,12 +8,13 @@ export const StyledButton = styled.button`
     margin-top: 0.25vw;
     vertical-align: top;
     border-radius: 6px;
-    border: 1px solid black;
+    border: 2px solid black;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 
     @media (min-width: 768px) {
         font-size: 1.75vw;
         margin-top: 0.15vh;
+        border-radius: 1vw;
     }
 `

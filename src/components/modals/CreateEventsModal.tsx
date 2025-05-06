@@ -11,12 +11,14 @@ import StyledInput from "../styled-components/StyledInput";
 import BlockLabel from "../styled-components/BlockLabel";
 import StyledModal from "../styled-components/StyledModal";
 import { topics } from "@/lib/topics";
+import ModalHeading from "../styled-components/ModalHeading";
 
-const StyledHeading = styled.h3`
-  	font-size: 7.5vw;
-  	margin-top: 3vw;
-  	margin-bottom: 4vw;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+const Input = styled(StyledInput)`
+    @media (min-width: 768px) {
+        margin-top: 1vh;
+        margin-bottom: 3vh;
+        padding: 0.25vw;
+    }
 `
 
 const StyledSelect = styled.select`
@@ -27,6 +29,13 @@ const StyledSelect = styled.select`
     border-radius: 10px;
     background-color: ${props => props.theme.colours.background};
     color: ${props => props.theme.colours.primary};
+
+    @media (min-width: 768px) {
+        font-size: 1.5vw;
+        margin-top: 1vh;
+        margin-bottom: 2vh;
+        padding: 0.5vw;
+    }
 `
 
 export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: Dispatch<SetStateAction<boolean>>}) {
@@ -64,19 +73,19 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
         <ModalBackground onClick={() => setEventsModalOpen(false)}>
             <StyledModal>
                 <form onSubmit={createEvent} onClick={(e) => e.stopPropagation()} style={{display: 'grid' }}>
-                    <StyledHeading>
+                    <ModalHeading>
                         Create your event
-                    </StyledHeading>
+                    </ModalHeading>
 
                     <BlockLabel htmlFor="name">
                         Title
                     </BlockLabel>
-                    <StyledInput id="name" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+                    <Input id="name" value={title} onChange={(e) => setTitle(e.target.value)} required/>
 
                     <BlockLabel htmlFor="description">
                         Description
                     </BlockLabel>
-                    <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
+                    <Input id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
 
                     <BlockLabel htmlFor="topic">
                         Topic
@@ -92,15 +101,15 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
                     <BlockLabel htmlFor="location">
                         Location
                     </BlockLabel>
-                    <StyledInput id="name" value={location} onChange={(e) => setLocation(e.target.value)} required/>
+                    <Input id="name" value={location} onChange={(e) => setLocation(e.target.value)} required/>
                         
                     <BlockLabel htmlFor="date">
                         Date
                     </BlockLabel>
-                    <StyledInput id="name" value={date} onChange={(e) => setDate(e.target.value)}
-                        style={{width: '65vw'}} type="datetime-local" min={(new Date).toISOString().slice(0, 16)} required/>
+                    <Input id="name" value={date} onChange={(e) => setDate(e.target.value)}
+                        type="datetime-local" min={(new Date).toISOString().slice(0, 16)} required/>
 
-                    <BlockButton type="submit" style={{marginBottom: '5.5vw' }} disabled={isCreating}>
+                    <BlockButton type="submit" disabled={isCreating}>
                         {isCreating ? 'Creating...' : 'Create'}
                     </BlockButton>
                 </form>

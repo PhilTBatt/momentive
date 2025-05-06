@@ -18,7 +18,7 @@ const StyledHeader = styled.img`
 
     @media (min-width: 768px) {
         width: 81.2vw;
-        height: 15vh;
+        height: 18vh;
         left: 18%;
         border: 4px solid white;
         border-left: 0;

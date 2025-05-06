@@ -4,16 +4,18 @@ import { UserContext } from "@/contexts/User";
 import { updateUser } from "@/lib/api/users";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import StyledInput from "../styled-components/StyledInput";
 import { BlockButton } from "../styled-components/BlockButton";
+import ModalHeading from "../styled-components/ModalHeading";
+import styled from "styled-components";
 
-const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 8vw;
-    margin: 1vw 0 3vw 0;
+const Input = styled(StyledInput)`
+    @media (min-width: 768px) {
+        font-size: 2.5vw;
+        width: 30vw;
+    }
 `
 
 export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetStateAction<null | string>>}) {
@@ -43,15 +45,13 @@ export function EditNameModal({setProfileModal}: {setProfileModal: Dispatch<SetS
     return (
         <ModalBackground onClick={() => setProfileModal(null)}>
             <StyledModal onClick={(e) => e.stopPropagation()}>
-                <StyledHeading>
+                <ModalHeading>
                     Change your name 
-                </StyledHeading>
+                </ModalHeading>
 
-                <StyledInput id="name" value={name} onChange={(e) => setName(e.target.value)}
-                    style={{fontSize: '6vw', width: '70vw'}}
-                />
+                <Input id="name" value={name} onChange={(e) => setName(e.target.value)}/>
 
-                <BlockButton onClick={confirmButton} style={{marginBottom: '1.75vh', width: '30vw'}} disabled={isRequestLoading}>
+                <BlockButton onClick={confirmButton}>
                     {isRequestLoading ? 'Loading...' : 'Confirm'}
                 </BlockButton>
             </StyledModal>

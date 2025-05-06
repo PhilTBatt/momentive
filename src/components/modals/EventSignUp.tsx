@@ -3,7 +3,6 @@
 import { UserContext } from "@/contexts/User";
 import { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import styled from "styled-components";
 import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import { BlockButton } from "../styled-components/BlockButton";
@@ -11,12 +10,7 @@ import { Event } from "@/types/event";
 import { postAttendee } from "@/lib/api/events";
 import { UserModal } from "./UserModal";
 import { AddEventToCalender } from "./AddEventToCalender";
-
-const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 8vw;
-    margin: 2vw 0 3vw 0;
-`
+import ModalHeading from "../styled-components/ModalHeading";
 
 export function EventSignUp({event, setIsModalOpen, updateList}: 
     {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, updateList: () => void}) 
@@ -53,11 +47,11 @@ export function EventSignUp({event, setIsModalOpen, updateList}:
         isCalenderModal ? <AddEventToCalender event={event} setIsModalOpen={setIsModalOpen}/> :
             <ModalBackground onClick={() => setIsModalOpen(false)}>
                 <StyledModal onClick={e => e.stopPropagation()}>
-                        <StyledHeading>
+                        <ModalHeading>
                             Sign up to event?
-                        </StyledHeading>
+                        </ModalHeading>
 
-                        <BlockButton onClick={confirmButton} disabled={isRequestLoading} style={{marginBottom: '1.75vh', width: '30vw'}}>
+                        <BlockButton onClick={confirmButton} disabled={isRequestLoading}>
                             {isRequestLoading ? 'Loading...' : 'Confirm'}
                         </BlockButton>
                 </StyledModal>

@@ -7,22 +7,10 @@ import { StyledButton } from "../styled-components/StyledButton";
 import { BlockButton } from "../styled-components/BlockButton";
 import BlockLabel from "../styled-components/BlockLabel";
 import StyledInput from "../styled-components/StyledInput";
+import ModalHeading from "../styled-components/ModalHeading";
 
 const StyledCard = styled.form`
     display: grid
-`
-
-const StyledHeading = styled.h3`
-  	font-size: 7.5vw;
-  	margin-top: 3vw;
-  	margin-bottom: 4vw;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-
-    @media (min-width: 768px) {
-        font-size: 2.5vw;
-        margin-top: 3vh;
-  	    margin-bottom: 4vh;
-    }
 `
 
 const StyledText = styled.p`
@@ -33,7 +21,7 @@ const StyledText = styled.p`
 
     @media (min-width: 768px) {
         font-size: 2vw;
-        margin-top: 6vh;
+        margin-top: 2vh;
         margin-bottom: 4vh;
     }
 `
@@ -55,9 +43,9 @@ export function EditUser({setModalType, setIsModalOpen}: {setModalType: Dispatch
 
     return (
         <StyledCard onSubmit={confirmButton}>
-            <StyledHeading>
+            <ModalHeading>
 				Save your information to use later
-			</StyledHeading>
+			</ModalHeading>
 
 			<BlockLabel htmlFor="name">
                 Name

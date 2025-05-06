@@ -11,12 +11,14 @@ import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import { AxiosError } from "axios";
 import { deleteEvent, updateEvent } from "@/lib/api/events";
+import ModalHeading from "../styled-components/ModalHeading";
 
-const StyledHeading = styled.h3`
-  	font-size: 7.5vw;
-  	margin-top: 3vw;
-  	margin-bottom: 4vw;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+const Input = styled(StyledInput)`
+    @media (min-width: 768px) {
+        margin-top: 0vh;
+        margin-bottom: 3vh;
+        padding: 0.25vw;
+    }
 `
 
 const StyledText = styled.p`
@@ -24,6 +26,12 @@ const StyledText = styled.p`
 	margin-bottom: 5vw;
 	margin-top: 4vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    @media (min-width: 768px) {
+        font-size: 2vw;
+        margin-top: 1vh;
+        margin-bottom: 3vh;
+    }
 `
 
 export function EditEvent({event, setIsModalOpen, updateList}: 
@@ -84,56 +92,53 @@ export function EditEvent({event, setIsModalOpen, updateList}:
         <ModalBackground onClick={() => setIsModalOpen(false)}>
              <StyledModal onClick={(e) => e.stopPropagation()}>
                 {isConfirmingDeleting ? <>
-                    <StyledHeading>
+                    <ModalHeading>
                         Are you sure?
-                    </StyledHeading>
+                    </ModalHeading>
                 
-                    <BlockButton onClick={removeEvent} disabled={isDeleting}
-                        style={{marginBottom: '1.75vh', marginTop: '0', width: '36vw', backgroundColor: 'red'}}>
+                    <BlockButton onClick={removeEvent} disabled={isDeleting}>
                             {isDeleting ? 'Deleting...' : 'Confirm'}
                     </BlockButton>
                 </>
                 :
                 <form onSubmit={confirmButton} style={{display: 'grid' }}>
-                    <StyledHeading>
+                    <ModalHeading>
                         Edit Event
-                    </StyledHeading>
+                    </ModalHeading>
 
                     <BlockLabel htmlFor="title">
                         Title
                     </BlockLabel>
-                    <StyledInput id="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+                    <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
 
                     <BlockLabel htmlFor="email">
                         Description
                     </BlockLabel>
-                    <StyledInput id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
+                    <Input id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
 
-                    <BlockButton type="button" onClick={() => setTopic('Sports')} style={{marginBottom: '5vw' }}>
+                    <BlockButton type="button" onClick={() => setTopic('Sports')}>
                         {topic[0].toUpperCase() + topic.slice(1)}
                     </BlockButton>
                     
                     <BlockLabel htmlFor="email">
                         Location
                     </BlockLabel>
-                    <StyledInput id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
+                    <Input id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
 
                     <BlockLabel htmlFor="email">
                         Date
                     </BlockLabel>
-                    <StyledInput id="date" value={date} onChange={(e) => setDate(e.target.value)} type="datetime-local"
-                        min={(new Date).toISOString().slice(0, 16)} required style={{width: '65vw'}}/>
+                    <Input id="date" value={date} onChange={(e) => setDate(e.target.value)} type="datetime-local"
+                        min={(new Date).toISOString().slice(0, 16)} required/>
                     
                     <BlockButton type="submit" disabled={isEditing}>
                         {isEditing ? 'Editing...' : 'Confirm'}
                     </BlockButton>
 
                     <StyledText>
-                        Or <StyledButton type="button" onClick={() => {setIsConfirmingDeleting(true)}} 
-                            style={{ marginTop: '0.75vw' , backgroundColor: 'red'}}
-                        >
+                        Or <StyledButton type="button" onClick={() => {setIsConfirmingDeleting(true)}} style={{backgroundColor: 'red'}}>
                             Delete
-                        </StyledButton> the event
+                        </StyledButton> this event
                     </StyledText>
                 </form>}
             </StyledModal>

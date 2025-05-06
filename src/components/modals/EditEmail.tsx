@@ -9,11 +9,13 @@ import ModalBackground from "../styled-components/ModalBackground";
 import StyledModal from "../styled-components/StyledModal";
 import StyledInput from "../styled-components/StyledInput";
 import { BlockButton } from "../styled-components/BlockButton";
+import ModalHeading from "../styled-components/ModalHeading";
 
-const StyledHeading = styled.h3`
-  	text-align: center;
-  	font-size: 8vw;
-    margin: 1vw 0 3vw 0;
+const Input = styled(StyledInput)`
+    @media (min-width: 768px) {
+        font-size: 2.5vw;
+        width: 30vw;
+    }
 `
 
 export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<SetStateAction<null | string>>}) {
@@ -43,15 +45,13 @@ export function EditEmailModal({setProfileModal}: {setProfileModal: Dispatch<Set
     return (
         <ModalBackground onClick={() => setProfileModal(null)}>
             <StyledModal onClick={e => e.stopPropagation()}>
-                    <StyledHeading>
+                    <ModalHeading>
                         Change your email
-                    </StyledHeading>
+                    </ModalHeading>
 
-                    <StyledInput id="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                        style={{fontSize: '6vw', width: '70vw'}}
-                    />
+                    <Input id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
-                    <BlockButton onClick={confirmButton} style={{marginBottom: '1.75vh', width: '30vw'}} disabled={isRequestLoading}>
+                    <BlockButton onClick={confirmButton} disabled={isRequestLoading}>
                         {isRequestLoading ? 'Loading...' : 'Confirm'}
                     </BlockButton>
             </StyledModal>
