@@ -12,6 +12,7 @@ import BlockLabel from "../styled-components/BlockLabel";
 import StyledInput from "../styled-components/StyledInput";
 
 const StyledCard = styled.form`
+    display: grid
 `
 
 const StyledHeading = styled.h3`
@@ -19,6 +20,12 @@ const StyledHeading = styled.h3`
   	margin-top: 3vw;
   	margin-bottom: 4vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    @media (min-width: 768px) {
+        font-size: 2.5vw;
+        margin-top: 3vh;
+  	    margin-bottom: 4vh;
+    }
 `
 
 const StyledText = styled.p`
@@ -26,6 +33,12 @@ const StyledText = styled.p`
 	margin-bottom: 3vw;
 	margin-top: 6vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    @media (min-width: 768px) {
+        font-size: 2vw;
+        margin-top: 6vh;
+        margin-bottom: 4vh;
+    }
 `
 
 export function SignIn({setModalType, setIsModalOpen}: {setModalType: Dispatch<SetStateAction<string>>, setIsModalOpen: Dispatch<SetStateAction<boolean>>}) {

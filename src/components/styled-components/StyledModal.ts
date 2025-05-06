@@ -10,6 +10,11 @@ const StyledModal = styled.div`
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     width: 90vw;
     z-index: 101;
+
+    @media (min-width: 768px) {
+        width: 35vw;
+        margin-bottom: 0vh;
+    }
 `
 
 export default StyledModal;

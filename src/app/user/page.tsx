@@ -14,6 +14,7 @@ export default function Home() {
                     Manage Account
                 </StyledHeading>
                 <ManageAccount/>
+                
                 <StyledHeading>
                     Manage Events
                 </StyledHeading>

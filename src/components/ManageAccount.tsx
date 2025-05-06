@@ -14,6 +14,14 @@ const StyledText = styled.p`
   	margin-top: 2vw;
   	margin-bottom: 0vw;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+
+    @media (min-width: 768px) {
+        font-size: 4vw;
+    }
+`
+
+const EditButton = styled(BlockButton)`
+    fontSize: '6.5vw'
 `
 
 export default function ManageAccount() {
@@ -32,7 +40,7 @@ export default function ManageAccount() {
                 <StyledText>
                     {user.name}
                 </StyledText>
-                <BlockButton onClick={() => setProfileModal("name")} style={{fontSize: '6vw'}}>
+                <BlockButton onClick={() => setProfileModal("name")}>
                     Edit Name
                 </BlockButton>
                 
@@ -40,7 +48,7 @@ export default function ManageAccount() {
                     {user.email}
                     <br/>
                 </StyledText>
-                <BlockButton onClick={() => setProfileModal("email")} style={{fontSize: '6vw'}}>
+                <BlockButton onClick={() => setProfileModal("email")}>
                     Edit Email
                 </BlockButton>
 

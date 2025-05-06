@@ -8,6 +8,12 @@ const StyledInput = styled.input`
     border: 2px solid black;
     border-radius: 4px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    @media (min-width: 768px) {
+        font-size: 1.5vw;
+        width: 25vw;
+        margin: 2vh auto 4vh auto;
+    }
 `
 
 export default StyledInput;
