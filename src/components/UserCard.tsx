@@ -13,25 +13,40 @@ const StyledCard = styled.li`
     &:last-child {
         margin-bottom: 0;
     }
-`
-
-const UserInfo = styled.h3`
-    font-size: 5.5vw;
-    margin: 4vw 0.25vw 4vw 0.25vw;
 
     @media (min-width: 768px) {
-        font-size: 2vw;
+        width: 23vw;
+        margin: 0 0 2vh 0;
+        &:last-child {
+            margin-bottom: 2vh;
+        }
+    }
+`
+
+const UserName = styled.h3`
+    font-size: 5.5vw;
+    margin: 2vh 0vw 2vh 0vw;
+
+    @media (min-width: 768px) {
+        font-size: 1.6vw;
+    }
+`
+
+const UserEmail = styled(UserName)`
+    @media (min-width: 768px) {
+        font-size: 1.4vw;
     }
 `
 
 export function UserCard({user}: {user: {name: string, email: string}}) {
     return (
         <StyledCard>
-            <UserInfo>
+            <UserName>
                 {user.name}
-                <br/>
+            </UserName>
+            <UserEmail>
                 {user.email}
-            </UserInfo>
+            </UserEmail>
         </StyledCard>
 
     )
