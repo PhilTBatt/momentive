@@ -34,7 +34,7 @@ const StyledText = styled.p`
 
     @media (min-width: 768px) {
         font-size: 3vw;
-        margin: 2vh 0 0 1vw;
+        margin: 3vh 0 3vh 1vw;
     }
 `
 
@@ -44,6 +44,7 @@ const StyledEmail = styled(StyledText)`
 
     @media (min-width: 768px) {
         font-size: 2.75vw;
+        margin: 1vh 0 1vh 1vw;
     }
 `
 
@@ -53,7 +54,8 @@ const EditButton = styled(StyledButton)`
 
     @media (min-width: 768px) {
         font-size: 2.25vw;
-        margin-top: 2.25vh;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
         padding: 0.5vh 1vw 0.5vh 1vw;
     }
 `

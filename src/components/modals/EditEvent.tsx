@@ -12,6 +12,7 @@ import StyledModal from "../styled-components/StyledModal";
 import { AxiosError } from "axios";
 import { deleteEvent, updateEvent } from "@/lib/api/events";
 import ModalHeading from "../styled-components/ModalHeading";
+import { topics } from "@/lib/topics";
 
 const Input = styled(StyledInput)`
     @media (min-width: 768px) {
@@ -34,6 +35,23 @@ const StyledText = styled.p`
     }
 `
 
+const StyledSelect = styled.select`
+    margin: 1vw auto 5vw auto;
+    font-size: 6vw;
+    padding: 2vw;
+    border: 2px solid ${props => props.theme.colours.primary};
+    border-radius: 10px;
+    background-color: ${props => props.theme.colours.background};
+    color: ${props => props.theme.colours.primary};
+
+    @media (min-width: 768px) {
+        font-size: 1.5vw;
+        margin-top: 1vh;
+        margin-bottom: 2vh;
+        padding: 0.5vw;
+    }
+`
+
 export function EditEvent({event, setIsModalOpen, updateList}: 
     {event: Event, setIsModalOpen: Dispatch<SetStateAction<boolean>>, updateList: () => void}) 
 {
@@ -41,7 +59,7 @@ export function EditEvent({event, setIsModalOpen, updateList}:
 	const [description, setDescription] = useState(event.description)
     const [location, setLocation] = useState(event.location)
     const [date, setDate] = useState((new Date(event.date)).toISOString().slice(0, 16))
-    const [topic, setTopic] = useState(event.topic)
+    const [topic, setTopic] = useState<string>(event.topic)
     const [isEditing, setIsEditing] = useState(false)
     const [isDeleting, setIsDeleting] = useState(false)
     const [isConfirmingDeleting, setIsConfirmingDeleting] = useState(false)
@@ -109,23 +127,30 @@ export function EditEvent({event, setIsModalOpen, updateList}:
                     <BlockLabel htmlFor="title">
                         Title
                     </BlockLabel>
-                    <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+                    <Input id="title" value={title} onChange={e => setTitle(e.target.value)} required/>
 
-                    <BlockLabel htmlFor="email">
+                    <BlockLabel htmlFor="description">
                         Description
                     </BlockLabel>
-                    <Input id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
+                    <Input id="description" value={description} onChange={e => setDescription(e.target.value)} required/>
 
-                    <BlockButton type="button" onClick={() => setTopic('Sports')}>
-                        {topic[0].toUpperCase() + topic.slice(1)}
-                    </BlockButton>
+                    <BlockLabel htmlFor="topic">
+                        Topic
+                    </BlockLabel>
+                    <StyledSelect id="topic" value={topic} onChange={e => setTopic(e.target.value)}>
+                        {Object.keys(topics).map(key => (
+                            <option key={key} value={key}>
+                                {key}
+                            </option>
+                        ))}
+                    </StyledSelect>
                     
-                    <BlockLabel htmlFor="email">
+                    <BlockLabel htmlFor="location">
                         Location
                     </BlockLabel>
                     <Input id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
 
-                    <BlockLabel htmlFor="email">
+                    <BlockLabel htmlFor="date">
                         Date
                     </BlockLabel>
                     <Input id="date" value={date} onChange={(e) => setDate(e.target.value)} type="datetime-local"

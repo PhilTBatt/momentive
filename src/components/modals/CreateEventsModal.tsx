@@ -42,7 +42,7 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
 	const {user} = useContext(UserContext)
 	const [title, setTitle] = useState("")
 	const [description, setDescription] = useState("")
-    const [topic, setTopic] = useState("topic")
+    const [topic, setTopic] = useState("")
     const [location, setLocation] = useState("")
     const [date, setDate] = useState((new Date()).toISOString().slice(0, 16))
     const [isCreating, setIsCreating] = useState(false)
@@ -72,25 +72,25 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
     return (
         <ModalBackground onClick={() => setEventsModalOpen(false)}>
             <StyledModal>
-                <form onSubmit={createEvent} onClick={(e) => e.stopPropagation()} style={{display: 'grid' }}>
+                <form onSubmit={createEvent} onClick={e => e.stopPropagation()} style={{display: 'grid' }}>
                     <ModalHeading>
                         Create your event
                     </ModalHeading>
 
-                    <BlockLabel htmlFor="name">
+                    <BlockLabel htmlFor="title">
                         Title
                     </BlockLabel>
-                    <Input id="name" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+                    <Input id="name" value={title} onChange={e => setTitle(e.target.value)} required/>
 
                     <BlockLabel htmlFor="description">
                         Description
                     </BlockLabel>
-                    <Input id="description" value={description} onChange={(e) => setDescription(e.target.value)} required/>
+                    <Input id="description" value={description} onChange={e => setDescription(e.target.value)} required/>
 
                     <BlockLabel htmlFor="topic">
                         Topic
                     </BlockLabel>
-                    <StyledSelect id="topic" value={topic} onChange={(e) => setTopic(e.target.value)}>
+                    <StyledSelect id="topic" value={topic} onChange={e => setTopic(e.target.value)}>
                         {Object.keys(topics).map(key => (
                             <option key={key} value={key}>
                                 {key}
