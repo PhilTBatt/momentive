@@ -40,6 +40,7 @@ const StyledText = styled.p`
 
 const StyledEmail = styled(StyledText)`
     font-size: 7.5vw;
+    margin-top: 0vw;
 
     @media (min-width: 768px) {
         font-size: 2.75vw;
@@ -47,6 +48,9 @@ const StyledEmail = styled(StyledText)`
 `
 
 const EditButton = styled(StyledButton)`
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+
     @media (min-width: 768px) {
         font-size: 2.25vw;
         margin-top: 2.25vh;
@@ -64,8 +68,8 @@ const SignOutCard = styled(StyledCard)`
 
 const SignOutButton = styled(BlockButton)`
     font-size: 7.5vw;
-  	margin-top: 1.5vh;
-  	margin-bottom: 1.75vh;
+  	margin-top: 1vh;
+  	margin-bottom: 1vh;
 
     @media (min-width: 768px) {
         font-size: 2.25vw;

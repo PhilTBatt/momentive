@@ -166,11 +166,11 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
 
             {user.role === 'admin' && 
                 <>
-                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="1.5vw" $bottom="0.5vw" $bg="orange">
+                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="1.5vw" $bottom="1.5vw" $bg="orange">
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
-                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="1.5vw" $bottom="0.5vw" $bg="blue">
+                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="1.5vw" $bottom="1.5vw" $bg="blue">
                         <FontAwesomeIcon icon={faUsers} />
                     </ExtraButton>
                 </>

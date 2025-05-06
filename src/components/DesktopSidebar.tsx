@@ -27,8 +27,8 @@ const StyledSidebar = styled.section`
 `
 
 const IconWrapper = styled.span`
-    margin-top: 2px;
-    font-size: 5vw;
+    font-size: 4vw;
+    margin: 0vh 1vw 0vh 1vw;
     line-height: 1.1;
     color: ${props => props.theme.colours.primary};
     svg {

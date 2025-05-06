@@ -52,7 +52,7 @@ const Select2 = styled(Select1)`
     }
 `
 const Select3 = styled(Select1)`
-    width: 9vw;
+    width: 10vw;
     margin-right: 0;
 
     @media (min-width: 768px) {

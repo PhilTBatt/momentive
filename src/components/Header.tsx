@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledHeader = styled.img`
     position: fixed;
-    left: -15.25%;
+    left: -12%;
     top: 0;
     width: 130vw;
     height: 12vh;
