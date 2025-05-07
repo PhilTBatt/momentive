@@ -85,6 +85,10 @@ export default function SideBar() {
             {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             <GlobalStyle />
             <StyledSidebar>
+                <StyledText style={{fontSize: '1.75vw', padding: '1vw', paddingTop: '0vw'}}>
+                    {user.name}
+                </StyledText>
+
                 <Link href='/'>
                     <StyledText>
                         Home

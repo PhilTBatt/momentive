@@ -26,7 +26,7 @@ const StyledSection = styled.section`
             
 const StyledSubheading = styled.h3`
     font-size: 10vw;
-    margin-top: 0;
+    margin-top: 4vw;
     margin-bottom: 5vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                 
@@ -58,10 +58,10 @@ export default function Home() {
                     Welcome!
                 </StyledHeading>
                 <StyledSubText>
-                    Browse our avaliable events and sign up to them
+                    Browse our avaliable events and sign up to them if you would like to attend
                 </StyledSubText>
                 <StyledSubText>
-                    You can add them to your calender or even download our mobile app (coming very soon)
+                    You can add them to your calender or even download our mobile app
                 </StyledSubText>
 
                 <StyledSection>
