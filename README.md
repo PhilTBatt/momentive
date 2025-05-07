@@ -30,9 +30,11 @@ npm (v9 or higher)
 2. Navigate into the cloned repository and run the following command to install the required dependencies:
 `npm install`
 
-3. Create a `.env` file in the root of your project directory. You will need to define your `DATABASE_URL` for your PostgreSQL connection (there will soon be a step to run 'npm create database')
+3. Create a `.env` file in the root of your project directory. You will need to define your `DATABASE_URL` for your PostgreSQL connection: `postgres://<username>:<password>@localhost:5432/<database-name>`
 
-4. Run the application so you can access it at http://localhost:5173
+4. In the terminal use `npm run setup` to create teh database schema
+
+5. Run the application so you can access it at http://localhost:5173
 `npm run dev`
 
-5. Use staff code 1234 to create a staff account and start managing events. 
+6. Use staff code 1234 to create a staff account and start managing events. 
