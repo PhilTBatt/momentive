@@ -22,6 +22,8 @@ Node.js (v18 or higher)
 
 npm (v9 or higher)
 
+PostgreSQL (v12 or higher)
+
 ## To run this project locally
 
  1. Open your terminal and run the following command to clone the repository to your local machine:
