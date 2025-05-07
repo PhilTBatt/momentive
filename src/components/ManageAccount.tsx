@@ -70,8 +70,8 @@ const SignOutCard = styled(StyledCard)`
 
 const SignOutButton = styled(BlockButton)`
     font-size: 7.5vw;
-  	margin-top: 1vh;
-  	margin-bottom: 1vh;
+  	margin-top: 1.5vh;
+  	margin-bottom: 1.5vh;
 
     @media (min-width: 768px) {
         font-size: 2.25vw;

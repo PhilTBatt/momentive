@@ -60,7 +60,7 @@ const IconWrapper = styled.span`
 `
 
 const StyledFooter = styled.footer`
-    margin: 60vh 0 0vh 0;
+    margin: auto 0 1vh 0;
     font-size: 1vw;
     color: black;
 `
@@ -85,9 +85,9 @@ export default function SideBar() {
             {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             <GlobalStyle />
             <StyledSidebar>
-                <StyledText style={{fontSize: '1.75vw', padding: '1vw', paddingTop: '0vw'}}>
+                {user.name && <StyledText style={{fontSize: '1.75vw', padding: '1vw', paddingTop: '0vw'}}>
                     {user.name}
-                </StyledText>
+                </StyledText>}
 
                 <Link href='/'>
                     <StyledText>
