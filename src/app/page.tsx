@@ -72,7 +72,7 @@ export default function Home() {
                         Popular events
                     </DesktopStyledSubheading>
                     
-                    <EventsList sortBy='date' order='DESC'/>
+                    <EventsList sortBy='date' order='ASC'/>
                     <DesktopOnlyWrapper>
                         <EventsList sortBy='attendees' order='DESC'/>
                     </DesktopOnlyWrapper>
