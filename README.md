@@ -1,44 +1,38 @@
-Momentive
-A community-driven events platform where users can browse upcoming events and staff members can create and manage them.
+# [Momentive](https://momentive.vercel.app)
+This platform was contracted for by Tech Returners.
 
-🌐 Live Demo
-Access the live application here: momentive.vercel.app
+Momentive is a community-driven events platform where staff can share events with members of the community. Staff members can make an account, create and manage events, and see who is attending, whilst guests can easily browse and register for events without needing an account. They can also add it straight to their Google calender.
 
-🛠️ Features
-Event Listings: Users can view a list of upcoming community events.
 
-Staff Management: Staff members have the capability to create and manage events. Staff Code is 1234.
+## Code Stack
+Language: TypeScript
 
-Prerequisites
-Ensure you have the following installed:
+Frontend & API: Next.js
 
+Styling: Styled Components
+
+Database: PostgreSQL
+
+Linting: ESLint
+
+Deployment: Vercel
+
+## Prerequisites
 Node.js (v18 or higher)
 
 npm (v9 or higher)
 
-Installation
+## To run this project locally
 
-Clone the repository:
-git clone https://github.com/PhilTBatt/momentive.git
-cd momentive
+ 1. Open your terminal and run the following command to clone the repository to your local machine:
+`git clone https://github.com/PhilTBatt/nc-news`
 
-Install dependencies:
-npm install
+2. Navigate into the cloned repository and run the following command to install the required dependencies:
+`npm install`
 
-Run the development server:
-npm run dev
+3. Create a `.env` file in the root of your project directory. You will need to define your `DATABASE_URL` for your PostgreSQL connection (there will soon be a step to run 'npm create database')
 
-Open http://localhost:3000 in your browser to view the application.
+4. Run the application so you can access it at http://localhost:5173
+`npm run dev`
 
-🧪 Test Account Access
-Note: Authentication functionality is not currently implemented in this project.
-
-🧰 Technologies Used
-Frontend: Next.js with TypeScript
-
-Styling: Styled Components
-
-Font: Geist
-
-📄 License
-This project is licensed under the MIT License.
+5. Use staff code 1234 to create a staff account and start managing events. 
