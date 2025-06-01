@@ -8,7 +8,8 @@ import { getEvents } from '@/lib/api/events'
 import { AxiosError } from 'axios'
 import type { Event } from "@/types/event"
 import { StyledCard } from './styled-components/StyledCard'
-
+// A form field element has neither an id nor a name attribute.
+// Multiple form field elements in the same form have the same id attribute value.
 const ThinStyledCard = styled(StyledCard)`
     @media (min-width: 768px) {
         width: 33vw;
