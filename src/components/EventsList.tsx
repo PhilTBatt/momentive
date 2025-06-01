@@ -8,6 +8,7 @@ import { getEvents } from '@/lib/api/events'
 import { AxiosError } from 'axios'
 import type { Event } from "@/types/event"
 import { StyledCard } from './styled-components/StyledCard'
+import { BlockButton } from './styled-components/BlockButton'
 // A form field element has neither an id nor a name attribute.
 // Multiple form field elements in the same form have the same id attribute value.
 const ThinStyledCard = styled(StyledCard)`
@@ -28,6 +29,8 @@ const StyledList = styled.ul`
         padding: 1vh 0vw 0vh 0vw;
     }
 `
+
+const StyledButton = styled(BlockButton)
 
 export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }) {
     const [events, setEvents] = useState<Event[]>([])

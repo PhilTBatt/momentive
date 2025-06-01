@@ -38,8 +38,10 @@ export function WideEventsList({ sortBy, order, userId, topic }: { sortBy: strin
     async function showEvents() {
         try {
             setIsLoading(true)
-            const upcomingeEvents = await getEvents({sortBy, order, userId, topic})
-            setEvents(upcomingeEvents)
+            const allEvents = await getEvents({sortBy, order, userId, topic})
+            const now = new Date()
+            const upcomingEvents = allEvents.filter(event => (new Date(event.date)).getTime() >= now.getTime())
+            setEvents(upcomingEvents)
 
         } catch (err: unknown) {
             if (err instanceof AxiosError)
