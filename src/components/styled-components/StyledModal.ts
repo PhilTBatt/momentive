@@ -14,6 +14,7 @@ const StyledModal = styled.div`
     @media (min-width: 768px) {
         width: 22.5vw;
         margin-bottom: 0vh;
+        padding: 0.4vh 2vw;
     }
 `
 

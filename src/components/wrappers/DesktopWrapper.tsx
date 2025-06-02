@@ -10,7 +10,7 @@ const DesktopStyledWrapper = styled.div`
     display: grid;
     place-items: center;
     text-align: center;
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         display: none;
     }
 `

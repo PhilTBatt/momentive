@@ -43,6 +43,14 @@ const StyledText = styled.p`
     }
 `
 
+const UsernameText = styled(StyledText)`
+    &:hover {
+        color: ${props => props.theme.colours.secondary};
+        transform: none;
+        cursor: default;
+    }
+`;
+
 const IconWrapper = styled.span`
     font-size: 2.25vw;
     margin: 0vh 0vw 0.5vh 1vw;
@@ -66,7 +74,7 @@ const StyledFooter = styled.footer`
 `
 const GlobalStyle = createGlobalStyle`
   a {
-    text-decoration: none; /* Remove underline from all links */
+    text-decoration: none;
   }
 `;
 
@@ -85,9 +93,9 @@ export default function SideBar() {
             {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             <GlobalStyle />
             <StyledSidebar>
-                {user.name && <StyledText style={{fontSize: '1.75vw', padding: '1vw', paddingTop: '0vw'}}>
+                {user.name && <UsernameText style={{fontSize: '1.75vw', padding: '1vw', paddingTop: '0vw'}}>
                     {user.name}
-                </StyledText>}
+                </UsernameText>}
 
                 <Link href='/'>
                     <StyledText>

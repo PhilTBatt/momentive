@@ -5,6 +5,12 @@ import StyledModal from "../styled-components/StyledModal";
 import { Event } from "@/types/event";
 import ModalHeading from "../styled-components/ModalHeading";
 
+const Modal = styled(StyledModal)`
+    @media (min-width: 768px) {
+        width: 30vw;
+    }
+`
+
 const CalendarImage = styled.img`
     border-radius: 6px;
     border: 2px solid white;
@@ -13,9 +19,8 @@ const CalendarImage = styled.img`
     margin-bottom: 5vw;
 
     @media (min-width: 768px) {
-        width: 25vw;
-        margin-top: 3vh;
-        margin-bottom: 5vh;
+        width: 17.5vw;
+        margin: 3vh auto 5vh auto
     }
 `;
 
@@ -29,13 +34,13 @@ export function AddEventToCalender({event, setIsModalOpen}:
     const endDateTime = new Date(new Date(event.date).getTime() + duration * 60 * 1000)
         .toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"
 
-    const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDateTime}/${endDateTime}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+    const googleCalendarLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDateTime}/${endDateTime}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`
 
-    const outlookCalendarLink = `https://outlook.live.com/calendar/0/action/compose?allday=false&body=${encodeURIComponent(event.description)}&enddt=${endDateTime}&location=${encodeURIComponent(event.location)}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=${startDateTime}&subject=${encodeURIComponent(event.title)}`;
+    const outlookCalendarLink = `https://outlook.live.com/calendar/0/action/compose?allday=false&body=${encodeURIComponent(event.description)}&enddt=${endDateTime}&location=${encodeURIComponent(event.location)}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&startdt=${startDateTime}&subject=${encodeURIComponent(event.title)}`
 
     return (
         <ModalBackground onClick={() => setIsModalOpen(false)}>
-            <StyledModal onClick={e => e.stopPropagation()}>
+            <Modal onClick={e => e.stopPropagation()}>
                 <ModalHeading>
                     Add this event to your calendar?
                 </ModalHeading>
@@ -49,7 +54,7 @@ export function AddEventToCalender({event, setIsModalOpen}:
                     <CalendarImage src="https://img.shields.io/badge/Outlook%20Calendar-FF7A00?style=for-the-badge&logoColor=white"
                         alt="Outlook Calendar"/>
                 </a>
-            </StyledModal>
+            </Modal>
         </ModalBackground>
     )
 }

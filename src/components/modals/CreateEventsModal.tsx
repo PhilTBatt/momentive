@@ -80,17 +80,18 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
                     <BlockLabel htmlFor="title">
                         Title
                     </BlockLabel>
-                    <Input id="title" value={title} onChange={e => setTitle(e.target.value)} required/>
+                    <Input id="title" name="title" value={title}  onChange={e => setTitle(e.target.value)} required/>
 
                     <BlockLabel htmlFor="description">
                         Description
                     </BlockLabel>
-                    <Input id="description" value={description} onChange={e => setDescription(e.target.value)} required/>
+                    <Input id="description" name="description" value={description}
+                        onChange={e => setDescription(e.target.value)} required/>
 
                     <BlockLabel htmlFor="topic">
                         Topic
                     </BlockLabel>
-                    <StyledSelect id="topic" value={topic} onChange={e => setTopic(e.target.value)}>
+                    <StyledSelect id="topic" name="topic" value={topic} onChange={e => setTopic(e.target.value)}>
                         {Object.keys(topics).map(key => (
                             <option key={key} value={key}>
                                 {key}
@@ -101,13 +102,13 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
                     <BlockLabel htmlFor="location">
                         Location
                     </BlockLabel>
-                    <Input id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
-                        
+                    <Input id="location" name="location" value={location} onChange={e => setLocation(e.target.value)}required />
+
                     <BlockLabel htmlFor="date">
                         Date
                     </BlockLabel>
-                    <Input id="date" value={date} onChange={(e) => setDate(e.target.value)}
-                        type="datetime-local" min={(new Date).toISOString().slice(0, 16)} required/>
+                    <Input id="date" name="date" value={date} onChange={e => setDate(e.target.value)}
+                        type="datetime-local" min={(new Date()).toISOString().slice(0, 16)} required/>
 
                     <BlockButton type="submit" disabled={isCreating}>
                         {isCreating ? 'Creating...' : 'Create'}

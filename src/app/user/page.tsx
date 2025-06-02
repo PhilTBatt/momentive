@@ -6,12 +6,24 @@ import PageWrapper from "@/components/wrappers/PageWrapper";
 import { StyledHeading } from "@/components/styled-components/StyledHeading";
 import styled from "styled-components";
 
+const Grid = styled.section`
+    display: block;
+    justify-items: center;
+
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        font-size: 2vw;
+        margin-top: 1vh;
+    }
+`
+
 const Heading1 = styled(StyledHeading)`
     font-size: 11vw;
     margin-bottom: 1.5vh;
 
     @media (min-width: 768px) {
-        font-size: 4vw;
+        font-size: 3vw;
         margin-top: 1vh;
     }
 `
@@ -22,8 +34,8 @@ const Heading2 = styled(StyledHeading)`
     margin-top: 2.5vh;
 
     @media (min-width: 768px) {
-        font-size: 4vw;
-        margin-top: 8vh;
+        font-size: 3vw;
+        margin-top: 1vh;
     }
 `
 
@@ -32,15 +44,21 @@ export default function Home() {
   	return (
     	<>
             <PageWrapper>
-                <Heading1>
-                    Manage Account
-                </Heading1>
-                <ManageAccount/>
+                <Grid>
+                    <div style={{'justifyItems': 'center'}}>
+                        <Heading1>
+                            Manage Account
+                        </Heading1>
+                        <ManageAccount />
+                    </div>
 
-                <Heading2>
-                    Manage Events
-                </Heading2>
-                <ManageEvents/>
+                    <div style={{'justifyItems': 'center'}}>
+                        <Heading2>
+                            Manage Events
+                        </Heading2>
+                        <ManageEvents />
+                    </div>
+                </Grid>
             </PageWrapper>
     	</>
   	)

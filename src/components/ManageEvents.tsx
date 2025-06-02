@@ -2,16 +2,16 @@
 
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { WideEventsList } from "./WideEventsList";
 import { CreateEventsModal } from "./modals/CreateEventsModal";
 import { UserContext } from "@/contexts/User";
 import { FilterBar } from "./FilterBar";
 import { StyledCard } from "./styled-components/StyledCard";
 import { BlockButton } from "./styled-components/BlockButton";
+import { EventsList } from "./EventsList";
 
 const Card = styled(StyledCard)`
     @media (min-width: 768px) {
-        width: 26vw;
+        width: 18vw;
         margin-top: 4vh;
         padding: 0;
     }
@@ -22,9 +22,9 @@ const CreateButton = styled(BlockButton)`
     font-size: 8vw;
 
     @media (min-width: 768px) {
-        font-size: 2.5vw;
-        width: 20vw;
-        margin: 2.5vh 0 2.5vh 0;
+        font-size: 1.5vw;
+        width: 13vw;
+        margin: 1.5vh 0 1.5vh 0;
     }
 `
 
@@ -35,10 +35,27 @@ const StyledText = styled.p`
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 
     @media (min-width: 768px) {
-        font-size: 3.25vw;
-        margin: 6vh 0 1vh 0;
+        font-size: 2vw;
+        margin: 3vh 0 1vh 0;
     }
 `
+
+const FilterBarWrapper = styled.div`
+    && > * {
+    @media (min-width: 768px) {
+        width: 29vw;
+        
+        select {
+            width: 5vw;
+            margin-right: 1vw;
+        }
+        select:nth-of-type(3) {
+            width: 3vw;
+            margin-right: 0;
+        }
+    }
+  }
+`;
 
 export default function ManageEvents() {
     const [eventsModalOpen, setEventsModalOpen] = useState(false)
@@ -58,8 +75,11 @@ export default function ManageEvents() {
             <StyledText>
                 Your Events
             </StyledText>
-            <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
-            {user.id !== null && <WideEventsList userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
+            <FilterBarWrapper>
+                <FilterBar topic={topic} setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder}/>
+            </FilterBarWrapper>
+
+            {user.id !== null && <EventsList userId={user.id} sortBy={sortBy} order={order} topic={topic}/>}
             
             {eventsModalOpen && <CreateEventsModal setEventsModalOpen={setEventsModalOpen}/>}
     	</>
