@@ -6,7 +6,7 @@ const BlockLabel = styled.label`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
     @media (min-width: 768px) {
-        font-size: 2vw;
+        font-size: 1.5vw;
     }
 `
 

@@ -81,7 +81,6 @@ const CardInformation = styled.div`
 
 const CardFooter = styled.div`
     background-color: ${props => props.theme.colours.primary};
-    padding: 2vw 2vw;
     font-size: 4vw;
     border: 1px solid ${props => props.theme.colours.background};
     border-radius: 8px;
@@ -94,6 +93,7 @@ const CardFooter = styled.div`
 
     @media (min-width: 768px) {
         font-size: 0.8vw;
+        padding: 0.25vw 0;
     }
 `
 
@@ -130,7 +130,7 @@ const ExtraButton = styled.button<ExtraButtonProps>`
         font-size: 1.1vw;
         width: 1.4vw;
         height: 1.4vw;
-        bottom: ${props => props.$bottom ? `${parseFloat(props.$bottom) / 3}vw` : '3.25vw'};
+        bottom: ${props => props.$bottom ? `${parseFloat(props.$bottom) / 3}vw` : '3vw'};
         left: ${props => props.$left ? `${parseFloat(props.$left) / 3}vw` : 'auto'};
         right: ${props => props.$right ? `${parseFloat(props.$right) / 3}vw` : 'auto'};
     }
@@ -170,11 +170,11 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
 
             {user.role === 'admin' && 
                 <>
-                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="1vw" $bottom="1.5vw" $bg="orange">
+                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="1vw" $bottom="1vw" $bg="orange">
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
-                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="1vw" $bottom="1.5vw" $bg="blue">
+                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="1vw" $bottom="1vw" $bg="blue">
                         <FontAwesomeIcon icon={faUsers} />
                     </ExtraButton>
                 </>
@@ -188,18 +188,23 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
             <CardFooter>
                 <p>
                     <strong>
-                        Attending:
-                    </strong> {event.attendees.length}
-                    <br/>
-                    <strong>
                         Date:
                     </strong> {(new Date(event.date)).toLocaleString(undefined, {dateStyle: 'medium', timeStyle: 'short'})}
                     <br/>
+
                     <strong>
                         Host:
                     </strong> {eventHost}
                     <br/>
-                    <strong>Location:</strong> {event.location}
+
+                    <strong>
+                        Location:
+                        </strong> {event.location}
+                    <br/>
+
+                    <strong>
+                        Attending:
+                    </strong> {event.attendees.length}
                 </p>
             </CardFooter>
 

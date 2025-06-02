@@ -12,7 +12,7 @@ export const BlockButton = styled.button`
     cursor: pointer;
 
     @media (min-width: 768px) {
-        font-size: 1.9vw;
+        font-size: 1.3vw;
         margin: 0vh auto 4vh auto;
         border-radius: 1vw;
     }

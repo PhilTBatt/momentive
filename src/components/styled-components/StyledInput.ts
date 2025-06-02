@@ -10,9 +10,9 @@ const StyledInput = styled.input`
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
     @media (min-width: 768px) {
-        font-size: 1.5vw;
-        width: 25vw;
-        margin: 2vh auto 4vh auto;
+        font-size: 1vw;
+        width: 20vw;
+        margin: 2vh auto 3vh auto;
     }
 `
 

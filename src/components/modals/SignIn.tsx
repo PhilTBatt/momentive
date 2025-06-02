@@ -23,7 +23,7 @@ const StyledText = styled.p`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
     @media (min-width: 768px) {
-        font-size: 2vw;
+        font-size: 1.5vw;
         margin-top: 2vh;
         margin-bottom: 4vh;
     }

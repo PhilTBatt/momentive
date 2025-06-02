@@ -49,7 +49,7 @@ export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, o
 
             const allEvents = await getEvents({ sortBy, order, userId, topic, limit })
             const now = new Date()
-            const upcomingEvents = allEvents.filter(event => (new Date(event.date)).getTime() >= now.getTime())
+            const upcomingEvents = allEvents.filter(event => (new Date(event.date)).getTime() >= 0)
 
             setEvents(upcomingEvents)
 

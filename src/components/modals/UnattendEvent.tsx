@@ -20,6 +20,9 @@ export function UnattendEvent({event, setIsModalOpen, updateList}:
         setIsRequestLoading(true)
         
         try {
+            if (!event.attendees.some(person => person.email === user.email))
+                alert(`You have to be signed up to an event to unattend.\nPlease try again`)
+
             if (user.name && user.email)
                 await deleteAttendee(event.id, {name: user.name, email: user.email})
 

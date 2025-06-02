@@ -13,8 +13,8 @@ export const StyledButton = styled.button`
     cursor: pointer;
 
     @media (min-width: 768px) {
-        font-size: 1.75vw;
-        margin-top: 0.15vh;
+        font-size: 1.1vw;
+        margin-top: 0.2vh;
         border-radius: 1vw;
     }
 `
