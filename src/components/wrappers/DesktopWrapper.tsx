@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import { ReactNode } from 'react';
-import Header from '../Header';
+import Header from './Header';
 import SideBar from './DesktopSidebar';
 
 const DesktopStyledWrapper = styled.div`

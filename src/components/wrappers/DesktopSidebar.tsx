@@ -38,7 +38,7 @@ const StyledText = styled.p`
     vertical-align: middle;
     &:hover {
         color: ${props => props.theme.colours.secondary};
-        transform: scale(1.06, 1.1);
+        transform: scale(1.03, 1.1);
         cursor: pointer;
     }
 `

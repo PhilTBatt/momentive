@@ -41,6 +41,8 @@ export function WideEventsList({ sortBy, order, userId, topic }: { sortBy: strin
     const [events, setEvents] = useState<Event[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
+    const [limit, setLimit] = useState(5)
+
 
     async function showEvents() {
         try {

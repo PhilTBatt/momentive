@@ -24,7 +24,7 @@ const Label = styled.label`
     font-size: 3.75vw;
 
     @media (min-width: 768px) {
-        font-size: 1.5vw;
+        font-size: 1.1vw;
     }
 `
 
@@ -39,11 +39,11 @@ const Select1 = styled.select`
     font-size: 3.25vw;
 
     @media (min-width: 768px) {
-        font-size: 1.4vw;
+        font-size: 1vw;
         width: 12vw;
-        margin: 0.5vw;
-        margin-right: 11vw;
-        padding: 0.25vw 0vw 0.25vw 0.5vw;
+        margin: 0.3vw;
+        margin-right: 15vw;
+        padding: 0.1vw 0vw 0.1vw 0.5vw;
     }
 `
 const Select2 = styled(Select1)`

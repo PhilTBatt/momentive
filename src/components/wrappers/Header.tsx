@@ -37,7 +37,7 @@ const FillerBox = styled.div`
         top: 0;
         right: 0;
         z-index: 11;
-        box-shadow: 17px 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 14px 4px 12px rgba(0, 0, 0, 0.3);
         background-color: ${props => props.theme.colours.primary}; /* Replace with the actual background color */
         border: 4px solid white;
         border-left: none;

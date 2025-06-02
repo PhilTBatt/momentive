@@ -40,14 +40,17 @@ export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, o
     const [events, setEvents] = useState<Event[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
+    const [limit, setLimit] = useState(5)
 
-    async function showEvents() {
+
+    async function showEvents(limit: number) {
         try {
             setIsLoading(true)
 
-            const allEvents = await getEvents({ sortBy, order, userId, topic })
+            const allEvents = await getEvents({ sortBy, order, userId, topic, limit })
             const now = new Date()
             const upcomingEvents = allEvents.filter(event => (new Date(event.date)).getTime() >= now.getTime())
+
             setEvents(upcomingEvents)
 
         } catch (err: unknown) {
@@ -59,8 +62,15 @@ export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, o
         }
     }
 
+    function loadMore() {
+        const newLimit = limit + 5
+        setLimit(newLimit)
+        showEvents(newLimit)
+    }
+
     useEffect(() => {
-        showEvents()
+        setLimit(5)
+        showEvents(5)
     }, [sortBy, order, topic])
 
     return (
@@ -69,9 +79,9 @@ export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, o
             <>
                 <StyledList>
                     {isLoading && <p>Loading...</p>}
-                        {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
+                        {events.map( event =>  <EventCard event={event} key={event.id} updateList={() => showEvents(limit)}/> )}
                 </StyledList>
-                <StyledButton>
+                <StyledButton onClick={loadMore}>
                     Load More
                 </StyledButton>
             </>
