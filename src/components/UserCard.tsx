@@ -15,10 +15,10 @@ const StyledCard = styled.li`
     }
 
     @media (min-width: 768px) {
-        width: 23vw;
+        width: 14vw;
         margin: 0 0 2vh 0;
         &:last-child {
-            margin-bottom: 2vh;
+            margin-bottom: 1vh;
         }
     }
 `
@@ -28,13 +28,14 @@ const UserName = styled.h3`
     margin: 2vh 0vw 2vh 0vw;
 
     @media (min-width: 768px) {
-        font-size: 1.6vw;
+        font-size: 1vw;
+        margin: 1vh 0vw 1vh 0vw;
     }
 `
 
 const UserEmail = styled(UserName)`
     @media (min-width: 768px) {
-        font-size: 1.4vw;
+        font-size: 0.75vw;
     }
 `
 

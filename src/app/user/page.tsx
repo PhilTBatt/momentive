@@ -13,8 +13,9 @@ const Grid = styled.section`
     @media (min-width: 768px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 8vw;
         font-size: 2vw;
-        margin-top: 1vh;
+        margin-top: 0vh;
     }
 `
 

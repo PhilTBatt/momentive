@@ -13,8 +13,8 @@ import styled from "styled-components";
 
 const Input = styled(StyledInput)`
     @media (min-width: 768px) {
-        font-size: 2.5vw;
-        width: 30vw;
+        font-size: 1.5vw;
+        width: 20vw;
     }
 `
 

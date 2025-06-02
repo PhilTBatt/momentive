@@ -31,7 +31,7 @@ const StyledSelect = styled.select`
     color: ${props => props.theme.colours.primary};
 
     @media (min-width: 768px) {
-        font-size: 1.5vw;
+        font-size: 1.25vw;
         margin-top: 1vh;
         margin-bottom: 2vh;
         padding: 0.5vw;

@@ -15,13 +15,13 @@ const DesktopGrid = styled.span`
         display: grid;
         grid-template-columns: 2fr 1fr;
         place-items: center;
-        padding-right: 4vw;
+        padding-right: 0.75vw;
     }
 `
 
 const Card = styled(StyledCard)`
     @media (min-width: 768px) {
-        width: 35vw;
+        width: 30vw;
         margin-top: 4vh;
         margin-bottom: 2vh;
         padding-bottom: 2vh;

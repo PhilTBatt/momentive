@@ -26,13 +26,13 @@ const StyledList = styled.ul`
     @media (min-width: 768px) {
         display: grid;
         place-items: center;
-        padding: 1vh 0vw 0vh 0vw;
+        padding: 1vh 0vw 1vh 0vw;
     }
 `
 
 const StyledButton = styled(BlockButton)`
     @media (min-width: 768px) {
-        margin: -2vh auto 4vh auto;
+        margin: -1vh auto 2vh auto;
     }
 `
 
@@ -41,17 +41,22 @@ export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, o
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [limit, setLimit] = useState(5)
-
+    const [hasMore, setHasMore] = useState(false)
 
     async function showEvents(limit: number) {
         try {
             setIsLoading(true)
 
-            const allEvents = await getEvents({ sortBy, order, userId, topic, limit })
+            const allEvents = await getEvents({ sortBy, order, userId, topic, limit: limit + 1 })
             const now = new Date()
-            const upcomingEvents = allEvents.filter(event => (new Date(event.date)).getTime() >= 0)
+            const upcomingEvents = allEvents.filter(event => (new Date(event.date)).getTime() >= now.getTime())
 
-            setEvents(upcomingEvents)
+            if (upcomingEvents.length > limit) 
+                setHasMore(true)
+            else
+                setHasMore(false)
+
+            setEvents(upcomingEvents.slice(0, limit))
 
         } catch (err: unknown) {
             if (err instanceof AxiosError)
@@ -81,9 +86,12 @@ export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, o
                     {isLoading && <p>Loading...</p>}
                         {events.map( event =>  <EventCard event={event} key={event.id} updateList={() => showEvents(limit)}/> )}
                 </StyledList>
-                <StyledButton onClick={loadMore}>
-                    Load More
-                </StyledButton>
+
+                {hasMore && !isLoading && (
+                    <StyledButton onClick={loadMore}>
+                        Load More
+                    </StyledButton>
+                )}
             </>
             }
         </ThinStyledCard>

@@ -25,7 +25,7 @@ const StyledText = styled.p`
     @media (min-width: 768px) {
         font-size: 1.5vw;
         margin-top: 2vh;
-        margin-bottom: 4vh;
+        margin-bottom: 3vh;
     }
 `
 

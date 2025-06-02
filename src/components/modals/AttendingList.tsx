@@ -12,6 +12,9 @@ const StyledCardContainer = styled(StyledCard)`
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    @media (min-width: 768px) {
+        width: 34vw;
+    }
 `;
 
 const StyledList = styled.ul`
@@ -24,11 +27,10 @@ const StyledList = styled.ul`
 
     @media (min-width: 768px) {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         place-items: center;
         margin: 0vh 1vw 2vh 1vw;
         padding: 1vh 0vw;
-        gap: 0.5vw 0.5vw;
     }
 `
 

@@ -8,8 +8,8 @@ const ModalHeading = styled.h3`
 
     @media (min-width: 768px) {
         font-size: 1.75vw;
-        margin-top: 3vh;
-  	    margin-bottom: 4vh;
+        margin-top: 2vh;
+  	    margin-bottom: 2vh;
     }
 `
 
