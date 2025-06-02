@@ -39,4 +39,4 @@ PostgreSQL (v12 or higher)
 5. Run the application so you can access it at http://localhost:5173
 `npm run dev`
 
-6. Use staff code 1234 to create a staff account and start managing events. 
+6. Sign up and use staff code 1234 when creating an account to start managing events
