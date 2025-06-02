@@ -7,7 +7,7 @@ import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/User";
 import { useRouter } from "next/navigation";
-import { UserModal } from "./modals/UserModal";
+import { UserModal } from "../modals/UserModal";
 
 const StyledSidebar = styled.section`
     position: fixed;
@@ -28,8 +28,8 @@ const StyledSidebar = styled.section`
 `
 
 const StyledText = styled.p`
-    font-size: 2.25vw;
-    margin: 2vh 0vw 0vh 0vw;
+    font-size: 2vw;
+    margin: 3vh 0vw 0vh 0vw;
     padding-bottom: 1vh;
     border-bottom: 1px solid black;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -38,13 +38,13 @@ const StyledText = styled.p`
     vertical-align: middle;
     &:hover {
         color: ${props => props.theme.colours.secondary};
-        transform: scale(1.03, 1.1);
+        transform: scale(1.06, 1.1);
         cursor: pointer;
     }
 `
 
 const IconWrapper = styled.span`
-    font-size: 3vw;
+    font-size: 2.75vw;
     margin: 0vh 0vw 1vh 1vw;
     display: inline-block;
     vertical-align: middle;

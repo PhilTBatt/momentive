@@ -8,6 +8,7 @@ import { getEvents } from '@/lib/api/events'
 import { AxiosError } from 'axios'
 import type { Event } from "@/types/event"
 import { StyledCard } from './styled-components/StyledCard'
+import { BlockButton } from './styled-components/BlockButton'
 
 const ThinStyledCard = styled(StyledCard)`
     @media (min-width: 768px) {
@@ -27,6 +28,12 @@ const StyledList = styled.ul`
         place-items: center;
         padding: 1vh 0vw;
         gap: 0.5vw 0;
+    }
+`
+
+const StyledButton = styled(BlockButton)`
+    @media (min-width: 768px) {
+        margin: -2vh auto 4vh auto;
     }
 `
 
@@ -59,10 +66,15 @@ export function WideEventsList({ sortBy, order, userId, topic }: { sortBy: strin
     return (
         <ThinStyledCard>
            { error ? <ErrorComponent msg={error} /> :
-            <StyledList>
-                {isLoading && <p>Loading...</p>}
-                    {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
-            </StyledList>
+            <>
+                <StyledList>
+                    {isLoading && <p>Loading...</p>}
+                        {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
+                </StyledList>
+                <StyledButton>
+                    Load More
+                </StyledButton>
+            </>
             }
         </ThinStyledCard>
     )

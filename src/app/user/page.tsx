@@ -2,7 +2,7 @@
 
 import ManageAccount from "@/components/ManageAccount";
 import ManageEvents from "@/components/ManageEvents";
-import PageWrapper from "@/components/PageWrapper";
+import PageWrapper from "@/components/wrappers/PageWrapper";
 import { StyledHeading } from "@/components/styled-components/StyledHeading";
 import styled from "styled-components";
 

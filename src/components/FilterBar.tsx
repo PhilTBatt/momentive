@@ -13,9 +13,10 @@ const StyledCard = styled.div`
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 
     @media (min-width: 768px) {
-        width: 70vw;
+        width: 55vw;
         padding: 0;
         margin-top: 3vh;
+        margin-bottom: 4vh;
     }
 `
 
@@ -23,7 +24,7 @@ const Label = styled.label`
     font-size: 3.75vw;
 
     @media (min-width: 768px) {
-        font-size: 2.25vw;
+        font-size: 1.5vw;
     }
 `
 
@@ -38,9 +39,11 @@ const Select1 = styled.select`
     font-size: 3.25vw;
 
     @media (min-width: 768px) {
-        font-size: 2vw;
-        width: 19vw;
-        margin-right: 3vw;
+        font-size: 1.4vw;
+        width: 12vw;
+        margin: 0.5vw;
+        margin-right: 11vw;
+        padding: 0.25vw 0vw 0.25vw 0.5vw;
     }
 `
 const Select2 = styled(Select1)`
@@ -48,7 +51,7 @@ const Select2 = styled(Select1)`
     margin-right: 0;
 
     @media (min-width: 768px) {
-        width: 15vw;
+        width: 10vw;
     }
 `
 const Select3 = styled(Select1)`
@@ -56,7 +59,7 @@ const Select3 = styled(Select1)`
     margin-right: 0;
 
     @media (min-width: 768px) {
-        width: 4vw;
+        width: 3.25vw;
     }
 `
 

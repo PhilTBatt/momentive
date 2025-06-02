@@ -30,7 +30,11 @@ const StyledList = styled.ul`
     }
 `
 
-const StyledButton = styled(BlockButton)
+const StyledButton = styled(BlockButton)`
+    @media (min-width: 768px) {
+        margin: -2vh auto 4vh auto;
+    }
+`
 
 export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, order: 'DESC' | 'ASC', userId?: number, topic?: string }) {
     const [events, setEvents] = useState<Event[]>([])
@@ -62,10 +66,15 @@ export function EventsList({ sortBy, order, userId, topic }: { sortBy: string, o
     return (
         <ThinStyledCard>
            { error ? <ErrorComponent msg={error} /> :
-            <StyledList>
-                {isLoading && <p>Loading...</p>}
-                    {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
-            </StyledList>
+            <>
+                <StyledList>
+                    {isLoading && <p>Loading...</p>}
+                        {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
+                </StyledList>
+                <StyledButton>
+                    Load More
+                </StyledButton>
+            </>
             }
         </ThinStyledCard>
     )

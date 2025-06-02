@@ -2,7 +2,7 @@
 
 import { WideEventsList } from "@/components/WideEventsList";
 import { FilterBar } from "@/components/FilterBar";
-import PageWrapper from "@/components/PageWrapper";
+import PageWrapper from "@/components/wrappers/PageWrapper";
 import { UserModal } from "@/components/modals/UserModal";
 import { StyledHeading } from "@/components/styled-components/StyledHeading";
 import { useState } from "react";

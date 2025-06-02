@@ -1,7 +1,7 @@
 'use client'
 
 import { EventsList } from "@/components/EventsList";
-import PageWrapper from "@/components/PageWrapper";
+import PageWrapper from "@/components/wrappers/PageWrapper";
 import { StyledHeading } from "@/components/styled-components/StyledHeading";
 import styled from "styled-components";
 
@@ -11,7 +11,7 @@ const StyledSubText = styled.p`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         
     @media (min-width: 768px) {
-        font-size: 2.5vw;
+        font-size: 1.75vw;
         margin: 2vh 2vw 0 2vw;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
@@ -31,7 +31,7 @@ const StyledSubheading = styled.h3`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                 
     @media (min-width: 768px) {
-        font-size: 3.5vw;
+        font-size: 2.75vw;
         margin-top: 10vh;
         margin-bottom: 4vh;
     }
@@ -58,10 +58,10 @@ export default function Home() {
                     Welcome!
                 </StyledHeading>
                 <StyledSubText>
-                    Browse our avaliable events and sign up to them if you would like to attend
+                    Browse our avaliable events and sign up to them if you would like to attend.
                 </StyledSubText>
                 <StyledSubText>
-                    You can add them to your calender or even download our mobile app
+                    You can add them to your calender or even download our mobile app.
                 </StyledSubText>
 
                 <StyledSection>

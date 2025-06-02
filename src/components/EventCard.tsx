@@ -56,8 +56,8 @@ const StyledHeading = styled.h3`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
     @media (min-width: 768px) {
-        font-size: 2.5vw;
-        margin: 1vh 0 0vw 0;
+        font-size: 2.25vw;
+        margin: 1vh 0 2vh 0;
     }
 `
 
@@ -71,7 +71,7 @@ const CardInformation = styled.div`
     }
 
     @media (min-width: 768px) {
-        font-size: 1.25vw;
+        font-size: 1.2vw;
         p {
             margin: 1vh 0 1.5vh 0;
         }
@@ -187,7 +187,7 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
             <CardFooter>
                 <p>
                     <strong>
-                        People Attending:
+                        Attending:
                     </strong> {event.attendees.length}
                     <br/>
                     <strong>

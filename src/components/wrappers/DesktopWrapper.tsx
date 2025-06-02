@@ -2,11 +2,11 @@
 
 import styled from 'styled-components';
 import { ReactNode } from 'react';
-import Header from './Header';
+import Header from '../Header';
 import SideBar from './DesktopSidebar';
 
 const DesktopStyledWrapper = styled.div`
-    padding: 18vh 0% 5vh 18%;
+    padding: 20vh 0% 5vh 18%;
     display: grid;
     place-items: center;
     text-align: center;
