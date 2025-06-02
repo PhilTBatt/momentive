@@ -38,7 +38,6 @@ const BannerImage = styled.img`
     width: 100%;
     height: 9vh;
     object-fit: cover;
-    filter: brightness(80%);
     border-radius: 8px;
     border: 2px solid white;
     box-sizing: border-box;

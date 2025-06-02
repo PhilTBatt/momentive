@@ -17,7 +17,7 @@ const StyledSidebar = styled.section`
     height: 100%;
     border: 4px solid white;
     box-sizing: border-box;
-    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px -4px 10px rgba(143, 19, 19, 0.2);
     background: ${props => props.theme.colours.primary};
     padding: 0vw;
     display: flex;
@@ -30,7 +30,7 @@ const StyledSidebar = styled.section`
 const StyledText = styled.p`
     font-size: 2vw;
     margin: 3vh 0vw 0vh 0vw;
-    padding-bottom: 1vh;
+    padding-bottom: 2vh;
     border-bottom: 1px solid black;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -45,7 +45,7 @@ const StyledText = styled.p`
 
 const IconWrapper = styled.span`
     font-size: 2.75vw;
-    margin: 0vh 0vw 1vh 1vw;
+    margin: 0vh 0vw 0.5vh 1vw;
     display: inline-block;
     vertical-align: middle;
     line-height: 1.1;
