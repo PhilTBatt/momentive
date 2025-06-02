@@ -13,7 +13,7 @@ const StyledSidebar = styled.section`
     position: fixed;
     left: 0;
     top: 0;
-    width: 18%;
+    width: 17%;
     height: 100%;
     border: 4px solid white;
     box-sizing: border-box;
@@ -28,7 +28,7 @@ const StyledSidebar = styled.section`
 `
 
 const StyledText = styled.p`
-    font-size: 2vw;
+    font-size: 1.5vw;
     margin: 3vh 0vw 0vh 0vw;
     padding-bottom: 2vh;
     border-bottom: 1px solid black;
@@ -38,13 +38,13 @@ const StyledText = styled.p`
     vertical-align: middle;
     &:hover {
         color: ${props => props.theme.colours.secondary};
-        transform: scale(1.03, 1.1);
+        transform: scale(1.03, 1.03);
         cursor: pointer;
     }
 `
 
 const IconWrapper = styled.span`
-    font-size: 2.75vw;
+    font-size: 2.25vw;
     margin: 0vh 0vw 0.5vh 1vw;
     display: inline-block;
     vertical-align: middle;

@@ -66,6 +66,12 @@ export function EditUser({setModalType, setIsModalOpen}: {setModalType: Dispatch
                     Sign In
                 </StyledButton> to manage events
             </StyledText>
+
+            <StyledText>
+                Or <StyledButton type="button" onClick={() => setModalType('signUp')}>
+                    Sign Up
+                </StyledButton> to create an acccount
+            </StyledText>
         </StyledCard>
     )
 }

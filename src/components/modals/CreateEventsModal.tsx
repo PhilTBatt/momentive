@@ -80,7 +80,7 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
                     <BlockLabel htmlFor="title">
                         Title
                     </BlockLabel>
-                    <Input id="name" value={title} onChange={e => setTitle(e.target.value)} required/>
+                    <Input id="title" value={title} onChange={e => setTitle(e.target.value)} required/>
 
                     <BlockLabel htmlFor="description">
                         Description
@@ -101,12 +101,12 @@ export function CreateEventsModal({ setEventsModalOpen }: {setEventsModalOpen: D
                     <BlockLabel htmlFor="location">
                         Location
                     </BlockLabel>
-                    <Input id="name" value={location} onChange={(e) => setLocation(e.target.value)} required/>
+                    <Input id="location" value={location} onChange={(e) => setLocation(e.target.value)} required/>
                         
                     <BlockLabel htmlFor="date">
                         Date
                     </BlockLabel>
-                    <Input id="name" value={date} onChange={(e) => setDate(e.target.value)}
+                    <Input id="date" value={date} onChange={(e) => setDate(e.target.value)}
                         type="datetime-local" min={(new Date).toISOString().slice(0, 16)} required/>
 
                     <BlockButton type="submit" disabled={isCreating}>

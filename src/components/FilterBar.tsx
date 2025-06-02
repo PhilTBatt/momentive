@@ -89,7 +89,7 @@ export function FilterBar({ topic, setTopic, sortBy, setSortBy, order, setOrder 
                 </option>)}
             </Select2>
             
-            <Select3 value={order} onChange={e => {
+            <Select3 id="order-by-select" value={order} onChange={e => {
                 if (e.target.value === 'ASC' || e.target.value === 'DESC')
                     setOrder(e.target.value)
             }}>

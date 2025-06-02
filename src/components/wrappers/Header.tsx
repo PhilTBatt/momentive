@@ -16,9 +16,9 @@ const StyledHeader = styled.img`
     z-index: 10;
 
     @media (min-width: 768px) {
-        left: 18%;
-        width: 41.2vw;
-        height: 18vh;
+        left: 17%;
+        width: 40vw;
+        height: 16vh;
         box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
         border: 4px solid white;
         border-left: none;
@@ -31,13 +31,14 @@ const FillerBox = styled.div`
 
     @media (min-width: 768px) {
         display: block;
+        box-sizing: border-box;
         position: fixed;
-        height: 16.9vh;
-        width: 39.8vw;
+        height: 16vh;
+        width: 43vw;
         top: 0;
         right: 0;
         z-index: 11;
-        box-shadow: 14px 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 12px 4px 12px rgba(0, 0, 0, 0.3);
         background-color: ${props => props.theme.colours.primary}; /* Replace with the actual background color */
         border: 4px solid white;
         border-left: none;

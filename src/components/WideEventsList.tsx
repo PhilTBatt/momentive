@@ -12,7 +12,7 @@ import { BlockButton } from './styled-components/BlockButton'
 
 const ThinStyledCard = styled(StyledCard)`
     @media (min-width: 768px) {
-        width: 70vw;
+        width: 76vw;
         padding: 0vh 0vw;
     }
 `
@@ -24,7 +24,7 @@ const StyledList = styled.ul`
 
     @media (min-width: 768px) {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         place-items: center;
         padding: 1vh 0vw;
         gap: 0.5vw 0;
@@ -43,13 +43,14 @@ export function WideEventsList({ sortBy, order, userId, topic }: { sortBy: strin
     const [error, setError] = useState<string | null>(null)
     const [limit, setLimit] = useState(5)
 
-
-    async function showEvents() {
+async function showEvents(limit: number) {
         try {
             setIsLoading(true)
-            const allEvents = await getEvents({sortBy, order, userId, topic})
+
+            const allEvents = await getEvents({ sortBy, order, userId, topic, limit })
             const now = new Date()
             const upcomingEvents = allEvents.filter(event => (new Date(event.date)).getTime() >= now.getTime())
+
             setEvents(upcomingEvents)
 
         } catch (err: unknown) {
@@ -61,8 +62,15 @@ export function WideEventsList({ sortBy, order, userId, topic }: { sortBy: strin
         }
     }
 
+    function loadMore() {
+        const newLimit = limit + 5
+        setLimit(newLimit)
+        showEvents(newLimit)
+    }
+
     useEffect(() => {
-        showEvents()
+        setLimit(5)
+        showEvents(5)
     }, [sortBy, order, topic])
 
     return (
@@ -71,9 +79,9 @@ export function WideEventsList({ sortBy, order, userId, topic }: { sortBy: strin
             <>
                 <StyledList>
                     {isLoading && <p>Loading...</p>}
-                        {events.map( event =>  <EventCard event={event} key={event.id} updateList={showEvents}/> )}
+                        {events.map( event =>  <EventCard event={event} key={event.id} updateList={() => showEvents(limit)}/> )}
                 </StyledList>
-                <StyledButton>
+                <StyledButton onClick={loadMore}>
                     Load More
                 </StyledButton>
             </>

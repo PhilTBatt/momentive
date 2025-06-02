@@ -14,7 +14,7 @@ import { UserContext } from "@/contexts/User";
 import { AttendingList } from "./modals/AttendingList";
 
 const StyledCard = styled.li`
-    border: 2px solid white;
+    border: 1px solid white;
     margin: 0 0 4vw 0;
     background-color: ${props => props.theme.colours.background};
     border-radius: 8px;
@@ -26,7 +26,7 @@ const StyledCard = styled.li`
     }
 
     @media (min-width: 768px) {
-        width: 30vw;
+        width: 22.5vw;
         margin: 0 auto 4vh auto;
         &:last-child {
             margin-bottom: 4vh;
@@ -37,7 +37,7 @@ const StyledCard = styled.li`
 const BannerImage = styled.img`
     width: 100%;
     height: 9vh;
-    object-fit: cover;
+    object-fit: cover; 
     border-radius: 8px;
     border: 2px solid white;
     box-sizing: border-box;
@@ -55,7 +55,7 @@ const StyledHeading = styled.h3`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
     @media (min-width: 768px) {
-        font-size: 2.25vw;
+        font-size: 1.5vw;
         margin: 1vh 0 2vh 0;
     }
 `
@@ -70,7 +70,9 @@ const CardInformation = styled.div`
     }
 
     @media (min-width: 768px) {
-        font-size: 1.2vw;
+        font-size: 0.9vw;
+        padding: 0vw 0.5vw;
+
         p {
             margin: 1vh 0 1.5vh 0;
         }
@@ -91,7 +93,7 @@ const CardFooter = styled.div`
     }
 
     @media (min-width: 768px) {
-        font-size: 1.1vw;
+        font-size: 0.8vw;
     }
 `
 
@@ -125,10 +127,10 @@ const ExtraButton = styled.button<ExtraButtonProps>`
     }
   
     @media (min-width: 768px) {
-        font-size: 1.4vw;
-        width: 2vw;
-        height: 2vw;
-        bottom: ${props => props.$bottom ? `${parseFloat(props.$bottom) / 3}vw` : '4.5vw'};
+        font-size: 1.1vw;
+        width: 1.4vw;
+        height: 1.4vw;
+        bottom: ${props => props.$bottom ? `${parseFloat(props.$bottom) / 3}vw` : '3.25vw'};
         left: ${props => props.$left ? `${parseFloat(props.$left) / 3}vw` : 'auto'};
         right: ${props => props.$right ? `${parseFloat(props.$right) / 3}vw` : 'auto'};
     }
@@ -158,21 +160,21 @@ export function EventCard({event, updateList}: {event: Event, updateList: () => 
         <StyledCard>
             <BannerImage src={bannerImage} alt="Event Banner" />
 
-            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} $left="1.5vw" $bg="red">
+            <ExtraButton onClick={() => setIsUnattendModalOpen(true)} $left="1vw" $bg="red">
                 <FontAwesomeIcon icon={faSquareMinus} />
             </ExtraButton>
  
-            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} $right="1.5vw" $bg="green">
+            <ExtraButton onClick={() => setIsSignUpModalOpen(true)} $right="1vw" $bg="green">
                 <FontAwesomeIcon icon={faSquareCheck} />
             </ExtraButton>
 
             {user.role === 'admin' && 
                 <>
-                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="1.5vw" $bottom="1.5vw" $bg="orange">
+                    <ExtraButton onClick={() => setIsEditModalOpen(true)} $left="1vw" $bottom="1.5vw" $bg="orange">
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </ExtraButton>
 
-                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="1.5vw" $bottom="1.5vw" $bg="blue">
+                    <ExtraButton onClick={() => setIsAttendingListOpen(true)} $right="1vw" $bottom="1.5vw" $bg="blue">
                         <FontAwesomeIcon icon={faUsers} />
                     </ExtraButton>
                 </>

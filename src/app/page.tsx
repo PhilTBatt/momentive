@@ -6,12 +6,12 @@ import { StyledHeading } from "@/components/styled-components/StyledHeading";
 import styled from "styled-components";
 
 const StyledSubText = styled.p`
-    font-size: 6vw;
-    margin: 0 1vw 2vw 1vw;
+    font-size: 5vw;
+    margin: 1vh 1vw 3vh 1vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         
     @media (min-width: 768px) {
-        font-size: 1.75vw;
+        font-size: 1.25vw;
         margin: 2vh 2vw 0 2vw;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
@@ -31,7 +31,7 @@ const StyledSubheading = styled.h3`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                 
     @media (min-width: 768px) {
-        font-size: 2.75vw;
+        font-size: 2.25vw;
         margin-top: 10vh;
         margin-bottom: 4vh;
     }
