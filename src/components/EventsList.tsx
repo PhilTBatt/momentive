@@ -15,6 +15,7 @@ const ThinStyledCard = styled(StyledCard)`
         width: 26vw;
         padding: 0vh 0vw;
         margin: 0 3vw;
+        align-self: flex-start;
     }
 `
 

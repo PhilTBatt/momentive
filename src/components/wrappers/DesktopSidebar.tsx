@@ -28,9 +28,9 @@ const StyledSidebar = styled.section`
 `
 
 const StyledText = styled.p`
-    font-size: 1.5vw;
-    margin: 3vh 0vw 0vh 0vw;
-    padding-bottom: 2vh;
+    font-size: 1.35vw;
+    margin: 1.5vh 0vw 0vh 0vw;
+    padding-bottom: 1.2vh;
     border-bottom: 1px solid black;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -44,6 +44,8 @@ const StyledText = styled.p`
 `
 
 const UsernameText = styled(StyledText)`
+    margin: 3vh 0vw 0vh 0vw;
+    padding-bottom: 3vh;
     &:hover {
         color: ${props => props.theme.colours.secondary};
         transform: none;
@@ -52,7 +54,7 @@ const UsernameText = styled(StyledText)`
 `;
 
 const IconWrapper = styled.span`
-    font-size: 2.25vw;
+    font-size: 2.15vw;
     margin: 0vh 0vw 0.5vh 1vw;
     display: inline-block;
     vertical-align: middle;
@@ -68,8 +70,8 @@ const IconWrapper = styled.span`
 `
 
 const StyledFooter = styled.footer`
-    margin: auto 0 1vh 0;
-    font-size: 1vw;
+    margin: auto 0.5vw 1vh 0.5vw;
+    font-size: 0.9vw;
     color: black;
 `
 const GlobalStyle = createGlobalStyle`
@@ -93,7 +95,7 @@ export default function SideBar() {
             {isModalOpen && <UserModal setIsModalOpen={setIsModalOpen}/>}
             <GlobalStyle />
             <StyledSidebar>
-                {user.name && <UsernameText style={{fontSize: '1.75vw', padding: '1vw', paddingTop: '0vw'}}>
+                {user.name && <UsernameText>
                     {user.name}
                 </UsernameText>}
 

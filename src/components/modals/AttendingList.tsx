@@ -29,7 +29,7 @@ const StyledList = styled.ul`
         display: grid;
         grid-template-columns: 1fr 1fr;
         place-items: center;
-        margin: 0vh 1vw 2vh 1vw;
+        margin: 0vh 1vw 1vh 1vw;
         padding: 1vh 0vw;
     }
 `

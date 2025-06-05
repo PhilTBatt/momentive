@@ -23,7 +23,7 @@ const CreateButton = styled(BlockButton)`
 
     @media (min-width: 768px) {
         font-size: 1.5vw;
-        width: 13vw;
+        width: 14vw;
         margin: 1.5vh 0 1.5vh 0;
     }
 `
@@ -43,7 +43,9 @@ const StyledText = styled.p`
 const FilterBarWrapper = styled.div`
     && > * {
     @media (min-width: 768px) {
+        height: 4vh;
         width: 29vw;
+        align-items: start;
         
         select {
             width: 5vw;

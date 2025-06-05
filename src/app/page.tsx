@@ -31,7 +31,7 @@ const StyledSubheading = styled.h3`
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                 
     @media (min-width: 768px) {
-        font-size: 2.25vw;
+        font-size: 2.1vw;
         margin-top: 10vh;
         margin-bottom: 4vh;
     }
