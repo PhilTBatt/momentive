@@ -11,6 +11,12 @@ const Modal = styled(StyledModal)`
     }
 `
 
+const Heading = styled(ModalHeading)`
+    @media (min-width: 768px) {
+        margin-bottom: 3vh;
+    }
+`
+
 const CalendarImage = styled.img`
     border-radius: 6px;
     border: 2px solid white;
@@ -20,7 +26,7 @@ const CalendarImage = styled.img`
 
     @media (min-width: 768px) {
         width: 17.5vw;
-        margin: 3vh auto 5vh auto
+        margin: 0vh auto 2vh auto
     }
 `;
 
@@ -41,9 +47,9 @@ export function AddEventToCalender({event, setIsModalOpen}:
     return (
         <ModalBackground onClick={() => setIsModalOpen(false)}>
             <Modal onClick={e => e.stopPropagation()}>
-                <ModalHeading>
+                <Heading>
                     Add this event to your calendar?
-                </ModalHeading>
+                </Heading>
 
                 <a href={googleCalendarLink} target="_blank" rel="noopener noreferrer" title="Add To Google Calendar">
                     <CalendarImage src="https://img.shields.io/badge/Google%20Calendar-FF7A00?style=for-the-badge&logoColor=white"

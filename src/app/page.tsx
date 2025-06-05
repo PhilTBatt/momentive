@@ -32,7 +32,7 @@ const StyledSubheading = styled.h3`
                 
     @media (min-width: 768px) {
         font-size: 2.1vw;
-        margin-top: 10vh;
+        margin-top: 8vh;
         margin-bottom: 4vh;
     }
 `

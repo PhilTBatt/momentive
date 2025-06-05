@@ -29,6 +29,7 @@ const StyledList = styled.ul`
         margin: 0.25vw;
         padding: 2vh 0vw;
         gap: 0.5vw 0;
+        align-self: flex-start;
     }
 `
 

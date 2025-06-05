@@ -43,7 +43,7 @@ const BannerImage = styled.img`
     box-sizing: border-box;
 
     @media (min-width: 768px) {
-        height: 12vh;
+        height: 10vh;
     }
 `
 
@@ -56,7 +56,7 @@ const StyledHeading = styled.h3`
 
     @media (min-width: 768px) {
         font-size: 1.5vw;
-        margin: 1vh 0 2vh 0;
+        margin: 0.5vh 0 1.25vh 0;
     }
 `
 
@@ -74,7 +74,7 @@ const CardInformation = styled.div`
         padding: 0vw 0.5vw;
 
         p {
-            margin: 1vh 0 1.5vh 0;
+            margin: 1vh 0 0.5vh 0;
         }
     }
 `
