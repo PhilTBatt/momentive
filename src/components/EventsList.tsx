@@ -14,7 +14,7 @@ const ThinStyledCard = styled(StyledCard)`
     @media (min-width: 768px) {
         width: 26vw;
         padding: 0vh 0vw;
-        margin: 0 3vw;
+        margin: 0 3vw 1vh 3vw;
         align-self: flex-start;
     }
 `
@@ -23,6 +23,7 @@ const StyledList = styled.ul`
     list-style: none;
     padding: 2vw 1vw;
     margin: 1vw;
+    margin-top: 2vh;
 
     @media (min-width: 768px) {
         display: grid;

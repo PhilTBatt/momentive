@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import Header from './Header';
-import NavBar from '../MobileNavBar';
+import NavBar from './MobileNavBar';
 
 const StyledWrapper = styled.div`
     padding-top: 12.5vh;

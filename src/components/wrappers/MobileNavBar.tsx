@@ -7,7 +7,7 @@ import { faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/User";
 import { useRouter } from "next/navigation";
-import { UserModal } from "./modals/UserModal";
+import { UserModal } from "../modals/UserModal";
 
 const StyledNavBar = styled.footer`
     position: fixed;
@@ -22,7 +22,7 @@ const StyledNavBar = styled.footer`
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
     z-index: 10;
     border: 2px solid ${props => props.theme.colours.primary};
-    border-radius: 4px;
+    border-radius: 6px;
     box-sizing: border-box;
 `
 

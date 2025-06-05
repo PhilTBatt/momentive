@@ -29,7 +29,7 @@ const Card = styled(StyledCard)`
 `
 
 const StyledText = styled.p`
-  	font-size: 9vw;
+  	font-size: 7.5vw;
   	margin: 0.75vh 0 0 0vw;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 
@@ -40,7 +40,7 @@ const StyledText = styled.p`
 `
 
 const StyledEmail = styled(StyledText)`
-    font-size: 7.5vw;
+    font-size: 6vw;
     margin-top: 0vw;
 
     @media (min-width: 768px) {

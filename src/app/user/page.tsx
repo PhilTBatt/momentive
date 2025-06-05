@@ -20,7 +20,7 @@ const Grid = styled.section`
 `
 
 const Heading1 = styled(StyledHeading)`
-    font-size: 11vw;
+    font-size: 10vw;
     margin-bottom: 1.5vh;
 
     @media (min-width: 768px) {
@@ -30,7 +30,7 @@ const Heading1 = styled(StyledHeading)`
 `
 
 const Heading2 = styled(StyledHeading)`
-    font-size: 11vw;
+    font-size: 10.5vw;
     margin-bottom: 1.5vh;
     margin-top: 2.5vh;
 

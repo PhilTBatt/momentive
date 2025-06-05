@@ -48,7 +48,7 @@ const BannerImage = styled.img`
 `
 
 const StyledHeading = styled.h3`
-    font-size: 9vw;
+    font-size: 6.5vw;
     margin: 0vw 0 0vw 0;
     color: ${props => props.theme.colours.primary};
     line-height: 1;
@@ -62,7 +62,7 @@ const StyledHeading = styled.h3`
 
 const CardInformation = styled.div`
     padding: 0vw 2vw;
-    font-size: 4.5vw;
+    font-size: 3.5vw;
     margin: 0;
     p {
         margin: 1vw 0 2vw 0;
@@ -81,7 +81,7 @@ const CardInformation = styled.div`
 
 const CardFooter = styled.div`
     background-color: ${props => props.theme.colours.primary};
-    font-size: 4vw;
+    font-size: 3vw;
     border: 1px solid ${props => props.theme.colours.background};
     border-radius: 8px;
     padding: 0.5vw 0;
@@ -107,7 +107,7 @@ type ExtraButtonProps = {
 const ExtraButton = styled.button<ExtraButtonProps>`
     font-size: 4.5vw;
     position: absolute;
-    bottom: ${props => props.$bottom || '14vw'};
+    bottom: ${props => props.$bottom || '9.5vw'};
     left: ${props => props.$left || 'auto'};
     right: ${props => props.$right || 'auto'};
     border: none;
