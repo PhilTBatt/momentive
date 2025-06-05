@@ -43,9 +43,8 @@ const StyledText = styled.p`
 const FilterBarWrapper = styled.div`
     && > * {
     @media (min-width: 768px) {
-        height: 4vh;
         width: 29vw;
-        align-items: start;
+        line-height: 0.8;
         
         select {
             width: 5vw;

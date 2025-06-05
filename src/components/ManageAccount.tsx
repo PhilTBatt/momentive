@@ -44,7 +44,7 @@ const StyledEmail = styled(StyledText)`
     margin-top: 0vw;
 
     @media (min-width: 768px) {
-        font-size: 1.5vw;
+        font-size: 1.4vw;
         margin: 1vh 0 1vh 1vw;
     }
 `
