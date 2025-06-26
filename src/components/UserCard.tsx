@@ -24,18 +24,21 @@ const StyledCard = styled.li`
 `
 
 const UserName = styled.h3`
-    font-size: 5.5vw;
-    margin: 2vh 0vw 2vh 0vw;
+    font-size: 5vw;
+    margin: 1vh 0vw 1vh 0vw;
 
     @media (min-width: 768px) {
         font-size: 1vw;
-        margin: 1vh 0vw 1vh 0vw;
+        margin: 1vh 0vw 0.5vh 0vw;
     }
 `
 
 const UserEmail = styled(UserName)`
+    font-size: 4vw;
+
     @media (min-width: 768px) {
-        font-size: 0.75vw;
+        font-size: 0.8vw;
+        margin: 0vh 0vw 1vh 0vw;
     }
 `
 

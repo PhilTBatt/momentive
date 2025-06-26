@@ -43,7 +43,7 @@ const StyledText = styled.p`
 
 const StyledEmail = styled(StyledText)`
     font-size: 5.5vw;
-    margin-top: 0vw;
+    margin-top: 1vh;
 
     @media (min-width: 768px) {
         font-size: 1.4vw;
