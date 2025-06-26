@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgresql
+    environment:
+      DATABASE_URL: postgres://devuser:devpass@postgresql:5432/momentivedb
+  postgresql:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: momentivedb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
