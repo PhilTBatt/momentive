@@ -56,7 +56,7 @@ const StyledHeading = styled.h3`
 
     @media (min-width: 768px) {
         font-size: 1.5vw;
-        margin: 0.5vh 0 1.25vh 0;
+        margin: 0.5vh 0 1vh 0;
     }
 `
 
@@ -74,7 +74,7 @@ const CardInformation = styled.div`
         padding: 0vw 0.5vw;
 
         p {
-            margin: 1vh 0 0.5vh 0;
+            margin: 1vh 0 1vh 0;
         }
     }
 `
@@ -105,15 +105,15 @@ type ExtraButtonProps = {
 }
   
 const ExtraButton = styled.button<ExtraButtonProps>`
-    font-size: 4.5vw;
+    font-size: 4vw;
     position: absolute;
-    bottom: ${props => props.$bottom || '9.5vw'};
+    bottom: ${props => props.$bottom || '10vw'};
     left: ${props => props.$left || 'auto'};
     right: ${props => props.$right || 'auto'};
     border: none;
     border-radius: 40%;
-    width: 6.5vw;
-    height: 6.5vw;
+    width: 5.5vw;
+    height: 5.5vw;
     display: flex;
     align-items: center;
     justify-content: center;

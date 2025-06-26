@@ -19,7 +19,7 @@ const Card = styled(StyledCard)`
 
 const CreateButton = styled(BlockButton)`
     width: 55vw;
-    font-size: 8vw;
+    font-size: 7vw;
 
     @media (min-width: 768px) {
         font-size: 1.5vw;
@@ -29,8 +29,8 @@ const CreateButton = styled(BlockButton)`
 `
 
 const StyledText = styled.p`
-  	font-size: 6.5vw;
-  	margin-top: 4vw;
+  	font-size: 7.5vw;
+  	margin-top: 3vh;
   	margin-bottom: 2vw;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
 
@@ -62,7 +62,7 @@ export default function ManageEvents() {
     const [eventsModalOpen, setEventsModalOpen] = useState(false)
     const {user} = useContext(UserContext)
     const [sortBy, setSortBy] = useState('date')
-    const [order, setOrder] = useState<'DESC' | 'ASC'>('DESC')
+    const [order, setOrder] = useState<'DESC' | 'ASC'>('ASC')
     const [topic, setTopic] = useState('')
 
   	return (

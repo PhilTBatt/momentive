@@ -20,6 +20,8 @@ const DesktopGrid = styled.span`
 `
 
 const Card = styled(StyledCard)`
+    margin-bottom: 3vh;
+
     @media (min-width: 768px) {
         width: 30vw;
         margin-top: 4vh;
@@ -40,7 +42,7 @@ const StyledText = styled.p`
 `
 
 const StyledEmail = styled(StyledText)`
-    font-size: 6vw;
+    font-size: 5.5vw;
     margin-top: 0vw;
 
     @media (min-width: 768px) {
@@ -52,6 +54,7 @@ const StyledEmail = styled(StyledText)`
 const EditButton = styled(StyledButton)`
     margin-top: 2vw;
     margin-bottom: 3vw;
+    font-size: 5vw;
 
     @media (min-width: 768px) {
         font-size: 1.25vw;
@@ -63,6 +66,7 @@ const EditButton = styled(StyledButton)`
 
 const SignOutCard = styled(StyledCard)`
     margin-top: 2vh;
+    margin-bottom: 4vh;
 
     @media (min-width: 768px) {
         width: 18vw;
@@ -70,9 +74,9 @@ const SignOutCard = styled(StyledCard)`
 `
 
 const SignOutButton = styled(BlockButton)`
-    font-size: 7.5vw;
-  	margin-top: 1.5vh;
-  	margin-bottom: 1.5vh;
+    font-size: 6vw;
+  	margin-top: 1vh;
+  	margin-bottom: 1vh;
 
     @media (min-width: 768px) {
         font-size: 1.5vw;
