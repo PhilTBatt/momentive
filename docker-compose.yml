@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "3001:3000"
     depends_on:
       - postgresql
     environment:
@@ -15,5 +15,6 @@ services:
       POSTGRES_DB: momentivedb
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
 volumes:
   pgdata:
