@@ -5,9 +5,14 @@ FROM node:18
 WORKDIR /app
 
 # Copy files
-COPY package*.json /.
+COPY package*.json ./
 RUN npm install
 COPY . .
+
+# Create a non-root user
+RUN useradd -m appuser
+RUN chown -R appuser:appuser /app
+USER appuser
 
 # Expose a port
 EXPOSE 3000

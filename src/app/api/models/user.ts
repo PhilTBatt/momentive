@@ -1,4 +1,4 @@
-import { db } from "@/lib/connection"
+import db from "@/lib/connection"
 import { CustomError } from "@/types/error";
 import bcrypt from 'bcrypt';
 
@@ -29,7 +29,7 @@ export async function insertUser(name: string, email: string, password: string) 
 			throw new CustomError(400, 'Invalid input')
     }
 
-	const existingUser = await db.query(`SELECT * FROM users WHERE email = $1`, [email])
+	const existingUser = await db.query(`SELECT * FROM users WHERE email = $1`, [email]) as any[]
 
 	if (existingUser.length > 0)
 		throw new CustomError(409, 'Email already in use')
@@ -39,7 +39,7 @@ export async function insertUser(name: string, email: string, password: string) 
     const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *`
     const params = [name, email, hashedPassword]
 	
-	const newUser = await db.query(query, params)
+	const newUser = await db.query(query, params) as any[]
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { password: _password, ...userWithoutPassword } = newUser[0]
@@ -49,7 +49,7 @@ export async function insertUser(name: string, email: string, password: string) 
 
 export async function fetchUserById(id: number) {
 	const query = `SELECT * FROM users WHERE id = $1`
-	const user = await db.query(query, [id])
+	const user = await db.query(query, [id]) as any[]
 
 	if (user.length === 0)
 		throw new CustomError(404, "User not found")
@@ -61,7 +61,7 @@ export async function fetchUserById(id: number) {
 
 export async function fetchUserByEmail(email: string) {
 	const query = `SELECT * FROM users WHERE email = $1`
-	const user = await db.query(query, [email])
+	const user = await db.query(query, [email]) as any[]
 
 	if (user.length === 0) 
 		throw new CustomError(404, "User not found")
@@ -73,7 +73,7 @@ export async function fetchUserByEmail(email: string) {
 
 export async function removeUserById(id: number) {
 	const query = `DELETE FROM users WHERE id = $1 RETURNING *`
-	const result = await db.query(query, [id])
+	const result = await db.query(query, [id]) as any[]
 
 	if (result.length === 0) 
 		throw new CustomError(404, "User not found")
@@ -93,7 +93,7 @@ export async function updateUserById(id: number, name: string, email: string) {
 	const query = `UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *`
 	const params = [name, email, id]
 
-	const user = await db.query(query, params)
+	const user = await db.query(query, params) as any[]
 
 	if (user.length === 0)
 		throw new CustomError(404, "User not found")
@@ -105,7 +105,7 @@ export async function updateUserById(id: number, name: string, email: string) {
 
 export async function checkUserPassword(email: string, password: string) {
     const query = `SELECT password FROM users WHERE email = $1`
-    const result = await db.query(query, [email])
+    const result = await db.query(query, [email]) as any[]
   
     if (result.length === 0) 
       throw new CustomError(404, "User not found")

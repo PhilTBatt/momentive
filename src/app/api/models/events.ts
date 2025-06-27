@@ -1,4 +1,4 @@
-import { db } from "@/lib/connection"
+import db from "@/lib/connection"
 import { CustomError } from "@/types/error"
 
 export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string | null, userId: number | null, limit = 10, page = 1) {
@@ -63,7 +63,7 @@ export async function insertEvent(id: number, title: string, description: string
 
     const query = `INSERT INTO events (title, description, date, location, topic, "createdBy") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
 
-	const newEvent = await db.query(query, params)
+	const newEvent = await db.query(query, params) as any[]
 
 	return newEvent[0]
 }
@@ -71,7 +71,7 @@ export async function insertEvent(id: number, title: string, description: string
 export async function fetchEventById(id: number) {
     const query = `SELECT id, title, description, location, date, "createdBy", topic, array_to_json(attendees) AS attendees,
        "createdAt" FROM events WHERE id = $1`
-	const event = await db.query(query, [id])
+	const event = await db.query(query, [id]) as any[]
 
     if (event.length === 0) {
         new CustomError(404, "Event not found")
@@ -82,7 +82,7 @@ export async function fetchEventById(id: number) {
 
 export async function removeEventById(id: number) {
     const query = `DELETE FROM events WHERE id = $1 RETURNING *`
-	const result = await db.query(query, [id])
+	const result = await db.query(query, [id]) as any[]
 
     if (result.length === 0) 
         throw new CustomError(404, "Event not found")
@@ -101,7 +101,7 @@ export async function updateEventById(id: number, title: string, description: st
     }
 
     const query = `UPDATE events SET title = $1, description = $2, date = $3, location = $4, topic = $5 WHERE id = $6 RETURNING *`
-    const result = await db.query(query, params)
+    const result = await db.query(query, params) as any[]
 
     if (result.length === 0)
         throw new CustomError(404, "Event not found")
@@ -118,7 +118,7 @@ export async function addAttendeeToEvent(eventId: number, name: string, email: s
 
     const checkQuery = `SELECT 1 FROM events WHERE id = $3 AND attendees @> ARRAY[ROW($1, $2)::attendee]`
 
-    const checkResult = await db.query(checkQuery, [name, email, eventId])
+    const checkResult = await db.query(checkQuery, [name, email, eventId]) as any[]
 
     if (checkResult.length > 0)
         throw new CustomError(400, 'This email is already attending the event.')
@@ -126,7 +126,7 @@ export async function addAttendeeToEvent(eventId: number, name: string, email: s
     const query = `UPDATE events SET attendees = array_append(attendees, ROW($1, $2)::attendee) WHERE id = $3 RETURNING *`
 
     const params = [name, email, eventId]
-    const result = await db.query(query, params)
+    const result = await db.query(query, params) as any[]
 
     if (result.length === 0)
 		throw new CustomError(404, "Event not found")
@@ -142,7 +142,7 @@ export async function removeAttendeeFromEvent(eventId: number, name: string, ema
         throw new CustomError(400, 'Invalid input types for name or email.')
 
     const checkQuery = `SELECT * FROM events WHERE id = $3 AND attendees @> ARRAY[ROW($1, $2)::attendee]`
-    const checkResult = await db.query(checkQuery, [name, email, eventId])
+    const checkResult = await db.query(checkQuery, [name, email, eventId]) as any[]
 
     if (checkResult.length === 0)
         throw new CustomError(400, 'This attendee is not part of the event.')
@@ -150,7 +150,7 @@ export async function removeAttendeeFromEvent(eventId: number, name: string, ema
     const removeQuery = `UPDATE events SET attendees = array_remove(attendees, ROW($1, $2)::attendee)
         WHERE id = $3 RETURNING *`
 
-    const result = await db.query(removeQuery, [name, email, eventId])
+    const result = await db.query(removeQuery, [name, email, eventId]) as any[]
 
     if (result.length === 0)
         throw new CustomError(404, 'Event not found.')
