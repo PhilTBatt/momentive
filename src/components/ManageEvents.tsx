@@ -2,7 +2,7 @@
 
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { CreateEventsModal } from "./modals/CreateEventsModal";
+import { CreateEventsModal } from "./modals/CreateEvent";
 import { UserContext } from "@/contexts/User";
 import { FilterBar } from "./FilterBar";
 import { StyledCard } from "./styled-components/StyledCard";

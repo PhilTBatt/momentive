@@ -24,7 +24,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: Promis
 	try {
 		if (id) {
             await removeUserById(Number(id))
-            return new Response(null, { status: 204 })
+            return NextResponse.json({msg: 'User deleted successfully'}, { status: 204 })
         }
 	} catch (err: unknown) {
         if (err instanceof CustomError) 

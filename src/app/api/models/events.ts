@@ -80,16 +80,6 @@ export async function fetchEventById(id: number) {
     return event[0]
 }
 
-export async function removeEventById(id: number) {
-    const query = `DELETE FROM events WHERE id = $1 RETURNING *`
-	const result = await db.query(query, [id]) as any[]
-
-    if (result.length === 0) 
-        throw new CustomError(404, "Event not found")
-
-    return true
-}
-
 export async function updateEventById(id: number, title: string, description: string, date: string, location: string, topic: string) {
     const params = [title, description, date, location, topic, id]
     
@@ -99,14 +89,24 @@ export async function updateEventById(id: number, title: string, description: st
         if (typeof field !== 'string') 
             throw new CustomError(400, "Invalid input")
     }
-
+    
     const query = `UPDATE events SET title = $1, description = $2, date = $3, location = $4, topic = $5 WHERE id = $6 RETURNING *`
     const result = await db.query(query, params) as any[]
-
+    
     if (result.length === 0)
         throw new CustomError(404, "Event not found")
-
+    
     return result[0]
+}
+
+export async function removeEventById(id: number) {
+    const query = `DELETE FROM events WHERE id = $1 RETURNING *`
+    const result = await db.query(query, [id]) as any[]
+
+    if (result.length === 0) 
+        throw new CustomError(404, "Event not found")
+
+    return true
 }
 
 export async function addAttendeeToEvent(eventId: number, name: string, email: string) {

@@ -24,7 +24,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: Promis
 
         if (id) {
             await removeEventById(Number(id))
-            return new Response(null, { status: 204 })
+            return NextResponse.json({ msg: 'Event deleted successfully' }, { status: 204 })
         }
     } catch (err: unknown) {
         if (err instanceof CustomError) 
