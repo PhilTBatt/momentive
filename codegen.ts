@@ -11,9 +11,14 @@ const config: CodegenConfig = {
       },
     },
     "./src/graphql/__generated__/types.ts": {
-      plugins: ["typescript", "typescript-operations"],
-    },
-  }
+      plugins: ["typescript", "typescript-operations", "typescript-resolvers"],
+      config: {
+        useIndexSignature: true,
+        contextType: "../index#MyContext"
+      }
+    }
+  },
+  ignoreNoDocuments: true
 }
 
 export default config
