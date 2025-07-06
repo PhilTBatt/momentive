@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const StyledSubText = styled.p`
     font-size: 4.75vw;
-    margin: 1vh 2.5vw 1.5vh 2.5vw;
+    margin: 0vh 2.5vw 2vh 2.5vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         
     @media (min-width: 768px) {
@@ -26,8 +26,8 @@ const StyledSection = styled.section`
             
 const StyledSubheading = styled.h3`
     font-size: 8.25vw;
-    margin-top: 5vw;
-    margin-bottom: 5vw;
+    margin-top: 6vw;
+    margin-bottom: 4vw;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                 
     @media (min-width: 768px) {

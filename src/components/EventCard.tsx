@@ -22,12 +22,12 @@ const StyledCard = styled.li`
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     &:last-child {
-        margin-bottom: 0;
+        margin-bottom: -0.5vh;
     }
 
     @media (min-width: 768px) {
         width: 22.5vw;
-        margin: 0 auto 4vh auto;
+        margin: 0 auto 3vh auto;
         &:last-child {
             margin-bottom: 0vh;
         }
@@ -107,7 +107,7 @@ type ExtraButtonProps = {
 const ExtraButton = styled.button<ExtraButtonProps>`
     font-size: 4vw;
     position: absolute;
-    bottom: ${props => props.$bottom || '10vw'};
+    bottom: ${props => props.$bottom || '11vw'};
     left: ${props => props.$left || 'auto'};
     right: ${props => props.$right || 'auto'};
     border: none;
