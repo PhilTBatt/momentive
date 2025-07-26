@@ -11,6 +11,10 @@ export const typeDefs = gql`
     type Mutation {
         createUser(input: CreateUserInput!): User
         createEvent(input: CreateEventInput!): Event
+        updateEvent(id: ID!, input: UpdateEventInput!): Event
+        deleteEvent(id: ID!): String
+        signIn(input: SignInInput!): Boolean
+        addAttendee(eventId: ID!, input: AddAttendeeInput!): Event
     }
 
     type User {
@@ -24,6 +28,7 @@ export const typeDefs = gql`
         id: ID!
         title: String!
         description: String!
+        topic: String!
         location: String!
         date: String!
         createdBy: String!
@@ -32,13 +37,34 @@ export const typeDefs = gql`
     input CreateUserInput {
         name: String!
         email: String!
+        password: String!
     }
 
     input CreateEventInput {
         title: String!
         description: String!
+        topic: String!
         location: String!
         date: String!
         createdBy: String!
+    }
+
+    input UpdateEventInput {
+        title: String!
+        description: String!
+        topic: String!
+        location: String!
+        date: String!
+    }
+
+    input SignInInput {
+        id: ID!
+        email: String!
+        password: String!
+    }
+
+    input AddAttendeeInput {
+        name: String!
+        email: String!
     }
 `

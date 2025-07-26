@@ -17,17 +17,24 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AddAttendeeInput = {
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
 export type CreateEventInput = {
   createdBy: Scalars['String']['input'];
   date: Scalars['String']['input'];
   description: Scalars['String']['input'];
   location: Scalars['String']['input'];
   title: Scalars['String']['input'];
+  topic: Scalars['String']['input'];
 };
 
 export type CreateUserInput = {
   email: Scalars['String']['input'];
   name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 };
 
 export type Event = {
@@ -38,12 +45,23 @@ export type Event = {
   id: Scalars['ID']['output'];
   location: Scalars['String']['output'];
   title: Scalars['String']['output'];
+  topic: Scalars['String']['output'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addAttendee?: Maybe<Event>;
   createEvent?: Maybe<Event>;
   createUser?: Maybe<User>;
+  deleteEvent?: Maybe<Scalars['String']['output']>;
+  signIn?: Maybe<Scalars['Boolean']['output']>;
+  updateEvent?: Maybe<Event>;
+};
+
+
+export type MutationAddAttendeeArgs = {
+  eventId: Scalars['ID']['input'];
+  input: AddAttendeeInput;
 };
 
 
@@ -54,6 +72,22 @@ export type MutationCreateEventArgs = {
 
 export type MutationCreateUserArgs = {
   input: CreateUserInput;
+};
+
+
+export type MutationDeleteEventArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationSignInArgs = {
+  input: SignInInput;
+};
+
+
+export type MutationUpdateEventArgs = {
+  id: Scalars['ID']['input'];
+  input: UpdateEventInput;
 };
 
 export type Query = {
@@ -72,6 +106,20 @@ export type QueryEventArgs = {
 
 export type QueryUserArgs = {
   id: Scalars['ID']['input'];
+};
+
+export type SignInInput = {
+  email: Scalars['String']['input'];
+  id: Scalars['ID']['input'];
+  password: Scalars['String']['input'];
+};
+
+export type UpdateEventInput = {
+  date: Scalars['String']['input'];
+  description: Scalars['String']['input'];
+  location: Scalars['String']['input'];
+  title: Scalars['String']['input'];
+  topic: Scalars['String']['input'];
 };
 
 export type User = {
@@ -154,6 +202,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
+  AddAttendeeInput: AddAttendeeInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   CreateEventInput: CreateEventInput;
   CreateUserInput: CreateUserInput;
@@ -161,12 +210,15 @@ export type ResolversTypes = ResolversObject<{
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  SignInInput: SignInInput;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  UpdateEventInput: UpdateEventInput;
   User: ResolverTypeWrapper<User>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
+  AddAttendeeInput: AddAttendeeInput;
   Boolean: Scalars['Boolean']['output'];
   CreateEventInput: CreateEventInput;
   CreateUserInput: CreateUserInput;
@@ -174,7 +226,9 @@ export type ResolversParentTypes = ResolversObject<{
   ID: Scalars['ID']['output'];
   Mutation: {};
   Query: {};
+  SignInInput: SignInInput;
   String: Scalars['String']['output'];
+  UpdateEventInput: UpdateEventInput;
   User: User;
 }>;
 
@@ -185,12 +239,17 @@ export type EventResolvers<ContextType = MyContext, ParentType extends Resolvers
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   location?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  topic?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type MutationResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  addAttendee?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationAddAttendeeArgs, 'eventId' | 'input'>>;
   createEvent?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationCreateEventArgs, 'input'>>;
   createUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'input'>>;
+  deleteEvent?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeleteEventArgs, 'id'>>;
+  signIn?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationSignInArgs, 'input'>>;
+  updateEvent?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationUpdateEventArgs, 'id' | 'input'>>;
 }>;
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{

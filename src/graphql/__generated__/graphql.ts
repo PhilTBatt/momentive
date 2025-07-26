@@ -15,17 +15,24 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AddAttendeeInput = {
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
 export type CreateEventInput = {
   createdBy: Scalars['String']['input'];
   date: Scalars['String']['input'];
   description: Scalars['String']['input'];
   location: Scalars['String']['input'];
   title: Scalars['String']['input'];
+  topic: Scalars['String']['input'];
 };
 
 export type CreateUserInput = {
   email: Scalars['String']['input'];
   name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 };
 
 export type Event = {
@@ -36,12 +43,23 @@ export type Event = {
   id: Scalars['ID']['output'];
   location: Scalars['String']['output'];
   title: Scalars['String']['output'];
+  topic: Scalars['String']['output'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addAttendee?: Maybe<Event>;
   createEvent?: Maybe<Event>;
   createUser?: Maybe<User>;
+  deleteEvent?: Maybe<Scalars['String']['output']>;
+  signIn?: Maybe<Scalars['Boolean']['output']>;
+  updateEvent?: Maybe<Event>;
+};
+
+
+export type MutationAddAttendeeArgs = {
+  eventId: Scalars['ID']['input'];
+  input: AddAttendeeInput;
 };
 
 
@@ -52,6 +70,22 @@ export type MutationCreateEventArgs = {
 
 export type MutationCreateUserArgs = {
   input: CreateUserInput;
+};
+
+
+export type MutationDeleteEventArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationSignInArgs = {
+  input: SignInInput;
+};
+
+
+export type MutationUpdateEventArgs = {
+  id: Scalars['ID']['input'];
+  input: UpdateEventInput;
 };
 
 export type Query = {
@@ -70,6 +104,20 @@ export type QueryEventArgs = {
 
 export type QueryUserArgs = {
   id: Scalars['ID']['input'];
+};
+
+export type SignInInput = {
+  email: Scalars['String']['input'];
+  id: Scalars['ID']['input'];
+  password: Scalars['String']['input'];
+};
+
+export type UpdateEventInput = {
+  date: Scalars['String']['input'];
+  description: Scalars['String']['input'];
+  location: Scalars['String']['input'];
+  title: Scalars['String']['input'];
+  topic: Scalars['String']['input'];
 };
 
 export type User = {
