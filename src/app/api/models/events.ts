@@ -21,8 +21,8 @@ export async function fetchEvents(sortBy = 'date', order = 'DESC', topic: string
 	let query = `SELECT id, title, description, location, date, "createdBy", topic, array_to_json(attendees) AS attendees,
        "createdAt" FROM events`
 
-	const params = []
-    const conditions = []
+	const params: (string | number)[] = []
+    const conditions: (string | number)[] = []
 
 	if (userId){
         conditions.push(`"createdBy" = $${params.length + 1}`)
