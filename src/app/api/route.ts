@@ -7,6 +7,61 @@ export async function GET() {
                 description: "Serves a JSON representation of all the available endpoints of the API",
             },
 
+            "GET /api/graphql": {
+                description: "Executes a GraphQL query via URL parameters. Suitable for simple read-only queries (e.g. used in GraphiQL).",
+                queries: ["query", "variables"],
+                exampleResponse: {
+                    data: {
+                        user: {
+                            id: "1",
+                            name: "Alice",
+                            email: "alice@example.com"
+                        }
+                    }
+                }
+            },
+
+            "POST /api/graphql": {
+                description: "Executes a GraphQL query or mutation using a JSON request body. Supports full queries, variables, and mutations.",
+                requestBody: {
+                    query: `mutation CreateEvent($input: CreateEventInput!) {
+                    createEvent(input: $input) {
+                        id
+                        title
+                        description
+                        topic
+                        location
+                        date
+                        createdBy
+                    }
+                    }`,
+                    variables: {
+                        input: {
+                            title: "GraphQL Conference",
+                            description: "A conference about GraphQL",
+                            topic: "Technology",
+                            location: "Leeds",
+                            date: "2025-09-15",
+                            createdBy: "1"
+                        }
+                    }
+                },
+                exampleResponse: {
+                    data: {
+                        createEvent: {
+                            id: "1",
+                            title: "GraphQL Conference",
+                            description: "A conference about GraphQL",
+                            topic: "Technology",
+                            location: "Leeds",
+                            date: "2025-09-15",
+                            createdBy: "1"
+                        }
+                    }
+                }
+            },
+
+
             "GET /api/events": {
                 description: "Returns a list of events",
                 queries: ["sortBy", "order", "topic", "userId", "limit", "page"],
@@ -30,7 +85,7 @@ export async function GET() {
                 description: "Adds a new event",
                 queries: [],
                 requestBody: {
-                    id: 2,
+                    id: "2",
                     title: "Event Title",
                     description: "Event Description",
                     date: "2025-04-30",
@@ -45,7 +100,7 @@ export async function GET() {
                         date: "2025-04-30",
                         location: "Leeds",
                         topic: "Programming",
-                        createdBy: '2'
+                        createdBy: "2"
                     }
                 }
             },
@@ -61,7 +116,7 @@ export async function GET() {
                         date: "2025-04-30",
                         location: "Leeds",
                         topic: "Programming",
-                        createdBy: '2'
+                        createdBy: "2"
                     }
                 }
             },
@@ -70,7 +125,6 @@ export async function GET() {
                 description: "Updates an event by ID",
                 queries: [],
                 requestBody: {
-                    id: '1',
                     title: "Updated title",
                     description: "Updated description",
                     date: "2025-05-01",
@@ -85,7 +139,7 @@ export async function GET() {
                         date: "2025-05-01",
                         location: "Manchester",
                         topic: "Web Development",
-                        createdBy: '2'
+                        createdBy: "2"
                     }
                 }
             },
@@ -94,14 +148,14 @@ export async function GET() {
                 description: "Deletes an event by ID",
                 queries: [],
                 exampleResponse: {
-                    msg: 'Event deleted successfully'
+                    msg: "Event deleted successfully"
                 }
             },
 
             "POST /api/events/:id/attendees": {
                 description: "Adds an attendee to an event",
                 queries: [],
-                requestBody: {
+                requestaaBody: {
                     name: "Attendee Name",
                     email: "attendee@example.com",
                 },
@@ -141,6 +195,7 @@ export async function GET() {
                     name: "Bob",
                     email: "bob@example.com",
                     password: "password123",
+                    staffCode: "1234"
                 },
                 exampleResponse: {
                     user: {
@@ -167,7 +222,7 @@ export async function GET() {
                 description: "Deletes a user by ID",
                 queries: [],
                 exampleResponse: {
-                    msg: 'User deleted successfully'
+                    msg: "User deleted successfully"
                 }
             },
 
@@ -187,7 +242,7 @@ export async function GET() {
                 }
             },
 
-            "GET /api/users/email": {
+            "POST /api/users/by-email": {
                 description: "Fetches a user by email",
                 queries: [],
                 requestBody: {
@@ -202,15 +257,17 @@ export async function GET() {
                 }
             },
 
-            "POST /api/users/signin": {
+            "POST /api/users/auhthenticate": {
                 description: "Checks a user's credentials and signs them in",
                 queries: [],
                 requestBody: {
                     id: "1",
                     email: "alice@example.com",
-                    password: "encryptredpassword",
+                    password: "encryptedpassword",
                 },
-                exampleResponse: true
+                exampleResponse: {
+                    success: true
+                }
             }
         }, { status: 200 })
     } catch {
