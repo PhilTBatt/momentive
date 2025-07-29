@@ -21,6 +21,7 @@ const handler = startServerAndCreateNextHandler<NextRequest>(server, {
   }
 })
 
+// @ts-ignore Next.js thinks context is undefined, but it's fine
 export {
   handler as GET,
   handler as POST,
