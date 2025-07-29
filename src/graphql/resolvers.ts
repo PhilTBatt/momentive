@@ -55,13 +55,29 @@ export const resolvers: Resolvers = {
         createdBy: async ({ createdBy }, _, { dataSources }) => {
             const response = await dataSources.userAPI.getUser(createdBy)
             return response.user.id
-        }
+        },
+        id: (parent) => parent.id,
+        title: (parent) => parent.title,
+        description: (parent) => parent.description,
+        location: (parent) => parent.location,
+        date: (parent) => parent.date,
+        topic: (parent) => parent.topic,
+        attendees: (parent) => parent.attendees,
+        createdAt: (parent) => parent.createdAt,
     },
 
     User: {
         events: async ({ id }, _, { dataSources }) => {
             const response = await dataSources.eventAPI.getEvents({ userId: id })
             return response.events
-        }
+        },
+        id: (parent) => parent.id,
+        name: (parent) => parent.name,
+        email: (parent) => parent.email,
+    }, 
+
+    Attendee: {
+        name: (parent) => parent.name,
+        email: (parent) => parent.email,
     }
 }
