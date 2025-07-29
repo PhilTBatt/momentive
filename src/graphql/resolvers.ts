@@ -63,7 +63,6 @@ export const resolvers: Resolvers = {
         date: (parent) => parent.date,
         topic: (parent) => parent.topic,
         attendees: (parent) => parent.attendees,
-        createdAt: (parent) => parent.createdAt,
     },
 
     User: {
