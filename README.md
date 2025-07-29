@@ -14,7 +14,7 @@
 
 This platform was contracted for by Tech Returners.
 
-Momentive is a community-driven events platform where staff can share events with members of the community. Staff members can make an account, create and manage events, and see who is attending, whilst guests can easily browse and register for events without needing an account. They can also add it straight to their Google calender.
+Momentive is a community-driven events platform where staff can share events with members of the community. Staff members can make an account, create and manage events, and see who is attending, whilst guests can easily browse and register for events without needing an account. They can also add it straight to their Google Calendar.
 
 ## **Prerequisites**
 - [Docker](https://www.docker.com/)  
