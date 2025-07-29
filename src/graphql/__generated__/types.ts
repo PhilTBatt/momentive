@@ -58,13 +58,13 @@ export type Event = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addAttendee?: Maybe<Event>;
-  createEvent?: Maybe<Event>;
-  createUser?: Maybe<User>;
-  deleteEvent?: Maybe<Scalars['String']['output']>;
-  removeAttendee?: Maybe<Event>;
+  addAttendee: Maybe<Event>;
+  createEvent: Maybe<Event>;
+  createUser: Maybe<User>;
+  deleteEvent: Maybe<Scalars['String']['output']>;
+  removeAttendee: Maybe<Event>;
   signIn: Scalars['Boolean']['output'];
-  updateEvent?: Maybe<Event>;
+  updateEvent: Maybe<Event>;
 };
 
 
@@ -107,9 +107,9 @@ export type MutationUpdateEventArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  event?: Maybe<Event>;
+  event: Maybe<Event>;
   events: Array<Event>;
-  user?: Maybe<User>;
+  user: Maybe<User>;
   users: Array<User>;
 };
 
@@ -250,53 +250,53 @@ export type ResolversParentTypes = ResolversObject<{
 }>;
 
 export type AttendeeResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Attendee'] = ResolversParentTypes['Attendee']> = ResolversObject<{
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  email: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type EventResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Event'] = ResolversParentTypes['Event']> = ResolversObject<{
-  attendees?: Resolver<Array<ResolversTypes['Attendee']>, ParentType, ContextType>;
-  createdBy?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  date?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  location?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  topic?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  attendees: Resolver<Array<ResolversTypes['Attendee']>, ParentType, ContextType>;
+  createdBy: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  date: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  location: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  title: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  topic: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type MutationResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  addAttendee?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationAddAttendeeArgs, 'eventId' | 'input'>>;
-  createEvent?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationCreateEventArgs, 'input'>>;
-  createUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'input'>>;
-  deleteEvent?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeleteEventArgs, 'id'>>;
-  removeAttendee?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationRemoveAttendeeArgs, 'eventId' | 'input'>>;
-  signIn?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'input'>>;
-  updateEvent?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationUpdateEventArgs, 'id' | 'input'>>;
+  addAttendee: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationAddAttendeeArgs, 'eventId' | 'input'>>;
+  createEvent: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationCreateEventArgs, 'input'>>;
+  createUser: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'input'>>;
+  deleteEvent: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeleteEventArgs, 'id'>>;
+  removeAttendee: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationRemoveAttendeeArgs, 'eventId' | 'input'>>;
+  signIn: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'input'>>;
+  updateEvent: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationUpdateEventArgs, 'id' | 'input'>>;
 }>;
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  event?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryEventArgs, 'id'>>;
-  events?: Resolver<Array<ResolversTypes['Event']>, ParentType, ContextType>;
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
-  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
+  event: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<QueryEventArgs, 'id'>>;
+  events: Resolver<Array<ResolversTypes['Event']>, ParentType, ContextType>;
+  user: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
+  users: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
 }>;
 
 export type UserResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  events?: Resolver<Array<ResolversTypes['Event']>, ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  email: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  events: Resolver<Array<ResolversTypes['Event']>, ParentType, ContextType>;
+  id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = MyContext> = ResolversObject<{
-  Attendee?: AttendeeResolvers<ContextType>;
-  Event?: EventResolvers<ContextType>;
-  Mutation?: MutationResolvers<ContextType>;
-  Query?: QueryResolvers<ContextType>;
-  User?: UserResolvers<ContextType>;
+  Attendee: AttendeeResolvers<ContextType>;
+  Event: EventResolvers<ContextType>;
+  Mutation: MutationResolvers<ContextType>;
+  Query: QueryResolvers<ContextType>;
+  User: UserResolvers<ContextType>;
 }>;
 
