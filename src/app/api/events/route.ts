@@ -15,7 +15,6 @@ export async function GET(request: NextRequest) {
 
 	try {
 		const events = await fetchEvents(sortBy, order, topic, userIdNumber, limit, page)
-
 		return NextResponse.json({ events }, { status: 200 })
 	} catch (err: unknown) {
         if (err instanceof CustomError)
@@ -30,7 +29,8 @@ export async function POST(request: NextRequest) {
 
 	try {
 		const event = await insertEvent(Number(id), title, description, date, location, topic)
-
+		event.attendees = []
+		
 		return NextResponse.json({ event }, { status: 201 })
 	} catch (err: unknown) {
         if (err instanceof CustomError) 

@@ -22,10 +22,16 @@ export type AddAttendeeInput = {
   name: Scalars['String']['input'];
 };
 
+export type Attendee = {
+  __typename?: 'Attendee';
+  email: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
 export type CreateEventInput = {
-  createdBy: Scalars['String']['input'];
   date: Scalars['String']['input'];
   description: Scalars['String']['input'];
+  id: Scalars['ID']['input'];
   location: Scalars['String']['input'];
   title: Scalars['String']['input'];
   topic: Scalars['String']['input'];
@@ -35,10 +41,12 @@ export type CreateUserInput = {
   email: Scalars['String']['input'];
   name: Scalars['String']['input'];
   password: Scalars['String']['input'];
+  staffCode: Scalars['String']['input'];
 };
 
 export type Event = {
   __typename?: 'Event';
+  attendees: Array<Attendee>;
   createdBy: Scalars['String']['output'];
   date: Scalars['String']['output'];
   description: Scalars['String']['output'];
@@ -54,7 +62,8 @@ export type Mutation = {
   createEvent?: Maybe<Event>;
   createUser?: Maybe<User>;
   deleteEvent?: Maybe<Scalars['String']['output']>;
-  signIn?: Maybe<Scalars['Boolean']['output']>;
+  removeAttendee?: Maybe<Event>;
+  signIn: Scalars['Boolean']['output'];
   updateEvent?: Maybe<Event>;
 };
 
@@ -77,6 +86,12 @@ export type MutationCreateUserArgs = {
 
 export type MutationDeleteEventArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationRemoveAttendeeArgs = {
+  eventId: Scalars['ID']['input'];
+  input: AddAttendeeInput;
 };
 
 
@@ -203,6 +218,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   AddAttendeeInput: AddAttendeeInput;
+  Attendee: ResolverTypeWrapper<Attendee>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   CreateEventInput: CreateEventInput;
   CreateUserInput: CreateUserInput;
@@ -219,6 +235,7 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   AddAttendeeInput: AddAttendeeInput;
+  Attendee: Attendee;
   Boolean: Scalars['Boolean']['output'];
   CreateEventInput: CreateEventInput;
   CreateUserInput: CreateUserInput;
@@ -232,7 +249,14 @@ export type ResolversParentTypes = ResolversObject<{
   User: User;
 }>;
 
+export type AttendeeResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Attendee'] = ResolversParentTypes['Attendee']> = ResolversObject<{
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type EventResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Event'] = ResolversParentTypes['Event']> = ResolversObject<{
+  attendees?: Resolver<Array<ResolversTypes['Attendee']>, ParentType, ContextType>;
   createdBy?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   date?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -248,7 +272,8 @@ export type MutationResolvers<ContextType = MyContext, ParentType extends Resolv
   createEvent?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationCreateEventArgs, 'input'>>;
   createUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'input'>>;
   deleteEvent?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeleteEventArgs, 'id'>>;
-  signIn?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationSignInArgs, 'input'>>;
+  removeAttendee?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationRemoveAttendeeArgs, 'eventId' | 'input'>>;
+  signIn?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'input'>>;
   updateEvent?: Resolver<Maybe<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<MutationUpdateEventArgs, 'id' | 'input'>>;
 }>;
 
@@ -268,6 +293,7 @@ export type UserResolvers<ContextType = MyContext, ParentType extends ResolversP
 }>;
 
 export type Resolvers<ContextType = MyContext> = ResolversObject<{
+  Attendee?: AttendeeResolvers<ContextType>;
   Event?: EventResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

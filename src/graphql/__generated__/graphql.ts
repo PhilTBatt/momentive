@@ -20,10 +20,16 @@ export type AddAttendeeInput = {
   name: Scalars['String']['input'];
 };
 
+export type Attendee = {
+  __typename?: 'Attendee';
+  email: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
 export type CreateEventInput = {
-  createdBy: Scalars['String']['input'];
   date: Scalars['String']['input'];
   description: Scalars['String']['input'];
+  id: Scalars['ID']['input'];
   location: Scalars['String']['input'];
   title: Scalars['String']['input'];
   topic: Scalars['String']['input'];
@@ -33,10 +39,12 @@ export type CreateUserInput = {
   email: Scalars['String']['input'];
   name: Scalars['String']['input'];
   password: Scalars['String']['input'];
+  staffCode: Scalars['String']['input'];
 };
 
 export type Event = {
   __typename?: 'Event';
+  attendees: Array<Attendee>;
   createdBy: Scalars['String']['output'];
   date: Scalars['String']['output'];
   description: Scalars['String']['output'];
@@ -52,7 +60,8 @@ export type Mutation = {
   createEvent?: Maybe<Event>;
   createUser?: Maybe<User>;
   deleteEvent?: Maybe<Scalars['String']['output']>;
-  signIn?: Maybe<Scalars['Boolean']['output']>;
+  removeAttendee?: Maybe<Event>;
+  signIn: Scalars['Boolean']['output'];
   updateEvent?: Maybe<Event>;
 };
 
@@ -75,6 +84,12 @@ export type MutationCreateUserArgs = {
 
 export type MutationDeleteEventArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type MutationRemoveAttendeeArgs = {
+  eventId: Scalars['ID']['input'];
+  input: AddAttendeeInput;
 };
 
 

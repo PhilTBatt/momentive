@@ -13,8 +13,9 @@ export const typeDefs = gql`
         createEvent(input: CreateEventInput!): Event
         updateEvent(id: ID!, input: UpdateEventInput!): Event
         deleteEvent(id: ID!): String
-        signIn(input: SignInInput!): Boolean
+        signIn(input: SignInInput!): Boolean!
         addAttendee(eventId: ID!, input: AddAttendeeInput!): Event
+        removeAttendee(eventId: ID!, input: AddAttendeeInput!): Event
     }
 
     type User {
@@ -32,21 +33,28 @@ export const typeDefs = gql`
         location: String!
         date: String!
         createdBy: String!
+        attendees: [Attendee!]!
+    }
+
+    type Attendee {
+        name: String!
+        email: String!
     }
 
     input CreateUserInput {
         name: String!
         email: String!
         password: String!
+        staffCode: String!
     }
 
     input CreateEventInput {
+        id: ID!
         title: String!
         description: String!
         topic: String!
         location: String!
         date: String!
-        createdBy: String!
     }
 
     input UpdateEventInput {

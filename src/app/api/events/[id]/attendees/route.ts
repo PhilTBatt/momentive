@@ -1,4 +1,4 @@
-import { addAttendeeToEvent, removeAttendeeFromEvent } from "@/app/api/models/events"
+import { addAttendeeToEvent, fetchEventById, removeAttendeeFromEvent } from "@/app/api/models/events"
 import { CustomError } from "@/types/error"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -8,8 +8,10 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         const { name, email } = await request.json()
         
         if (id) {
-            const updatedEvent = await addAttendeeToEvent(Number(id), name, email)
-            return NextResponse.json(updatedEvent, { status: 200 })
+            await addAttendeeToEvent(Number(id), name, email)
+            const updatedEvent = await fetchEventById(Number(id))
+
+            return NextResponse.json({ event: updatedEvent }, { status: 200 })
         }
     } catch (err: unknown) {
         if (err instanceof CustomError) 
@@ -24,13 +26,20 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
         const {id} = await params
 
         const searchParams = request.nextUrl.searchParams
-        const name = searchParams.get("name")
-        const email = searchParams.get("email")
+        let name = searchParams.get("name")
+        let email = searchParams.get("email")
+
+        if (!id || !name || !email) {
+            const body = await request.json()
+            name = body.name
+            email = body.email
+        }
         
         if (!id || !name || !email)
             throw new CustomError(400, "Missing required parameters.")
 
-        const updatedEvent = await removeAttendeeFromEvent(Number(id), name, email)
+        await removeAttendeeFromEvent(Number(id), name, email)
+        const updatedEvent = await fetchEventById(Number(id))
         
         return NextResponse.json({ event: updatedEvent }, { status: 200 })
 

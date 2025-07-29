@@ -31,17 +31,22 @@ export const resolvers: Resolvers = {
         },
         updateEvent: async (_, { id, input }, { dataSources }) => {
             const response = await dataSources.eventAPI.updateEvent(id, input)
-            return response.event
+            return response.updatedEvent
         },
         deleteEvent: async (_, { id }, { dataSources }) => {
             const response = await dataSources.eventAPI.deleteEvent(id)
             return response.msg
         },
         signIn: async (_, { input }, { dataSources }) => {
-            return dataSources.userAPI.signIn(input)
+            const response = await dataSources.userAPI.signIn(input)
+            return response.success
         },
         addAttendee: async (_, { eventId, input }, { dataSources }) => {
             const response = await dataSources.eventAPI.addAttendee(eventId, input)
+            return response.event
+        },
+        removeAttendee: async (_parent, { eventId, input }, { dataSources }) => {
+            const response = await dataSources.eventAPI.removeAttendee(eventId, input)
             return response.event
         }
     },

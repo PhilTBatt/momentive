@@ -24,7 +24,7 @@ export class EventAPI extends RESTDataSource {
     return this.post('events', { body: input })
   }
 
-  async updateEvent(id: string, input: Partial<Omit<CreateEventInput, 'createdBy'>>): Promise<{ event: Event }> {
+  async updateEvent(id: string, input: Partial<Omit<CreateEventInput, 'createdBy'>>): Promise<{ updatedEvent: Event }> {
     return this.patch(`events/${id}`, { body: input })
   }
 
@@ -34,5 +34,9 @@ export class EventAPI extends RESTDataSource {
 
   async addAttendee(eventId: string, input: { name: string; email: string }): Promise<{ event: Event }> {
       return this.post(`events/${eventId}/attendees`, { body: input })
+  }
+
+  async removeAttendee(eventId: string, input: { name: string; email: string }): Promise<{ event: Event }> {
+    return this.delete(`events/${eventId}/attendees`, { body: input })
   }
 }

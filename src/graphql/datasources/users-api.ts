@@ -33,7 +33,7 @@ export class UserAPI extends RESTDataSource {
     return this.delete(`users/${id}`)
   }
 
-  async signIn(input: { id: string; email: string; password: string }): Promise<boolean> {
-    return this.post('users/signin', { body: input })
+  async signIn(input: { id: string; email: string; password: string }): Promise< {success: boolean} > {
+    return this.post('users/authenticate', { body: input })
   }
 }

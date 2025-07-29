@@ -8,6 +8,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
 
         if (id) {
             const event = await fetchEventById(Number(id))
+            
             return NextResponse.json({ event }, { status: 200 })
         }
     } catch (err: unknown) {
@@ -24,7 +25,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: Promis
 
         if (id) {
             await removeEventById(Number(id))
-            return NextResponse.json({ msg: 'Event deleted successfully' }, { status: 204 })
+            return NextResponse.json({ msg: 'Event deleted successfully' }, { status: 200 })
         }
     } catch (err: unknown) {
         if (err instanceof CustomError) 
@@ -40,8 +41,11 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
         const { title, description, date, location, topic } = await request.json()
 
         if (id) {
-            const updatedEvent = await updateEventById(Number(id), title, description, date, location, topic)
-            return NextResponse.json(updatedEvent, { status: 200 })
+            await updateEventById(Number(id), title, description, date, location, topic)
+
+            const updatedEvent = await fetchEventById(Number(id))
+
+            return NextResponse.json({ updatedEvent }, { status: 200 })
         }
     } catch (err: unknown) {
         if (err instanceof CustomError) 
