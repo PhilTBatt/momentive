@@ -28,9 +28,6 @@ const StyledCard = styled.li`
     @media (min-width: 768px) {
         width: 22.5vw;
         margin: 0 auto 3vh auto;
-        &:first-child {
-            margin-bottom: 1vh;
-        }
         &:last-child {
             margin-bottom: -0.25vh;
         }

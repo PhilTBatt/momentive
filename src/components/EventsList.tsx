@@ -28,7 +28,7 @@ const StyledList = styled.ul`
     @media (min-width: 768px) {
         display: grid;
         place-items: center;
-        padding: 0vh 0vw 1vh 0vw;
+        padding: 1.5vh 0vw 0vh 0vw;
     }
 `
 
