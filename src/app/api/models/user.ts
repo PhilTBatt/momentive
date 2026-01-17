@@ -12,7 +12,7 @@ export async function fetchUsers(order = 'ASC', limit = 10, page = 1) {
 	if (isNaN(page))
 		throw { status: 400, msg: 'Invalid page query' }
 		
-	const query = `SELECT * FROM users ORDER BY name ${order} LIMIT $1 OFFSET $2`
+	const query = `SELECT id, name, email, events FROM users ORDER BY name ${order} LIMIT $1 OFFSET $2`
 	const params = [limit, (page - 1) * limit]
 
 	const users = await db.query(query, params)
