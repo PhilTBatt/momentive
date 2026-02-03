@@ -19,4 +19,5 @@ export const topics = {
     History: 'images/history-culture.avif',
     Spirituality: 'images/spirituality-religion.avif',
     Fitness: 'images/fitness.avif',
+    'Social Club': 'images/snooker.avif',
   }  

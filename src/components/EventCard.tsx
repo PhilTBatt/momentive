@@ -29,7 +29,7 @@ const StyledCard = styled.li`
         width: 22.5vw;
         margin: 0 auto 3vh auto;
         &:last-child {
-            margin-bottom: 0vh;
+            margin-bottom: -0.25vh;
         }
     }
 `
